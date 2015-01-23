@@ -1,0 +1,10 @@
+{{#if visible}}
+  {{#if title}}
+    <div class="new-channel">
+      {{#if controller.editing}}
+        <a href="#" class="delete" {{action 'hideChannel' title}}>{{fa-icon "fa-minus"}}</a>
+      {{/if}}
+      <a {{bind-attr class="controller.editing:disabled:enabled" href=url}}><img {{bind-attr src=icon alt=title}} /></a>
+    </div>
+  {{/if}}
+{{/if}}

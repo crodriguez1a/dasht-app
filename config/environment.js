@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'liquid-fire-demo',
+    modulePrefix: 'dasht',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',

@@ -1,0 +1,70 @@
+.add-channel, .all-channels {
+  text-align: center;
+  .installed-channel {
+    img {
+      opacity: 0.15;
+    }
+  }
+  .new-channel, .installed-channel {
+    position: relative;
+    margin: 1em 1em 0 0;
+    display: inline-block;
+    border-radius: 0.5em;
+    width: 9em;
+    height: 9em;
+    a{
+      &.disabled {
+        pointer-events: none;
+        cursor: default;
+        @include shaky();
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 1em;
+    }
+    span {
+      display: inline-block;
+      margin-left: 0.5em;
+    }
+    .delete, .add, .installed {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 1.5em;
+      height: 1.5em;
+      border: 1px solid;
+      border-radius: 1em;
+      text-align: center;
+      padding-top: 0.2em;
+      z-index: 2;
+      font-size: 1em;
+    }
+    .delete {
+      border-color: $red;
+      color: $red;
+    }
+    .add {
+      color: $green;
+      border-color: $green
+    }
+    .installed {
+      border-color: $medium-text;
+    }
+  }
+  input[type="text"] {
+    opacity: 0.85;
+  }
+  button, input[type="submit"] {
+    background: $darker-text;
+    color: white;
+    margin: 1em auto;
+    display: block;
+    width: 50%;
+    padding: 0.5em;
+    border: none;
+    font-size: 1.25em;
+  }
+}

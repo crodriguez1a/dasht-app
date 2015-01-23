@@ -1,0 +1,106 @@
+{
+    "defaults": [
+        {
+            "title": "hulu",
+            "icon": "/assets/icons/hulu.png",
+            "url": "//hulu.com",
+            "tags": ["tv","movies","subscription"]
+        },
+        {
+            "title": "netflix",
+            "icon": "/assets/icons/netflix.png",
+            "url": "//netflix.com",
+            "tags": ["tv","movies","subscription"]
+          },
+        {
+            "title": "amazon",
+            "icon": "/assets/icons/amazon.png",
+            "url": "//amazon.com/primeinstantvideo",
+            "tags": ["tv","movies","subscription"]
+        },
+        {
+          "title": "mtv",
+          "icon": "/assets/icons/mtv.png",
+          "url": "//mtv.com",
+          "tags": ["tv","free"]
+        },
+        {
+          "title": "vh1",
+          "icon": "/assets/icons/vh1.png",
+          "url": "//vh1.com",
+          "tags": ["tv","free"]
+        },
+        {
+          "title": "pbs",
+          "icon": "/assets/icons/pbs.png",
+          "url": "//pbs.org",
+          "tags": ["tv","free"]
+        },
+        {
+          "title": "snagfilms",
+          "icon": "/assets/icons/snagfilms.png",
+          "url": "//snagfilms.com",
+          "tags": ["tv","movies","free"]
+
+        },
+        {
+          "title": "crackle",
+          "icon": "/assets/icons/crackle.png",
+          "url": "//crackle.com",
+          "tags": ["tv","movies","free"]
+        },
+        {
+          "title": "youtube",
+          "icon": "/assets/icons/youtube.png",
+          "url": "//youtube.com",
+          "tags": ["tv","movies","music","free","a la carte"]
+
+        },
+        {
+          "title": "pandora",
+          "icon": "/assets/icons/pandora.png",
+          "url": "//pandora.com",
+          "tags": ["music","free","subscription"]
+        },
+        {
+          "title": "vevo",
+          "icon": "/assets/icons/vevo.png",
+          "url": "//vevo.com",
+          "tags": ["music","free"]
+        },
+        {
+          "title": "pbskids",
+          "icon": "/assets/icons/pbskids.png",
+          "url": "//pbskids.org",
+          "tags": ["tv","movies","free","kids"]
+
+        },
+        {
+          "title": "nbatnt",
+          "icon": "/assets/icons/nbatnt.png",
+          "url": "//nba.com/tntovertime/",
+          "tags": ["sports","free"]
+
+        },
+        {
+          "title": "googleplay",
+          "icon": "/assets/icons/googleplay.png",
+          "url": "//play.google.com/",
+          "tags": ["tv","movies","music","free","a la carte"]
+        },
+        {
+          "title": "sprout",
+          "icon": "/assets/icons/sprout.png",
+          "url": "//sproutonline.com/videos/list",
+          "tags": ["tv","movies","free","kids"]
+        }
+    ],
+    "library": [
+      {
+        "title": "watchespn",
+        "icon": "/assets/icons/watchespn.png",
+        "url": "//espn.go.com/watchespn",
+        "tags": ["tv","sports","subscription"]
+      }
+    ]
+}

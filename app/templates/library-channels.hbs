@@ -1,0 +1,12 @@
+  {{#if title}}
+    <div {{bind-attr class="visible:installed-channel:new-channel"}}>
+      <a href="#" {{bind-attr class="visible:installed:add"}} {{action 'addChannel' title}}>
+        {{#if visible}}
+          {{fa-icon "fa-check"}}
+        {{else}}
+          {{fa-icon "fa-plus"}}
+        {{/if}}
+      </a>
+      <a {{bind-attr href=url}}><img {{bind-attr src=icon alt=title}} /></a>
+    </div>
+  {{/if}}

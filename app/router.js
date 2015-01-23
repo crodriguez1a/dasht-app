@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.resource('add');
+  //this.resource('chromedash', { path: '/' });
 });
 
 export default Router;

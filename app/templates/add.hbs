@@ -1,0 +1,19 @@
+<h2>Add a Channel</h2>
+
+{{partial "page-header"}}
+
+<section class="add-channel">
+    {{input placeholder="ie: hulu.com" value=channel action="findChannel"}}
+    <!-- on="key-press" -->
+    <div {{bind-attr class="error:error:message"}}>{{{message}}}</div>
+    <button {{action 'findChannel' target }}>Find {{fa-icon "fa-angle-right"}}</button>
+
+</section>
+
+<section>
+  <div class="all-channels">
+    {{#each this.model.library}}
+      {{partial "library-channels"}}
+    {{/each}}
+  </div>
+</section>

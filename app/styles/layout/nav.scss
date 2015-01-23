@@ -1,0 +1,85 @@
+nav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: white;
+  opacity: 0.95;
+  a {
+    display: block;
+    font-size: 0.75em;
+    padding: 1em;
+  }
+  div {
+    &.sub-menu {
+      background: white;
+      ul {
+        margin: 0;
+        padding: 0;
+        li {
+          position: relative;
+          display: block;
+          width: 100%;
+          a {
+            position: relative;
+            font: sans-serif;
+            font-weight: 100;
+            display: block;
+            padding: 0.5em;
+            width: 100%;
+            border-top: 1px solid $light-grey;
+            font-size: 1.15em;
+            z-index: 2;
+            text-decoration: none;
+          }
+          .fa {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            width: 100%;
+            text-align: right;
+            z-index: 1;
+            &.fa-check {
+              position: relative;
+              text-align: center;
+              top: 0;
+              left: 0;
+              padding-top: 0.25em;
+              display: block;
+              height: 1.5em;
+              width: 1.5em;
+              font-size: 0.65em;
+            }
+          }
+          .choose-theme {
+            border: 1px solid $light-grey;
+            position: absolute;
+            padding: 1px;
+            width: auto;
+            height: auto;
+            right: 1em;
+            top: 0.75em;
+            z-index: 3;
+            .available-themes {
+              ul {
+                li {
+                  float: left;
+                  width: 1em;
+                  height: 1em;
+                  cursor: pointer;
+                  &.dark {
+                    background: $canvas-dark;
+                  }
+                  &.light {
+                    background: $canvas;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

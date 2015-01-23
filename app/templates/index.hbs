@@ -1,0 +1,19 @@
+<h2>{{fa-icon "fa-th-large"}} Dashtboard</h2>
+<div class="page-actions">
+
+
+  <a href="#" >{{fa-icon "fa-filter"}}</a>
+  <a href="#" {{bind-attr class="controller.editing:editing:blank"}} {{action 'editDash'}}>
+    {{#if controller.editing}}
+      {{fa-icon "fa-close"}}
+    {{else}}
+      {{fa-icon "fa-pencil"}}
+    {{/if}}
+  </a>
+  {{#link-to 'add'}}{{fa-icon "fa-plus"}} Add a channel{{/link-to}}
+</div>
+<div class="all-channels">
+  {{#each this.model.library}}
+    {{partial "dash-channels"}}
+  {{/each}}
+</div>

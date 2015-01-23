@@ -1,0 +1,176 @@
+* {
+  box-sizing: border-box;
+  .hide {
+    display: none;
+  }
+}
+
+html {
+  background: $canvas;
+}
+
+html, body {
+  color: $darker-text;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  &.dark {
+    background: $canvas-dark;
+    color: $lighter-text;
+    border-color: $medium-text;
+    a, h1, h2, h3, h4 {
+      color: $lighter-text;
+    }
+    nav {
+      a, i.fa-icon {
+        color: $blue;
+        opacity: 0.75;
+      }
+      i.active-check {
+        color: $lighter-text;
+      }
+    }
+    footer {
+      color: $medium-text;
+      a {
+        color: $light-blue;
+      }
+    }
+    .delete, .add, .installed {
+        background: $canvas-dark;
+    }
+  }
+  &.light {
+    background: $canvas;
+    color: $darker-text;
+    border-color: $medium-text;
+    a, h1, h2, h3, h4 {
+      color: $darker-text;
+    }
+    nav {
+      a, i.fa-icon {
+        color: $blue;
+        opacity: 0.75;
+      }
+      i.active-check {
+        color: $darker-text;
+      }
+    }
+    footer{
+      color: $medium-text;
+      a {
+        color: $blue;
+      }
+    }
+    .delete, .add, .installed {
+      background: $canvas;
+    }
+  }
+}
+
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid;
+  z-index: 1;
+}
+
+
+main {
+  position: relative;
+  top: 5em;
+  padding: 1em;
+
+  h1, h2, h3, h4 {
+    margin: 0 0 1em 0;
+    font-weight: 100;
+    font-family: sans-serif;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+
+  h4 {
+    font-size: 1.5em;
+  }
+
+  input {
+    width: 100%;
+    padding: 1em;
+    font-size: 1em;
+    border: none;
+  }
+
+  .outlet {
+    min-height: 20em;
+    .page-actions {
+      position: absolute;
+      top: 4px;
+      right: 0;
+      display: block;
+      text-align: right;
+      vertical-align: middle;
+      a {
+        display: inline-block;
+        text-decoration: none;
+        margin-left: 1em;
+        padding-left: 1em;
+        border-left: 2px solid;
+        &:first-child {
+          border: none;
+        }
+        &.editing{
+          color: red;
+        }
+      }
+    }
+  }
+
+  footer {
+    margin-top: 3em;
+    border-top: 2px solid;
+    height: 2em;
+    padding: 1em;
+    font-size: 0.85em;
+    a {
+      color: $light-blue;
+    }
+    .fa {
+      &.fa-github {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.5em;
+        margin-left: 0.15em;
+      }
+    }
+  }
+
+}
+
+.error, .message {
+  font-size: 1em;
+  padding: 1em;
+}
+
+.error {
+  color: red;
+}
+
+.message {
+  color: $blue;
+}
