@@ -29,6 +29,9 @@ html {
       a, i.fa-icon {
         color: $blue;
         opacity: 0.75;
+        &.active {
+          color: $medium-text;
+        }
       }
       i.active-check {
         color: $lighter-text;
@@ -61,6 +64,9 @@ html {
       a, i.fa-icon {
         color: $blue;
         opacity: 0.75;
+        &.active {
+          color: $medium-text;
+        }
       }
       i.active-check {
         color: $darker-text;

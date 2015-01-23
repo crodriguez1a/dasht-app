@@ -11,7 +11,6 @@ export default Ember.Controller.extend({
         found;
     if(currentModel && currentModel.library) {
       found = currentModel.library.findBy('title', channel);
-      console.log(channel)
       found.set('visible', bool);
       //figure out how to move this to an oberver
       localStorage.setItem("dasht-channels", JSON.stringify(currentModel));

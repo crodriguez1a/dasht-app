@@ -21,6 +21,9 @@ export default Ember.Controller.extend({
 
   }.observes('currentTheme'),
   year: moment('date', 'YYYY'),
+  isCurrentPath: function(path) {
+    console.log(this.get('currentPath'));
+  }.property(),
   init: function() {
     this.updateCurrentTheme(this.get('currentTheme'));
   },
