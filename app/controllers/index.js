@@ -4,13 +4,14 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   needs: ['application'],
   editing: false,
+  filtering: false,
   toggleChannel: function(channel, bool) {
 
     var currentModel = this.get('controllers.application').get('model'),
         found;
-
     if(currentModel && currentModel.library) {
       found = currentModel.library.findBy('title', channel);
+      console.log(channel)
       found.set('visible', bool);
       //figure out how to move this to an oberver
       localStorage.setItem("dasht-channels", JSON.stringify(currentModel));
@@ -22,7 +23,9 @@ export default Ember.Controller.extend({
     },
     hideChannel: function(channel) {
       this.toggleChannel(channel, false);
+    },
+    toggleFilters: function() {
+      this.toggleProperty('filtering');
     }
-
   }
 });

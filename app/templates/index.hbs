@@ -2,7 +2,14 @@
 <div class="page-actions">
 
 
-  <a href="#" >{{fa-icon "fa-filter"}}</a>
+  <a href="#" {{action 'toggleFilters'}} {{bind-attr class=" controller.filtering:active"}}>
+    <!--abstract this -->
+    {{#if controller.filtering}}
+      {{fa-icon "fa-close"}}
+    {{else}}
+      {{fa-icon "fa-filter"}}
+    {{/if}}
+  </a>
   <a href="#" {{bind-attr class="controller.editing:editing:blank"}} {{action 'editDash'}}>
     {{#if controller.editing}}
       {{fa-icon "fa-close"}}
@@ -12,8 +19,13 @@
   </a>
   {{#link-to 'add'}}{{fa-icon "fa-plus"}} Add a channel{{/link-to}}
 </div>
+
+{{#if controller.filtering}}
+  {{live-filtering model=this}}
+{{/if}}
+
 <div class="all-channels">
-  {{#each this.model.library}}
+  {{#each item in this.model.library}}
     {{partial "dash-channels"}}
   {{/each}}
 </div>

@@ -46,7 +46,6 @@ export default Ember.Route.extend({
 
         _channels = Channels.create();
 
-
     allLib.filter(function(item){
       var a = LibraryModel.create();
       a.setProperties({
@@ -54,7 +53,8 @@ export default Ember.Route.extend({
         icon: item.icon,
         url: item.url,
         tags: item.tags,
-        visible: item.visible === undefined ? false : item.visible
+        visible: item.visible === undefined ? false : item.visible,
+        isfiltered: false
       });
 
       _channels.get("library").push(a);

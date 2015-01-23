@@ -1,0 +1,19 @@
+.filtering {
+  border-bottom: 2px solid;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.5em;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: inline-block;
+      margin-right: 0.5em;
+      padding-right: 0.5em;
+      cursor: pointer;
+      &.save {
+        float: right;
+      }
+    }
+  }
+}

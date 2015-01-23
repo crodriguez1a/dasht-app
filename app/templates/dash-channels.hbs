@@ -1,10 +1,12 @@
-{{#if visible}}
-  {{#if title}}
-    <div class="new-channel">
-      {{#if controller.editing}}
-        <a href="#" class="delete" {{action 'hideChannel' title}}>{{fa-icon "fa-minus"}}</a>
-      {{/if}}
-      <a {{bind-attr class="controller.editing:disabled:enabled" href=url}}><img {{bind-attr src=icon alt=title}} /></a>
-    </div>
+{{#unless item.isfiltered}}
+  {{#if item.visible}}
+    {{#if item.title}}
+      <div class="new-channel">
+        {{#if controller.editing}}
+          <a href="#" class="delete" {{action 'hideChannel' item.title}}>{{fa-icon "fa-minus"}}</a>
+        {{/if}}
+        <a {{bind-attr class="controller.editing:disabled:enabled" href=item.url}}><img {{bind-attr src=item.icon alt=item.title}} /></a>
+      </div>
+    {{/if}}
   {{/if}}
-{{/if}}
+{{/unless}}

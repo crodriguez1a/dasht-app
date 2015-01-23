@@ -53,7 +53,7 @@
           "title": "youtube",
           "icon": "/assets/icons/youtube.png",
           "url": "//youtube.com",
-          "tags": ["tv","movies","music","free","a la carte"]
+          "tags": ["tv","movies","music","free","alacarte"]
 
         },
         {
@@ -86,7 +86,7 @@
           "title": "googleplay",
           "icon": "/assets/icons/googleplay.png",
           "url": "//play.google.com/",
-          "tags": ["tv","movies","music","free","a la carte"]
+          "tags": ["tv","movies","music","free","alacarte"]
         },
         {
           "title": "sprout",

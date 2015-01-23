@@ -13,7 +13,7 @@
 								<ul>
 									{{#each theme in themes}}
 										<li {{bind-attr class="theme"}} {{action 'updateTheme' theme}}>
-											{{check-mark theme currentTheme}}
+											{{active-check theme currentTheme}}
 										</li>
 									{{/each}}
 								</ul>

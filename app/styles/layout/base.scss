@@ -11,7 +11,8 @@ html {
 
 html, body {
   color: $darker-text;
-  font-family: Arial, sans-serif;
+  font-family: sans-serif;
+  font-weight: 100;
   margin: 0;
   padding: 0;
 }
@@ -42,6 +43,12 @@ html {
     .delete, .add, .installed {
         background: $canvas-dark;
     }
+    .filtering {
+      color: $light-blue;
+    }
+    .active {
+      color: $light-blue;
+    }
   }
   &.light {
     background: $canvas;
@@ -67,6 +74,12 @@ html {
     }
     .delete, .add, .installed {
       background: $canvas;
+    }
+    .filtering {
+      color: $blue;
+    }
+    .active {
+      color: $blue;
     }
   }
 }
@@ -134,7 +147,7 @@ main {
         &:first-child {
           border: none;
         }
-        &.editing{
+        &.editing {
           color: red;
         }
       }

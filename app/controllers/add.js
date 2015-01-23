@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   needs: ['index','application'],
   error: false,
+  filtering: false,
   message: null,
   messages: {
     noEntry: "Nothing to find.",
@@ -69,6 +70,9 @@ export default Ember.Controller.extend({
     addChannel: function(channel) {
       this.get('controllers.index').toggleChannel(channel, true);
       this.set('message', this.messages.successInstalled);
+    },
+    toggleFilters: function() {
+      this.toggleProperty('filtering');
     }
   }
 });
