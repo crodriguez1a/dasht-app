@@ -60,13 +60,6 @@ export default Ember.Component.extend({
     return _filters;
 
   }.property(),
-  shouldApplyFilters: function(){
-
-
-        console.log(simpleArr.length);
-    return this.set(simpleArr);
-
-  }.property('filters'),
   applyFilters: function() {
     var context = this.get('model'),
         model = context.model,
