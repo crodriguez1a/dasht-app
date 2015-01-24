@@ -19,12 +19,23 @@
         cursor: default;
         @include shaky();
       }
+      .item-title {
+        position: absolute;
+        top: 15%;
+        left: 0;
+        width: 100%;
+        margin-left: 0;
+        text-align: center;
+        z-index: 1;
+      }
     }
 
     img {
       width: 100%;
       height: auto;
       border-radius: 1em;
+      position: relative;
+      z-index: 2;
     }
     span {
       display: inline-block;
@@ -40,7 +51,7 @@
       border-radius: 1em;
       text-align: center;
       padding-top: 0.25em;
-      z-index: 2;
+      z-index: 3;
       font-size: 1em;
     }
     .delete {

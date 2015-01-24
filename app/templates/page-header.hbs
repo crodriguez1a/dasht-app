@@ -1,5 +1,5 @@
 <div class="page-actions">
-  <a href="#" {{action 'toggleFilters'}} {{bind-attr class=" controller.filtering:active"}}>
+  <a href="#" {{action 'toggleFilters'}} {{bind-attr class=" controller.currentlyFiltered:active"}}>
     {{#if controller.filtering}}
       {{fa-icon "fa-close"}}
     {{else}}

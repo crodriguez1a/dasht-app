@@ -52,6 +52,9 @@ html {
     .active {
       color: $light-blue;
     }
+    button, input[type="input"] {
+      background: $light-blue;
+    }
   }
   &.light {
     background: $canvas;
@@ -86,6 +89,9 @@ html {
     }
     .active {
       color: $blue;
+    }
+    button, input[type="input"] {
+      background: $blue;
     }
   }
 }
@@ -192,4 +198,17 @@ main {
 
 .message {
   color: $blue;
+}
+
+
+* {
+  .dev-only {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em;
+    background: white;
+  }
 }

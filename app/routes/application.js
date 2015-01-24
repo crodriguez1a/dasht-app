@@ -1,5 +1,7 @@
 import Ember from 'ember';
 import { raw as ic } from 'ic-ajax';
+import _ from 'lodash';
+
 
 export default Ember.Route.extend({
   saveToLocal: function(model) {
@@ -23,7 +25,7 @@ export default Ember.Route.extend({
     return req.then(
       function resolve(res) {
         var channels = res.response;
-        return this.modelize(channels);
+        return this.modelize(channels, true);
 
       }.bind(this)
     );
@@ -32,35 +34,49 @@ export default Ember.Route.extend({
     var self = this,
         local = this.get('localModel'),
         rest = this.get('restModel'),
+        today = moment().format('YYYY-MM-DD hh:mm:ss'),
         M;
 
+    //Compare local cache to database
     if(local && rest) {
-      rest.then(function(){
-        if(local.libarary && rest._result && rest._result.library){
-          if(local.library.length !== rest._result.library.length) {
-            M = Ember.merge(rest._result, local);
-            self.saveToLocal(M);
-            return M;
-          }
+      return rest.then(function(){
+        //If both are present, compare modified date
+        var restmod = rest._result.modified,
+            localmod = local.modified,
+            stale = moment(restmod).isAfter(localmod);
+
+        //if items were added or modified, merge with local
+        if(local.library.length !== rest._result.library.length || stale) {
+          M = Ember.merge(local, rest._result);
+
+          //Can't delete new items that were added by users
+
+          self.saveToLocal(M);
+          return M;
+        }else {
+          //otherwise just use local
+          return local;
         }
       });
     }
 
+    //No local cache? Fetch data.
     if(!local && rest){
-      rest.then(function(){
+      return rest.then(function(){
         M = rest._result;
         self.saveToLocal(M);
         return M;
       });
-    }else {
-      return local;
     }
 
+
+
   },
-  modelize: function(channels) {
+  modelize: function(channels, isnew) {
+
     var allLib = channels.library;
     var Channels = Ember.Object.extend({
-          defaults: null,
+          library: null,
           init: function() {
             this._super();
             this.set("library", []);
@@ -82,31 +98,20 @@ export default Ember.Route.extend({
         icon: item.icon,
         url: item.url,
         tags: item.tags,
-        visible: item.visible === undefined ? false : item.visible,
-        isfiltered: false
+        isdefault: item.isdefault,
+        visible: item.isdefault,
+        isfiltered: false,
+        new: false
       });
+
+      if(!isnew) {
+        a.set('visible', item.visible);
+      }
 
       _channels.get("library").push(a);
     });
 
-    //This is only needed when fetching, defaults are separate in JSON
-    if(channels && channels.defaults) {
-      var defLib = channels.defaults;
-
-      defLib.filter(function(item){
-        var d = LibraryModel.create();
-        d.setProperties({
-        title: item.title,
-        icon: item.icon,
-        url: item.url,
-        tags: item.tags,
-        visible: item.visible === undefined ? true : item.visible,
-        isfiltered: false
-        });
-
-        _channels.get("library").push(d);
-      });
-    }
+    _channels.set('modified', channels.modified);
 
     return _channels;
 
@@ -115,8 +120,9 @@ export default Ember.Route.extend({
     var self = this;
     Ember.run.schedule('afterRender', function(){
       $('body').on('touch click', function(e){
-        var isMenu = $(e.target).parent().hasClass('site-menu');
-        if(!isMenu) {
+        var isMenu = $(e.target).parent().hasClass('site-menu'),
+            menuBars = $(e.target).parent().hasClass('menu-bars');
+        if(!isMenu && !menuBars) {
           self.controllerFor('application').set('menuOpen', false);
         }
       });

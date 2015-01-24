@@ -8,7 +8,9 @@
           {{fa-icon "fa-plus"}}
         {{/if}}
       </a>
-      <a {{bind-attr href=item.url}}><img {{bind-attr src=item.icon alt=item.title}} /></a>
+      <a {{bind-attr href="item.url" title="item.title"}}>
+        <img {{bind-attr src="item.icon" alt="item.title"}} />
+      </a>
     </div>
   {{/if}}
 {{/unless}}

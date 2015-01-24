@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { moment, ago } from 'ember-moment/computed';
+import { moment } from 'ember-moment/computed';
 
 export default Ember.Controller.extend({
   menuOpen: false,
@@ -31,9 +31,9 @@ export default Ember.Controller.extend({
     updateTheme: function(theme) {
       this.set('currentTheme', theme);
     },
-    mainClick: function(ev) {
-      //re-think this
-      this.set('menuOpen', false);
+    clearLocalStorage: function() {
+      localStorage.removeItem('dasht-theme');
+      localStorage.removeItem('dasht-channels');
     }
   }
 });

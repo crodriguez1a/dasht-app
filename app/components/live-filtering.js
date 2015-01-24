@@ -10,7 +10,6 @@ Filter channels using tags
 */
 export default Ember.Component.extend({
   filters: Ember.computed.alias('buildFilters'),
-  filtersAreStored: Ember.computed.notEmpty('filters'),
   buildFilters: function() {
 
     //todo: abstract this process
@@ -37,6 +36,10 @@ export default Ember.Component.extend({
       name: 'A la carte',
       tag: 'alacarte',
       on: true
+    },{
+      name: 'Cast-ready',
+      tag: 'castready',
+      on: true
     }
     ];
 
@@ -51,7 +54,13 @@ export default Ember.Component.extend({
       _filters.get("allfilters").push(a);
     });
 
-    return _filters;
+    var currentModel = this.get('controller').get('model');
+    if(!currentModel.get('cachedFilters')){
+      currentModel.set('cachedFilters', _filters);
+      return _filters;
+    }else {
+      return currentModel.get('cachedFilters');
+    }
 
   }.property(),
   applyFilters: function() {
@@ -60,8 +69,7 @@ export default Ember.Component.extend({
         lib = model.get('library'),
         useFilters = this.get('filters'),
         onFilters = useFilters.allfilters.filterBy('on', true),
-        shouldApplyFilters = [],
-        filtered;
+        shouldApplyFilters = [];
 
     onFilters.filter(function(item){
       shouldApplyFilters.push(item.tag);
@@ -85,9 +93,9 @@ export default Ember.Component.extend({
     toggleFilter: function(filter) {
       var filtersObj = this.get('filters'),
           currentFilter = filtersObj.get('allfilters'),
-          filter = currentFilter.findBy('name',filter);
+          foundFilter = currentFilter.findBy('name',filter);
 
-      filter.toggleProperty('on');
+      foundFilter.toggleProperty('on');
       this.applyFilters();
     },
     saveFilters: function() {

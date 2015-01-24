@@ -4,6 +4,8 @@ export default Ember.Controller.extend({
   needs: ['index','application'],
   error: false,
   filtering: false,
+  cachedFilters: null,
+  currentlyFiltered: Ember.computed.notEmpty('cachedFilters'),
   message: null,
   messages: {
     noEntry: "Nothing to find.",
@@ -19,6 +21,33 @@ export default Ember.Controller.extend({
       this.set('message', null);
     }, 2000);
   }.observes('message'),
+  addNewChannel: function(newchannel) {
+    var currentModel = this.get('controllers.application').get('model'),
+        lib = currentModel.get('library'),
+        libModel = Ember.Object.extend({
+          init: function() {
+            this._super();
+          }
+        }),
+        newChannelModel = libModel.create();
+
+    newChannelModel.setProperties({
+      title: newchannel.replace(/(\.*)\.[^.]+/, ''),
+      icon: "/assets/icons/new.png",
+      url: "//"+newchannel,
+      tags: ["free"],
+      new: true,
+      visible: true,
+      isfiltered: false
+    });
+
+    lib.push(newChannelModel);
+    this.saveToLocal(currentModel);
+
+  },
+  saveToLocal: function(model) {
+    localStorage.setItem("dasht-channels", JSON.stringify(model));
+  },
   actions: {
     findChannel: function() {
       var currentModel = this.get('controllers.application').get('model'),
@@ -62,6 +91,7 @@ export default Ember.Controller.extend({
           }
         }else {
           //add loader
+          this.addNewChannel(query);
           return this.set('message', this.messages.addingNew);
         }
       }

@@ -5,6 +5,8 @@ export default Ember.Controller.extend({
   needs: ['application'],
   editing: false,
   filtering: false,
+  cachedFilters: null,
+  currentlyFiltered: Ember.computed.notEmpty('cachedFilters'),
   saveToLocal: function(model) {
     localStorage.setItem("dasht-channels", JSON.stringify(model));
   },
