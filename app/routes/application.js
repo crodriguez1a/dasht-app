@@ -26,6 +26,18 @@ export default Ember.Route.extend({
     );
   }.property(),
   model: function() {
+    var local = this.get('localModel'),
+        rest = this.get('restModel');
+
+    if(local && rest) {
+      rest.then(function(){
+        if(local.libarary && rest._result && rest._result.library){
+          if(local.library.length != rest._result.library.length) {
+            return Ember.merge(local, rest._result);
+          }
+        }
+      });
+    }
     return this.get('localModel') || this.get('restModel')
   },
   modelize: function(channels) {
