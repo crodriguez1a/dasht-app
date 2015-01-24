@@ -9,7 +9,9 @@ Filter channels using tags
 @class LiveFilteringComponent
 */
 export default Ember.Component.extend({
-  filters: function() {
+  filters: Ember.computed.alias('buildFilters'),
+  filtersAreStored: Ember.computed.notEmpty('filters'),
+  buildFilters: function() {
 
     //todo: abstract this process
     var FiltersModel = Ember.Object.extend({
@@ -34,14 +36,6 @@ export default Ember.Component.extend({
     },{
       name: 'A la carte',
       tag: 'alacarte',
-      on: true
-    },{
-      name: 'TV',
-      tag: 'tv',
-      on: true
-    },{
-      name: 'Movies',
-      tag: 'movies',
       on: true
     }
     ];
