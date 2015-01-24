@@ -37,6 +37,12 @@
           "tags": ["tv","free"]
         },
         {
+          "title": "plex",
+          "icon": "/assets/icons/plex.png",
+          "url": "//plex.tv",
+          "tags": ["tv","movies","free"]
+        },
+        {
           "title": "snagfilms",
           "icon": "/assets/icons/snagfilms.png",
           "url": "//snagfilms.com",

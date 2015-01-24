@@ -26,7 +26,7 @@ export default Ember.Route.extend({
     );
   }.property(),
   model: function() {
-    return this.get('localModel') || this.get('restModel');
+    return this.get('localModel') || this.get('restModel')
   },
   modelize: function(channels) {
     var allLib = channels.library;

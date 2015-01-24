@@ -31,7 +31,8 @@ export default Ember.Controller.extend({
     updateTheme: function(theme) {
       this.set('currentTheme', theme);
     },
-    mainClick: function() {
+    mainClick: function(ev) {
+      //re-think this
       this.set('menuOpen', false);
     }
   }

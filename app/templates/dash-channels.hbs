@@ -5,7 +5,9 @@
         {{#if controller.editing}}
           <a href="#" class="delete" {{action 'hideChannel' item.title}}>{{fa-icon "fa-minus"}}</a>
         {{/if}}
-        <a {{bind-attr class="controller.editing:disabled:enabled" href=item.url}}><img {{bind-attr src=item.icon alt=item.title}} /></a>
+        <a {{bind-attr href="item.url" class="controller.editing:disabled:enabled"}}>
+          <img {{bind-attr src="item.icon" alt="item.title"}} />
+        </a>
       </div>
     {{/if}}
   {{/if}}
