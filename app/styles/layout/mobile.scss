@@ -1,0 +1,17 @@
+.mobile {
+  .outlet {
+    .page-actions {
+      position: relative;
+      display: block;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  .add-channel, .all-channels {
+    .new-channel, .installed-channel {
+      .delete, .add, .installed {
+          padding-top: 1px;
+      }
+    }
+  }
+}

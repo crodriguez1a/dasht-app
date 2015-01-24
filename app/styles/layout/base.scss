@@ -124,6 +124,10 @@ main {
 
   h2 {
     font-size: 1.5em;
+    &.page-title {
+      display: inline-block;
+      width: auto;
+    }
   }
 
   h3 {
@@ -147,9 +151,8 @@ main {
       position: absolute;
       top: 4px;
       right: 0;
-      display: block;
       text-align: right;
-      vertical-align: middle;
+      vertical-align: top;
       a {
         display: inline-block;
         text-decoration: none;
