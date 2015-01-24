@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Dasht-App
 
 This README outlines the details of collaborating on this Ember application.
@@ -49,8 +48,3 @@ Specify what it takes to deploy your app.
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
-=======
-# dasht-app
-Dasht App is a dashboard (home screen) from Chromecast and devices like it.
->>>>>>> b6d3a9c372518d7e34e3d59849838938e301d2f6
