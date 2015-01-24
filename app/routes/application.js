@@ -34,8 +34,7 @@ export default Ember.Route.extend({
     var self = this,
         local = this.get('localModel'),
         rest = this.get('restModel'),
-        today = moment().format('YYYY-MM-DD hh:mm:ss'),
-        M;
+        today = moment().format('YYYY-MM-DD hh:mm:ss');
 
     //Compare local cache to database
     if(local && rest) {
@@ -47,29 +46,29 @@ export default Ember.Route.extend({
 
         //if items were added or modified, merge with local
         if(local.library.length !== rest._result.library.length || stale) {
-          M = Ember.merge(local, rest._result);
 
-          //Can't delete new items that were added by users
-
-          self.saveToLocal(M);
-          return M;
-        }else {
-          //otherwise just use local
-          return local;
+          var rl = rest._result.library,
+              ll = local.library;
+          rl.filter(function(restlib){
+            //push missing items
+            if(!ll.findBy('title', restlib.title)) {
+              ll.push(restlib);
+            }
+          });
         }
+
+        return local;
+
       });
     }
 
     //No local cache? Fetch data.
     if(!local && rest){
       return rest.then(function(){
-        M = rest._result;
-        self.saveToLocal(M);
-        return M;
+        self.saveToLocal(rest._result);
+        return rest._result;
       });
     }
-
-
 
   },
   modelize: function(channels, isnew) {
