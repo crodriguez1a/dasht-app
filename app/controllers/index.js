@@ -5,6 +5,9 @@ export default Ember.Controller.extend({
   needs: ['application'],
   editing: false,
   filtering: false,
+  saveToLocal: function(model) {
+    localStorage.setItem("dasht-channels", JSON.stringify(model));
+  },
   toggleChannel: function(channel, bool) {
 
     var currentModel = this.get('controllers.application').get('model'),
@@ -12,8 +15,7 @@ export default Ember.Controller.extend({
     if(currentModel && currentModel.library) {
       found = currentModel.library.findBy('title', channel);
       found.set('visible', bool);
-      //figure out how to move this to an oberver
-      localStorage.setItem("dasht-channels", JSON.stringify(currentModel));
+      this.saveToLocal(currentModel);
     }
   },
   actions: {

@@ -2,6 +2,9 @@ import Ember from 'ember';
 import { raw as ic } from 'ic-ajax';
 
 export default Ember.Route.extend({
+  saveToLocal: function(model) {
+    localStorage.setItem("dasht-channels", JSON.stringify(model));
+  },
   localModel: function(){
     var ls = localStorage.getItem("dasht-channels"),
         channels = JSON.parse(ls);
@@ -26,19 +29,33 @@ export default Ember.Route.extend({
     );
   }.property(),
   model: function() {
-    var local = this.get('localModel'),
-        rest = this.get('restModel');
+    var self = this,
+        local = this.get('localModel'),
+        rest = this.get('restModel'),
+        M;
 
     if(local && rest) {
       rest.then(function(){
         if(local.libarary && rest._result && rest._result.library){
           if(local.library.length != rest._result.library.length) {
-            return Ember.merge(local, rest._result);
+            M = Ember.merge(rest._result, local);
+            self.saveToLocal(M);
+            return M;
           }
         }
       });
     }
-    return this.get('localModel') || this.get('restModel')
+
+    if(!local && rest){
+      rest.then(function(){
+        M = rest._result;
+        self.saveToLocal(M)
+        return M;
+      });
+    }else {
+      return local;
+    }
+
   },
   modelize: function(channels) {
     var allLib = channels.library;
@@ -83,14 +100,13 @@ export default Ember.Route.extend({
         icon: item.icon,
         url: item.url,
         tags: item.tags,
-        visible: item.visible === undefined ? true : item.visible
+        visible: item.visible === undefined ? true : item.visible,
+        isfiltered: false
         });
 
         _channels.get("library").push(d);
       });
     }
-
-    localStorage.setItem("dasht-channels", JSON.stringify(_channels));
 
     return _channels;
 

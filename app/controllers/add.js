@@ -11,12 +11,13 @@ export default Ember.Controller.extend({
     serviceDown: "Oops. The service is down temporarily. Please try back in a few minutes.",
     noUrl: "Hmm, try searching for a url instead ('ie: pbs<b>.org</b>').",
     prevInstalled: "Yep, that's already been added.",
-    successInstalled: "Successfully added."
+    successInstalled: "Successfully added.",
+    addingNew: "Thanks...we\'re adding this channel to the library"
   },
   messageOut: function() {
     Ember.run.later(this, function() {
       this.set('message', null);
-    }, 1500);
+    }, 2000);
   }.observes('message'),
   actions: {
     findChannel: function() {
@@ -61,7 +62,7 @@ export default Ember.Controller.extend({
           }
         }else {
           //add loader
-          return this.set('message', 'temp: adding channel');
+          return this.set('message', this.messages.addingNew);
         }
       }
 
