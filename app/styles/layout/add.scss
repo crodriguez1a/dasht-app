@@ -22,8 +22,10 @@
       .item-title {
         position: absolute;
         top: 15%;
-        left: 0;
-        width: 100%;
+        left: 10%;
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
         margin-left: 0;
         text-align: center;
         z-index: 1;

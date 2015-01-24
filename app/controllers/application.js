@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   storedTheme: function() {
     return localStorage.getItem('dasht-theme');
   }.property(),
-  defaultTheme: "light",
+  defaultTheme: "dark",
   currentTheme: function() {
     return this.get('storedTheme') || this.get('defaultTheme');
   }.property('storedTheme','defaultTheme'),

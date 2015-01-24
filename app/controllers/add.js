@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { raw as ic } from 'ic-ajax';
 
 export default Ember.Controller.extend({
   needs: ['index','application'],
@@ -14,12 +15,12 @@ export default Ember.Controller.extend({
     noUrl: "Hmm, try searching for a url instead ('ie: pbs<b>.org</b>').",
     prevInstalled: "Yep, that's already been added.",
     successInstalled: "Successfully added.",
-    addingNew: "Thanks...we\'re adding this channel to the library"
+    addingNew: "Thanks...we\'re adding this channel to your library. If you think this channel should be added to our library, please email us at <a href='mailto:ideas@evolutionaryapps.com'>ideas@evolutionaryapps.com</a>"
   },
   messageOut: function() {
     Ember.run.later(this, function() {
       this.set('message', null);
-    }, 2000);
+    }, 10000);
   }.observes('message'),
   addNewChannel: function(newchannel) {
     var currentModel = this.get('controllers.application').get('model'),

@@ -29,8 +29,4 @@ export default function() {
     this.reverse('toUp', {duration: duration})
   );
 
-
-
-
-
 }
