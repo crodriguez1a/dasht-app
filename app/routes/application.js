@@ -37,7 +37,7 @@ export default Ember.Route.extend({
     if(local && rest) {
       rest.then(function(){
         if(local.libarary && rest._result && rest._result.library){
-          if(local.library.length != rest._result.library.length) {
+          if(local.library.length !== rest._result.library.length) {
             M = Ember.merge(rest._result, local);
             self.saveToLocal(M);
             return M;
@@ -49,7 +49,7 @@ export default Ember.Route.extend({
     if(!local && rest){
       rest.then(function(){
         M = rest._result;
-        self.saveToLocal(M)
+        self.saveToLocal(M);
         return M;
       });
     }else {
@@ -110,6 +110,20 @@ export default Ember.Route.extend({
 
     return _channels;
 
+  },
+  bodyClick: function() {
+    var self = this;
+    Ember.run.schedule('afterRender', function(){
+      $('body').on('touch click', function(e){
+        var isMenu = $(e.target).parent().hasClass('site-menu');
+        if(!isMenu) {
+          self.controllerFor('application').set('menuOpen', false);
+        }
+      });
+    });
+  },
+  init: function() {
+    this.bodyClick();
   },
   actions: {
     toggleMenu: function() {

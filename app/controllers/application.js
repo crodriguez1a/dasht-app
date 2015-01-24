@@ -14,16 +14,16 @@ export default Ember.Controller.extend({
   updateCurrentTheme: function() {
     var self = this;
     Ember.run.schedule('afterRender', function(){
-      $('html').removeClass().addClass(self.get('currentTheme'));
+      $('html')
+      .removeClass('dark')
+      .removeClass('light')
+      .addClass(self.get('currentTheme'));
     });
     //store
     localStorage.setItem('dasht-theme', self.get('currentTheme'));
 
   }.observes('currentTheme'),
   year: moment('date', 'YYYY'),
-  isCurrentPath: function(path) {
-    console.log(this.get('currentPath'));
-  }.property(),
   init: function() {
     this.updateCurrentTheme(this.get('currentTheme'));
   },
