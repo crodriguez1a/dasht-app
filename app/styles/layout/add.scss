@@ -1,4 +1,5 @@
 .add-channel, .all-channels {
+  position: relative;
   text-align: center;
   .installed-channel {
     img {
@@ -9,7 +10,6 @@
     position: relative;
     margin: 1em 1em 0 0;
     display: inline-block;
-    border-radius: 0.5em;
     width: 9em;
     height: 9em;
     a{
@@ -29,6 +29,7 @@
         margin-left: 0;
         text-align: center;
         z-index: 1;
+        font-size: 1.1em;
       }
     }
 
@@ -80,5 +81,34 @@
     padding: 0.5em;
     border: none;
     font-size: 1.25em;
+  }
+
+  .messaging {
+    opacity: 0.65;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1em;
+    background: white;
+    padding: 0.65em;
+
+    &.error {
+      color: red;
+    }
+
+    &.message {
+      color: $blue;
+      line-height: 1.25em;
+    }
+
+    &:empty {
+      display: none;
+    }
+
+    .close {
+      float:right;
+      padding: 0 0.25em;
+    }
+
   }
 }

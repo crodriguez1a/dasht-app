@@ -92,12 +92,16 @@ export default Ember.Controller.extend({
           }
         }else {
           //add loader
+          this.set('error', false);
           this.addNewChannel(query);
           return this.set('message', this.messages.addingNew);
         }
       }
 
 
+    },
+    closeMessage: function() {
+      this.set('message', null);
     },
     addChannel: function(channel) {
       this.get('controllers.index').toggleChannel(channel, true);
