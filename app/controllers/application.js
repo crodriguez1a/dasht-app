@@ -83,6 +83,9 @@ export default Ember.Controller.extend({
     });
     //store
     localStorage.setItem('dasht-theme', self.get('currentTheme'));
+    //close menu
+    this.set('menuOpen', false);
+
 
   }.observes('currentTheme'),
   /**
