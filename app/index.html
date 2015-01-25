@@ -3,18 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Dasht App</title>
+    <title>Dasht</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="assets/lib/device.js"></script>
 
     {{content-for 'head'}}
+
     <link rel="icon" href="/assets/img/favicon.ico?23dd4">
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/dasht.css">
+
+    {{content-for 'head-footer'}}
   </head>
   <body>
+    {{content-for 'body'}}
+
     <script src="assets/vendor.js"></script>
     <script src="assets/dasht.js"></script>
+
+    {{content-for 'body-footer'}}
   </body>
 </html>
