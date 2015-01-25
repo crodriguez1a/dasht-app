@@ -20,6 +20,14 @@ export default Ember.Controller.extend({
   */
   menuOpen: false,
   /**
+  Signal if themes options are open
+
+  @property themesOpen
+  @type Bool
+  @default false
+  */
+  themesOpen: false,
+  /**
   Retrive theme choice from local storage
 
   @property storedTheme
@@ -75,6 +83,9 @@ export default Ember.Controller.extend({
     });
     //store
     localStorage.setItem('dasht-theme', self.get('currentTheme'));
+    //close menu
+    this.set('menuOpen', false);
+
 
   }.observes('currentTheme'),
   /**
@@ -93,6 +104,14 @@ export default Ember.Controller.extend({
     */
     updateTheme: function(theme) {
       this.set('currentTheme', theme);
+    },
+    /**
+    Action to reveal theme options
+
+    @method revealTheme
+    */
+    toggleThemes: function() {
+      this.toggleProperty('themesOpen');
     },
     /**
     Dev only - quickly clear local storage for testing

@@ -6,8 +6,14 @@
       <ul>
         <li>{{link-to 'Dashtboard' 'index'}}{{fa-icon "fa-arrow-right"}}</li>
         <li>{{link-to 'Add a Channel' 'add'}}{{fa-icon "fa-arrow-right"}}</li>
-        <li>
+        <li {{action "toggleThemes"}}>
           <a>Choose a Theme</a>
+          {{#if themesOpen}}
+            {{fa-icon "fa-minus"}}
+          {{else}}
+            {{fa-icon "fa-plus"}}
+          {{/if}}
+          {{#liquid-if "themesOpen" class="slide-down"}}
             <div class="choose-theme">
               <div class="available-themes">
                 <ul>
@@ -18,6 +24,7 @@
                   {{/each}}
                 </ul>
             </div>
+          {{/liquid-if}}
         </li>
       </ul>
     </div>

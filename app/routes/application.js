@@ -178,9 +178,9 @@ export default Ember.Route.extend({
     var self = this;
     Ember.run.schedule('afterRender', function(){
       Ember.$('body').on('touch click', function(e){
-        var isMenu = Ember.$(e.target).parent().hasClass('site-menu'),
-            menuBars = Ember.$(e.target).parent().hasClass('menu-bars');
-        if(!isMenu && !menuBars) {
+        var isMenu = Ember.$(e.target).parentsUntil('site-menu').hasClass('site-menu');
+
+        if(!isMenu) {
           self.controllerFor('application').set('menuOpen', false);
         }
       });

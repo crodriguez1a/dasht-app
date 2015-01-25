@@ -34,38 +34,23 @@ nav {
           }
           .fa {
             position: absolute;
-            top: 1em;
+            top: 0.75em;
             right: 1em;
             width: 100%;
             text-align: right;
             z-index: 1;
             &.fa-check {
-              position: relative;
-              text-align: center;
-              top: 0;
-              left: 0;
-              padding-top: 0.25em;
-              display: block;
-              height: 1.5em;
-              width: 1.5em;
-              font-size: 0.65em;
+              color: $light-blue;
+              top: 0.5em;
             }
           }
           .choose-theme {
-            border: 1px solid $light-grey;
-            position: absolute;
-            padding: 1px;
-            width: auto;
-            height: auto;
-            right: 1em;
-            top: 0.75em;
-            z-index: 3;
+            width: 100%;
             .available-themes {
               ul {
                 li {
-                  float: left;
-                  width: 1em;
-                  height: 1em;
+                  height: 2em;
+                  display: block;
                   cursor: pointer;
                   &.dark {
                     background: $canvas-dark;
@@ -73,6 +58,7 @@ nav {
                   &.light {
                     background: $canvas;
                   }
+
                 }
               }
             }
