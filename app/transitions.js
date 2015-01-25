@@ -19,7 +19,7 @@ export default function() {
 
   /* SubMenu Transition */
   this.transition(
-    this.hasClass('submenu'),
+    this.hasClass('slide-down'),
     // this makes our rule apply when the liquid-if transitions to the
     // true state.
     this.toModel(true),
