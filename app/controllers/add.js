@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import { raw as ic } from 'ic-ajax';
 
 /**
 * Add controller
