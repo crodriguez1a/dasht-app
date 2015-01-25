@@ -1,42 +1,14 @@
-<header>
-  <nav class="site-menu">
-    <a href="#" class="menu-bars" {{action 'toggleMenu'}}>{{fa-icon "fa-bars fa-3x"}}</a>
-    {{#liquid-if 'menuOpen' class="slide-down"}}
-    <div class="sub-menu">
-      <ul>
-        <li>{{link-to 'Dashtboard' 'index'}}{{fa-icon "fa-arrow-right"}}</li>
-        <li>{{link-to 'Add a Channel' 'add'}}{{fa-icon "fa-arrow-right"}}</li>
-        <li {{action "toggleThemes"}}>
-          <a>Choose a Theme</a>
-          {{#if themesOpen}}
-            {{fa-icon "fa-minus"}}
-          {{else}}
-            {{fa-icon "fa-plus"}}
-          {{/if}}
-          {{#liquid-if "themesOpen" class="slide-down"}}
-            <div class="choose-theme">
-              <div class="available-themes">
-                <ul>
-                  {{#each theme in themes}}
-                    <li {{bind-attr class="theme"}} {{action 'updateTheme' theme}}>
-                      {{active-check theme currentTheme}}
-                    </li>
-                  {{/each}}
-                </ul>
-            </div>
-          {{/liquid-if}}
-        </li>
-      </ul>
-    </div>
-    {{/liquid-if}}
-  </nav>
-</header>
-
+{{app-header menuOpen=attrs.menuOpen
+             themesOpen=attrs.themesOpen
+             themes=attrs.availableThemes
+             onToggleMenu="toggleMenu"
+             onToggleThemeMenu="toggleThemeMenu"
+             onUpdateTheme="updateTheme"}}
 
 <main>
-  <div {{bind-attr class=":outlet"}}>
+  <div class="outlet">
     {{liquid-outlet}}
   </div>
 
-  {{partial "footer"}}
+  {{app-footer}}
 </main>

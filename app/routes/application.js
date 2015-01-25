@@ -182,7 +182,7 @@ export default Ember.Route.extend({
         var isMenu = Ember.$(e.target).parentsUntil('site-menu').hasClass('site-menu');
 
         if(!isMenu) {
-          self.controllerFor('application').set('menuOpen', false);
+          self.controller.set('attrs.menuOpen', false);
         }
       });
     });
@@ -192,17 +192,21 @@ export default Ember.Route.extend({
   },
   actions: {
     /**
-    Toggle site menu
+      Close any open blocks
 
-    @method toggleMenu
+      @method willTransition
     */
-    toggleMenu: function() {
-      this.controllerFor('application').toggleProperty('menuOpen');
+    didTransition: function() {
+      this._super();
+      //hide menu
+      this.controller.set('attrs.menuOpen', false);
+      //toggle editing off
+      this.controllerFor('index').set('editing', false);
     },
     /**
-    Dev only - refreshes views
+      Dev only - refreshes views
 
-    @method invalidateModel
+      @method invalidateModel
     */
     invalidateModel: function() {
       this.refresh();
