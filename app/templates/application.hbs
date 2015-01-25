@@ -1,29 +1,28 @@
 <header>
-	<nav class="site-menu">
-		<a href="#" class="menu-bars" {{action 'toggleMenu'}}>{{fa-icon "fa-bars fa-3x"}}</a>
-		{{#liquid-if 'menuOpen' class="slide-down"}}
-		<div class="sub-menu">
-			<ul>
-				<li>{{link-to 'Dashtboard' 'index'}}{{fa-icon "fa-arrow-right"}}</li>
-				<li>{{link-to 'Add a Channel' 'add'}}{{fa-icon "fa-arrow-right"}}</li>
-				<li>
-					<a>Choose a Theme</a>
-						<div class="choose-theme">
-							<div class="available-themes">
-								<ul>
-									{{#each theme in themes}}
-										<li {{bind-attr class="theme"}} {{action 'updateTheme' theme}}>
-											{{active-check theme currentTheme}}
-										</li>
-									{{/each}}
-								</ul>
-						</div>
-
-				</li>
-			</ul>
-		</div>
-		{{/liquid-if}}
-	</nav>
+  <nav class="site-menu">
+    <a href="#" class="menu-bars" {{action 'toggleMenu'}}>{{fa-icon "fa-bars fa-3x"}}</a>
+    {{#liquid-if 'menuOpen' class="slide-down"}}
+    <div class="sub-menu">
+      <ul>
+        <li>{{link-to 'Dashtboard' 'index'}}{{fa-icon "fa-arrow-right"}}</li>
+        <li>{{link-to 'Add a Channel' 'add'}}{{fa-icon "fa-arrow-right"}}</li>
+        <li>
+          <a>Choose a Theme</a>
+            <div class="choose-theme">
+              <div class="available-themes">
+                <ul>
+                  {{#each theme in themes}}
+                    <li {{bind-attr class="theme"}} {{action 'updateTheme' theme}}>
+                      {{active-check theme currentTheme}}
+                    </li>
+                  {{/each}}
+                </ul>
+            </div>
+        </li>
+      </ul>
+    </div>
+    {{/liquid-if}}
+  </nav>
 </header>
 
 
@@ -32,5 +31,5 @@
     {{liquid-outlet}}
   </div>
 
-	{{partial "footer"}}
+  {{partial "footer"}}
 </main>
