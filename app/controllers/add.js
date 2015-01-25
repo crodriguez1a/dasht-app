@@ -10,7 +10,7 @@ import Ember from 'ember';
 */
 
 export default Ember.Controller.extend({
-  needs: ['index','application'],
+  needs: ['dashtboard','application'],
   /**
   Sort default
 
@@ -204,7 +204,7 @@ export default Ember.Controller.extend({
     */
     addChannel: function(channel) {
       this.set('error', false);
-      this.get('controllers.index').toggleChannel(channel, true);
+      this.get('controllers.dashtboard').toggleChannel(channel, true);
       this.set('message', this.messages.successInstalled);
     },
     /**

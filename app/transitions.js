@@ -5,7 +5,7 @@ export default function() {
 
   /* Page Transition */
   this.transition(
-    this.fromRoute('index'),
+    this.fromRoute('dashtboard'),
     this.use('toLeft', options),
     this.reverse('toRight', options)
   );
