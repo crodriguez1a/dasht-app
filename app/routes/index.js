@@ -17,7 +17,7 @@ export default Ember.Route.extend({
     @method willTransition
     */
     willTransition: function() {
-      this.controllerFor('application').set('menuOpen', false);
+      this.controllerFor('application').set('attrs.menuOpen', false);
     }
   }
 });

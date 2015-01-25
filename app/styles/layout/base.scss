@@ -18,7 +18,7 @@ html, body {
 }
 
 html {
-  &.dark {
+  &[data-theme="dark"]{
     background: $canvas-dark;
     color: $lighter-text;
     border-color: $medium-text;
@@ -56,7 +56,7 @@ html {
       background: $light-blue;
     }
   }
-  &.light {
+  &[data-theme="light"] {
     background: $canvas;
     color: $darker-text;
     border-color: $medium-text;
@@ -96,7 +96,6 @@ html {
   }
 }
 
-
 header {
   position: fixed;
   top: 0;
@@ -106,6 +105,13 @@ header {
   z-index: 1;
 }
 
+nav.site-menu {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 
 main {
   position: relative;

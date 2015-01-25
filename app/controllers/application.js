@@ -11,112 +11,105 @@ import { moment } from 'ember-moment/computed';
 */
 
 export default Ember.Controller.extend({
-  /**
-  Signal if menu is open
+  attrs: {
+    /**
+      Signal if menu is open
 
-  @property menuOpen
-  @type Bool
-  @default false
+      @property menuOpen
+      @type Bool
+      @default false
+    */
+    menuOpen: false,
+
+    /**
+      Signal if themes options are open
+
+      @property themesOpen
+      @type Bool
+      @default false
+    */
+    themesOpen: false,
+
+    /**
+      Set default theme
+
+      @property defaultTheme
+      @type String
+      @default dark
+    */
+    defaultTheme: 'dark',
+
+    /**
+      Available themes array
+
+      @property themes
+      @type Array
+    */
+    availableThemes: ['dark', 'light']
+  },
+
+  /**
+    Ensure currently stored (or default) theme is applied
+
+    @method setInitialTheme
   */
-  menuOpen: false,
-  /**
-  Signal if themes options are open
+  setInitialTheme: function() {
+    this.updateCurrentTheme(this.get('currentTheme'));
+  }.on('init'),
 
-  @property themesOpen
-  @type Bool
-  @default false
-  */
-  themesOpen: false,
   /**
-  Retrive theme choice from local storage
+    Retrieve localStorage saved theme or the default theme
 
-  @property storedTheme
-  @type String
-  */
-  storedTheme: function() {
-    return localStorage.getItem('dasht-theme');
-  }.property(),
-  /**
-  Set default theme
-
-  @property defaultTheme
-  @type String
-  @default dark
-  */
-  defaultTheme: "dark",
-  /**
-  Retrieve stored theme or default
-
-  @property currentTheme
-  @type String
+    @property currentTheme
   */
   currentTheme: function() {
-    return this.get('storedTheme') || this.get('defaultTheme');
-  }.property('storedTheme','defaultTheme'),
-  /**
-  Available themes
+    return localStorage.getItem('dasht-theme') || this.get('attrs.defaultTheme');
+  }.property('attrs.defaultTheme'),
 
-  @property themes
-  @type Array
-  @default dark,light
-  */
-  themes: ["dark","light"],
   /**
-  Current year for footer
+    Apply chosen theme to the <html> [data-theme] attribute
 
-  @property year
-  @type String
+    @method updateCurrentTheme
+    @param {String} theme The site theme
   */
-  year: moment('date', 'YYYY'),
-  /**
-  Apply chosen theme to html tag
+  updateCurrentTheme: function(theme) {
+    localStorage.setItem('dasht-theme', theme);
 
-  @method updateCurrentTheme
-  */
-  updateCurrentTheme: function() {
-    var self = this;
-    Ember.run.schedule('afterRender', function(){
-      Ember.$('html')
-      .removeClass('dark')
-      .removeClass('light') //only remove theme classes (device classes have been applied by device.js)
-      .addClass(self.get('currentTheme'));
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      document.querySelector('html').dataset.theme = theme;
     });
-    //store
-    localStorage.setItem('dasht-theme', self.get('currentTheme'));
-    //close menu
-    this.set('menuOpen', false);
-
-
   }.observes('currentTheme'),
-  /**
-  Ensure currently stored (or default) theme is applied
 
-  @method init
-  */
-  init: function() {
-    this.updateCurrentTheme(this.get('currentTheme'));
-  },
   actions: {
     /**
-    Action to update theme
+      Action to toggle the app header menu
 
-    @method updateTheme
+      @method toggleMenu
+    */
+    toggleMenu: function() {
+      this.toggleProperty('attrs.menuOpen');
+    },
+    /**
+      Action to reveal theme options
+
+      @method toggleThemeMenu
+    */
+    toggleThemeMenu: function() {
+      this.toggleProperty('attrs.themesOpen');
+    },
+    /**
+      Action to update the site theme
+
+      @method updateTheme
+      @param {String} theme The updated site theme
     */
     updateTheme: function(theme) {
-      this.set('currentTheme', theme);
+      this.updateCurrentTheme(theme);
     },
     /**
-    Action to reveal theme options
+      Dev only - quickly clear local storage for testing
 
-    @method revealTheme
-    */
-    toggleThemes: function() {
-      this.toggleProperty('themesOpen');
-    },
-    /**
-    Dev only - quickly clear local storage for testing
-
-    @method clearLocalStorage
+      @method clearLocalStorage
     */
     clearLocalStorage: function() {
       localStorage.removeItem('dasht-theme');
