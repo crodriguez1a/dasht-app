@@ -76,7 +76,7 @@ export default Ember.Controller.extend({
   updateCurrentTheme: function() {
     var self = this;
     Ember.run.schedule('afterRender', function(){
-      $('html')
+      Ember.$('html')
       .removeClass('dark')
       .removeClass('light') //only remove theme classes (device classes have been applied by device.js)
       .addClass(self.get('currentTheme'));

@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import { raw as ic } from 'ic-ajax';
-import _ from 'lodash';
 
 /**
 * Application route
@@ -56,8 +55,7 @@ export default Ember.Route.extend({
   model: function() {
     var self = this,
         local = this.get('localModel'),
-        rest = this.get('restModel'),
-        today = moment().format('YYYY-MM-DD hh:mm:ss');
+        rest = this.get('restModel');
 
     //Compare local cache to database
     if(local && rest) {
@@ -179,12 +177,10 @@ export default Ember.Route.extend({
   bodyClick: function() {
     var self = this;
     Ember.run.schedule('afterRender', function(){
-      $('body').on('touch click', function(e){
-        var isMenu = $(e.target).parent().hasClass('site-menu'),
-            isMenuItem = $(e.target).parent().parent().hasClass('site-menu'),
-            menuBars = $(e.target).parent().hasClass('menu-bars');
-
-        if(!isMenu && !menuBars && isMenuItem) {
+      Ember.$('body').on('touch click', function(e){
+        var isMenu = Ember.$(e.target).parent().hasClass('site-menu'),
+            menuBars = Ember.$(e.target).parent().hasClass('menu-bars');
+        if(!isMenu && !menuBars) {
           self.controllerFor('application').set('menuOpen', false);
         }
       });
