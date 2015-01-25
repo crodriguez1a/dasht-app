@@ -12,6 +12,20 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   needs: ['application'],
   /**
+  Sort default
+
+  @property sortAlpha
+  @type Array
+  */
+  sortAlpha: ['title'],
+  /**
+  Channel lib sorted alphabetically
+
+  @property librarySortAlpha
+  @type Array
+  */
+  librarySortAlpha: Ember.computed.sort('controllers.application.model.library', 'sortAlpha'),
+  /**
   Signal if editing is turned on
 
   @property editing
