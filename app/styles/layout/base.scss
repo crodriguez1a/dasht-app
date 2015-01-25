@@ -147,6 +147,10 @@ main {
 
   .outlet {
     min-height: 20em;
+    .liquid-container {
+      height: 100%;
+      width: 100%;
+    }
     .page-actions {
       position: absolute;
       top: 4px;

@@ -1,8 +1,9 @@
 import Ember from "ember";
 
 /**
-* Places checkmark over active elem
+* Simulates checkbox input
 */
+
 export default Ember.Handlebars.makeBoundHelper(function(checked) {
   if (!checked) {
     return new Ember.Handlebars.SafeString('<i class="fa fa-square-o"></i>');

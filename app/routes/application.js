@@ -2,11 +2,23 @@ import Ember from 'ember';
 import { raw as ic } from 'ic-ajax';
 import _ from 'lodash';
 
+/**
+* Application route
+*
+* @class ApplicationRoute
+* @extends Ember.Route
+* @namespace Dasht
+* @returns Class
+*/
+
 
 export default Ember.Route.extend({
-  saveToLocal: function(model) {
-    localStorage.setItem("dasht-channels", JSON.stringify(model));
-  },
+  /**
+  Fetches data from local storage (as string) and re-converts to Ember Object
+
+  @property localModel
+  @type Class
+  */
   localModel: function(){
     var ls = localStorage.getItem("dasht-channels"),
         channels = JSON.parse(ls);
@@ -16,6 +28,12 @@ export default Ember.Route.extend({
       return undefined;
     }
   }.property(),
+  /**
+  Fetches data from JSON, returns promise
+
+  @property restModel
+  @type Promise
+  */
   restModel: function() {
     var req = ic({
       type: 'GET',
@@ -30,6 +48,11 @@ export default Ember.Route.extend({
       }.bind(this)
     );
   }.property(),
+  /**
+  Returns deep merge of local and fetched data
+
+  @method model
+  */
   model: function() {
     var self = this,
         local = this.get('localModel'),
@@ -71,27 +94,52 @@ export default Ember.Route.extend({
     }
 
   },
-  modelize: function(channels, isnew) {
+  /**
+  Re-construct POJO as Ember Object
 
-    var allLib = channels.library;
-    var Channels = Ember.Object.extend({
+  @method modelize
+  */
+  modelize: function(channels, fetched) {
+
+        //Breakdown of Channels Model
+        /*
+        Channels: {
+          Modified: mod date of database, used to compare stored data with fetched data
+          Library: [
+            channel: {
+              title: display title,
+              icon: path/to/icon,
+              url: path/to/website,
+              tags: [],
+              isdefault: to show on dashtboard as default channel,
+              visible: alias of default - later toggled by user,
+              isfiltered: channel can be filtered out, while still "visible" and pinned to dashtboard,
+              new: this property is unused but may be used for user contributed channels in the future
+            }
+          ]
+        }
+        */
+
+    var allLib = channels.library,
+        //var
+        Channels = Ember.Object.extend({
           library: null,
           init: function() {
             this._super();
             this.set("library", []);
           }
         }),
-
-        LibraryModel = Ember.Object.extend({
+        //var
+        Library = Ember.Object.extend({
           init: function() {
             this._super();
           }
         }),
-
+        //var
         _channels = Channels.create();
 
     allLib.filter(function(item){
-      var a = LibraryModel.create();
+      var a = Library.create();
       a.setProperties({
         title: item.title,
         icon: item.icon,
@@ -103,7 +151,7 @@ export default Ember.Route.extend({
         new: false
       });
 
-      if(!isnew) {
+      if(!fetched) {
         a.set('visible', item.visible);
       }
 
@@ -115,6 +163,19 @@ export default Ember.Route.extend({
     return _channels;
 
   },
+  /**
+  Update local storage item with latest model
+
+  @method saveToLocal
+  */
+  saveToLocal: function(model) {
+    localStorage.setItem("dasht-channels", JSON.stringify(model));
+  },
+  /**
+  Event on body should also close menu
+
+  @method bodyClick
+  */
   bodyClick: function() {
     var self = this;
     Ember.run.schedule('afterRender', function(){
@@ -131,9 +192,19 @@ export default Ember.Route.extend({
     this.bodyClick();
   },
   actions: {
+    /**
+    Toggle site menu
+
+    @method toggleMenu
+    */
     toggleMenu: function() {
       this.controllerFor('application').toggleProperty('menuOpen');
     },
+    /**
+    Dev only - refreshes views
+
+    @method invalidateModel
+    */
     invalidateModel: function() {
       this.refresh();
     }
