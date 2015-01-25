@@ -13,9 +13,16 @@ export default Ember.Component.extend({
   Alias for collection of filters
 
   @property filters
-  @type Bool
+  @type Class
   */
   filters: Ember.computed.alias('buildFilters'),
+  /**
+  Allfilters array within filters object
+
+  @property filtersArr
+  @type Array
+  */
+  filtersArr: Ember.computed.alias('filters.allfilters'),
   /**
   Create model for filters collection
 
