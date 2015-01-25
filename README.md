@@ -1,6 +1,6 @@
 # Dasht-App
 
-Dasht App is a dashboard (home screen) from Chromecast and devices like it. This app lives at [DashtApp.com](http://dashtapp.com)
+Dasht App is a dashboard (home screen) for Chromecast and devices like it. This app lives at [DashtApp.com](http://dashtapp.com)
 
 ## Prerequisites
 
