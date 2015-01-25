@@ -1,8 +1,7 @@
 <div class="filtering">
   <ul>
-    {{#each filter in filters.allfilters}}
+    {{#each filter in filtersArr}}
       <li {{action 'toggleFilter' filter.name}}>{{check-box filter.on}} {{filter.name}}</li>
     {{/each}}
-    <!-- <li class="save" {{action 'saveFilters'}}>{{fa-icon "fa-cloud-upload"}} Save filters</li>  -->
   </ul>
 </div>
