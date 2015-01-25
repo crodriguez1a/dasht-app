@@ -12,6 +12,20 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   needs: ['index','application'],
   /**
+  Sort default
+
+  @property sortVisible
+  @type Array
+  */
+  sortVisible: ['visible'],
+  /**
+  Channel lib sorted by visible (added) channels first
+
+  @property librarySortVisible
+  @type Array
+  */
+  librarySortVisible: Ember.computed.sort('controllers.application.model.library', 'sortVisible'),
+  /**
   Signal if filtering is open
 
   @property filtering

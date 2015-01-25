@@ -158,6 +158,7 @@ export default Ember.Route.extend({
 
     _channels.set('modified', channels.modified);
 
+
     return _channels;
 
   },
