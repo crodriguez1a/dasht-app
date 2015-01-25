@@ -1,7 +1,7 @@
 <header>
 	<nav class="site-menu">
 		<a href="#" class="menu-bars" {{action 'toggleMenu'}}>{{fa-icon "fa-bars fa-3x"}}</a>
-		{{#liquid-if 'menuOpen' class="submenu"}}
+		{{#liquid-if 'menuOpen' class="slide-down"}}
 		<div class="sub-menu">
 			<ul>
 				<li>{{link-to 'Dashtboard' 'index'}}{{fa-icon "fa-arrow-right"}}</li>

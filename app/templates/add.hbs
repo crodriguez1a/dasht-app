@@ -4,11 +4,14 @@
 
 <section class="add-channel">
     {{input placeholder="ie: hulu.com" value=channel action="findChannel"}}
-    <!-- on="key-press" -->
-    <div {{bind-attr class="error:error:message"}}>{{{message}}}</div>
+    {{#liquid-if 'message' class="slide-down"}}
+      <div {{bind-attr class=":messaging error:error:message"}}>
+        {{{message}}}
+        <div class="close" {{action 'closeMessage'}}>{{fa-icon "fa-close"}}</close>
+      </div>
+    {{/liquid-if}}
     <button {{action 'findChannel' target }}>Find {{fa-icon "fa-angle-right"}}</button>
-
-</section>
+  </section>
 
 <section>
   <div class="all-channels">
