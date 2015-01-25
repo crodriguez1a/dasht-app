@@ -1,33 +1,35 @@
 import Ember from "ember";
-import _ from 'lodash';
+import _ from "lodash";
 
 /**
-Live Filtering component
+  Live Filtering component
 
-Filter channels using tags
+  Filter channels using tags
 
-@class LiveFilteringComponent
+  @class LiveFilteringComponent
 */
 export default Ember.Component.extend({
   /**
-  Alias for collection of filters
+    Alias for collection of filters
 
-  @property filters
-  @type Class
+    @property filters
+    @type Class
   */
   filters: Ember.computed.alias('buildFilters'),
-  /**
-  Allfilters array within filters object
 
-  @property filtersArr
-  @type Array
+  /**
+    Allfilters array within filters object
+
+    @property filtersArr
+    @type Array
   */
   filtersArr: Ember.computed.alias('filters.allfilters'),
-  /**
-  Create model for filters collection
 
-  @property buildFilters
-  @type Class
+  /**
+    Create model for filters collection
+
+    @property buildFilters
+    @type Class
   */
   buildFilters: function() {
 
@@ -98,10 +100,11 @@ export default Ember.Component.extend({
     }
 
   }.property(),
-  /**
-  Compare channel's tags with selected filters
 
-  @method applyFilters
+  /**
+    Compare channel's tags with selected filters
+
+    @method applyFilters
   */
   applyFilters: function() {
     var context = this.get('model'),
@@ -130,13 +133,13 @@ export default Ember.Component.extend({
         }
       });
     });
-
   },
+
   actions: {
     /**
-    Designate filter on or off
+      Designate filter on or off
 
-    @method toggleFilter
+      @method toggleFilter
     */
     toggleFilter: function(filter) {
       var filtersObj = this.get('filters'),
@@ -146,6 +149,7 @@ export default Ember.Component.extend({
       foundFilter.toggleProperty('on');
       this.applyFilters();
     },
+
     /**
     Save filter choices in local storage
 
