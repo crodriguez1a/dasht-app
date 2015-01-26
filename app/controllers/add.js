@@ -17,9 +17,9 @@ export default Ember.Controller.extend({
   @property sortVisible
   @type Array
   */
-  sortVisible: ['visible'],
+  sortVisible: ['visible','title'],
   /**
-  Channel lib sorted by visible (added) channels first
+  Channel lib sorted by visible (added) channels first, the alphabetical
 
   @property librarySortVisible
   @type Array
