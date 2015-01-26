@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
 /**
-* Index controller
+* Dashtboard controller
 *
-* @class IndexController
+* @class DashtboardController
 * @extends Ember.Controller
 * @namespace Dasht
 * @returns Class

@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { raw as ic } from 'ic-ajax';
+import { raw as ajax } from 'ic-ajax';
 
 /**
 * Application route
@@ -9,36 +9,36 @@ import { raw as ic } from 'ic-ajax';
 * @namespace Dasht
 * @returns Class
 */
-
-
 export default Ember.Route.extend({
   /**
-  Fetches data from local storage (as string) and re-converts to Ember Object
+    Fetches data from local storage (as string) and re-converts to Ember Object
 
-  @property localModel
-  @type Class
+    @property localModel
+    @type Class
   */
-  localModel: function(){
+  localModel: function() {
     var ls = localStorage.getItem("dasht-channels"),
         channels = JSON.parse(ls);
-    if(ls !== null){
+    if(ls !== null) {
       return this.modelize(channels);
-    }else {
+    } else {
       return undefined;
     }
   }.property(),
-  /**
-  Fetches data from JSON, returns promise
 
-  @property restModel
-  @type Promise
+  /**
+    Fetches data from JSON, returns promise
+
+    @property restModel
+    @type Promise
   */
   restModel: function() {
-    var req = ic({
+    var req = ajax({
       type: 'GET',
       url: '/assets/json/channels.json',
       processData: true,
     });
+
     return req.then(
       function resolve(res) {
         var channels = res.response;
@@ -47,10 +47,11 @@ export default Ember.Route.extend({
       }.bind(this)
     );
   }.property(),
-  /**
-  Returns deep merge of local and fetched data
 
-  @method model
+  /**
+    Returns deep merge of local and fetched data
+
+    @method model
   */
   model: function() {
     var self = this,
@@ -79,65 +80,60 @@ export default Ember.Route.extend({
         }
 
         return local;
-
       });
     }
 
     //No local cache? Fetch data.
     if(!local && rest){
-      return rest.then(function(){
+      return rest.then(function() {
         self.saveToLocal(rest._result);
         return rest._result;
       });
     }
-
   },
-  /**
-  Re-construct POJO as Ember Object
 
-  @method modelize
+  /**
+    Re-construct POJO as Ember Object
+
+    @method modelize
   */
   modelize: function(channels, fetched) {
-
-        //Breakdown of Channels Model
-        /*
-        Channels: {
-          Modified: mod date of database, used to compare stored data with fetched data
-          Library: [
-            channel: {
-              title: display title,
-              icon: path/to/icon,
-              url: path/to/website,
-              tags: [],
-              isdefault: to show on dashtboard as default channel,
-              visible: alias of default - later toggled by user,
-              isfiltered: channel can be filtered out, while still "visible" and pinned to dashtboard,
-              new: this property is unused but may be used for user contributed channels in the future
-            }
-          ]
+    //Breakdown of Channels Model
+    /*
+    Channels: {
+      Modified: mod date of database, used to compare stored data with fetched data
+      Library: [
+        channel: {
+          title: display title,
+          icon: path/to/icon,
+          url: path/to/website,
+          tags: [],
+          isdefault: to show on dashtboard as default channel,
+          visible: alias of default - later toggled by user,
+          isfiltered: channel can be filtered out, while still "visible" and pinned to dashtboard,
+          new: this property is unused but may be used for user contributed channels in the future
         }
-        */
-
-    var allLib = channels.library,
-        //var
-        Channels = Ember.Object.extend({
+      ]
+    }
+    */
+    var allLib = channels.library;
+    var Channels = Ember.Object.extend({
           library: null,
           init: function() {
             this._super();
             this.set("library", []);
           }
-        }),
-        //var
-        Library = Ember.Object.extend({
+        });
+    var Library = Ember.Object.extend({
           init: function() {
             this._super();
           }
-        }),
-        //var
-        _channels = Channels.create();
+        });
+    var _channels = Channels.create();
 
     allLib.filter(function(item){
       var a = Library.create();
+
       a.setProperties({
         title: item.title,
         icon: item.icon,
@@ -158,38 +154,40 @@ export default Ember.Route.extend({
 
     _channels.set('modified', channels.modified);
 
-
     return _channels;
-
   },
-  /**
-  Update local storage item with latest model
 
-  @method saveToLocal
+  /**
+    Update local storage item with latest model
+
+    @method saveToLocal
   */
   saveToLocal: function(model) {
     localStorage.setItem("dasht-channels", JSON.stringify(model));
   },
-  /**
-  Event on body should also close menu
 
-  @method bodyClick
+  /**
+    Event on body should also close menu
+
+    @method bodyClick
   */
   bodyClick: function() {
-    var self = this;
-    Ember.run.schedule('afterRender', function(){
-      Ember.$('body').on('touch click', function(e){
-        var isMenu = Ember.$(e.target).parentsUntil('site-menu').hasClass('site-menu');
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      Ember.$('body').on('touch click', function(e) {
+        var isMenuOpen = this.controller.get('attrs.menuOpen');
+        var isMenuClick = Ember.$(e.target).parentsUntil('site-menu').hasClass('site-menu');
 
-        if(!isMenu) {
-          self.controller.set('attrs.menuOpen', false);
+        if(isMenuOpen && !isMenuClick) {
+          this.controller.set('attrs.menuOpen', false);
         }
-      });
+      }.bind(this));
     });
   },
+
   init: function() {
     this.bodyClick();
   },
+
   actions: {
     /**
       Close any open blocks
@@ -201,7 +199,7 @@ export default Ember.Route.extend({
       //hide menu
       this.controller.set('attrs.menuOpen', false);
       //toggle editing off
-      this.controllerFor('index').set('editing', false);
+      this.controllerFor('dashtboard').set('editing', false);
     },
     /**
       Dev only - refreshes views
