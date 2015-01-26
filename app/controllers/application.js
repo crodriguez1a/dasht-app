@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import { moment } from 'ember-moment/computed';
 
 /**
 * Application controller

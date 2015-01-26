@@ -12,10 +12,12 @@
       width: 5em;
       height: 5em;
       margin: 0.8em 0.8em 0 0;
-
+      display: inline-table;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
       img {
-        border-radius: 0.5em;
-
+        border-radius: 1em;
       }
       .delete, .add, .installed {
           padding-top: 1px;

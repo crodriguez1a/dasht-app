@@ -10,16 +10,16 @@ import Ember from 'ember';
 */
 
 export default Ember.Controller.extend({
-  needs: ['index','application'],
+  needs: ['dashtboard','application'],
   /**
   Sort default
 
   @property sortVisible
   @type Array
   */
-  sortVisible: ['visible'],
+  sortVisible: ['visible','title'],
   /**
-  Channel lib sorted by visible (added) channels first
+  Channel lib sorted by visible (added) channels first, the alphabetical
 
   @property librarySortVisible
   @type Array
@@ -204,7 +204,7 @@ export default Ember.Controller.extend({
     */
     addChannel: function(channel) {
       this.set('error', false);
-      this.get('controllers.index').toggleChannel(channel, true);
+      this.get('controllers.dashtboard').toggleChannel(channel, true);
       this.set('message', this.messages.successInstalled);
     },
     /**
