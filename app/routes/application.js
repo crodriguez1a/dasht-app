@@ -10,6 +10,8 @@ import { raw as ajax } from 'ic-ajax';
 * @returns Class
 */
 export default Ember.Route.extend({
+  title: 'Dasht',
+
   /**
     Fetches data from local storage (as string) and re-converts to Ember Object
 
