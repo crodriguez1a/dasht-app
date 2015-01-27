@@ -96,6 +96,11 @@ html {
   }
 }
 
+.delete > .fa-minus:first-of-type {
+  margin: -20px;
+  padding: 20px;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -107,9 +112,6 @@ header {
 
 nav.site-menu {
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
@@ -187,7 +189,9 @@ main {
     padding: 1em;
     font-size: 0.85em;
     a {
+      text-decoration: none;
       color: $light-blue;
+      padding: 10px;
     }
     .fa {
       &.fa-github {

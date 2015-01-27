@@ -63,7 +63,11 @@
     }
     .add {
       color: $green;
-      border-color: $green
+      border-color: $green;
+      > .fa-plus:first-of-type {
+        margin: -20px;
+        padding: 20px;
+      }
     }
     .installed {
       border-color: $medium-text;
