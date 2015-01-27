@@ -140,7 +140,7 @@ export default Ember.Controller.extend({
 
       //match in db
       var exactURLMatch = channelsLib.findBy('url','//'+query),
-          exactTitleMatch = channelsLib.findBy('title', query.replace(/ /g,''));
+          exactTitleMatch = channelsLib.findBy('title', (query.replace(/ /g,'')).toLowerCase());
 
       //clear any previous errors
       if(this.get('message') != null) {
