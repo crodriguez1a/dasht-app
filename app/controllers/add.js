@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
   @property sortVisible
   @type Array
   */
-  sortVisible: ['visible','title'],
+  sortVisible: ['searchResult:desc','visible','title'],
   /**
   Channel lib sorted by visible (added) channels first, the alphabetical
 
@@ -127,6 +127,29 @@ export default Ember.Controller.extend({
   saveToLocal: function(model) {
     localStorage.setItem("dasht-channels", JSON.stringify(model));
   },
+  filterPartialMatches: function() {
+    var currentModel = this.get('controllers.application').get('model'),
+        channelsLib = currentModel.library,
+        query = this.get('channel'),
+        partialTitleMatchArr = [];
+
+    //clear previous searches
+    channelsLib.setEach('searchResult', false);
+    //clean up query
+    query = (query.replace(/ /g,'')).toLowerCase();
+    //match hits
+    channelsLib.filter(function(item) {
+      var hits = (item.title).match(query);
+      if(hits && hits.length > 0) {
+        partialTitleMatchArr.push(item);
+      }
+    });
+    //if partial match, bring those channels to top
+    if(partialTitleMatchArr.length > 0) {
+      return partialTitleMatchArr.setEach('searchResult', true);
+    }
+
+  }.observes('channel'),
   actions: {
     /**
     Action, search for channels in model
@@ -138,9 +161,13 @@ export default Ember.Controller.extend({
           channelsLib = currentModel.library,
           query = this.get('channel');
 
+      //clean up query
+      query = (query.replace(/ /g,'')).toLowerCase();
+
       //match in db
       var exactURLMatch = channelsLib.findBy('url','//'+query),
-          exactTitleMatch = channelsLib.findBy('title', (query.replace(/ /g,'')).toLowerCase());
+          exactTitleMatch = channelsLib.findBy('title', query),
+          partialTitleMatchArr = [];
 
       //clear any previous errors
       if(this.get('message') != null) {
@@ -149,7 +176,7 @@ export default Ember.Controller.extend({
       }
 
       /*
-      find a channel messaging
+      Find a channel messaging
       */
 
       //nothing typed
@@ -167,7 +194,7 @@ export default Ember.Controller.extend({
         }
 
         //found a match
-        if(exactURLMatch || exactTitleMatch){
+        if(exactURLMatch || exactTitleMatch) {
           var match = exactURLMatch || exactTitleMatch;
           if(match.get('visible')) {
             //already added to dashtboard
