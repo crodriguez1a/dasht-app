@@ -47,7 +47,7 @@ export default Ember.Component.extend({
   */
   keyListener: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      Ember.$(document).on('keydown', {self: this}, this.keyManager.bind(this));
+      Ember.$(document).on('keydown', { self: this }, this.keyManager.bind(this));
     });
   }.on('didInsertElement'),
   /**
@@ -63,12 +63,12 @@ export default Ember.Component.extend({
     Ember.$('.keyboard-remote li').removeClass('pressed');
 
     //command k - toggle remote expand/collapsed
-    if(e.keyCode === 75) {
+    if (e.keyCode === 75) {
       this.toggleProperty('visible');
     }
 
     //esc - collapse remote
-    if(e.keyCode === 27) {
+    if (e.keyCode === 27) {
       this.set('visible', false);
     }
 
@@ -80,25 +80,25 @@ export default Ember.Component.extend({
       down: 40
     };
 
-    if(_.contains(arrows, e.keyCode)){
+    if (_.contains(arrows, e.keyCode)) {
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
 
       var actionableItem = Ember.$('.actionable').not('.disabled'),
           curItem = this.get('actionItemCount');
 
       //stay in range
-      if(curItem < 0 || curItem > actionableItem.length-1) {
+      if (curItem < 0 || curItem > actionableItem.length-1) {
         curItem = curItem < 0 ? 0 : actionableItem.length-1;
       }
 
       //tab forward/down
-      if(e.keyCode === 39 || e.keyCode === 40) {
+      if (e.keyCode === 39 || e.keyCode === 40) {
         actionableItem[curItem].focus();
         curItem++;
       }
 
       //tab back/up
-      if(e.keyCode === 37 || e.keyCode === 38) {
+      if (e.keyCode === 37 || e.keyCode === 38) {
         actionableItem[curItem].focus();
         curItem--;
       }
@@ -110,12 +110,12 @@ export default Ember.Component.extend({
     }
 
     //enter key - Submit Action
-    if(e.keyCode === 13) {
+    if (e.keyCode === 13) {
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
     }
 
     //shift command O - Toggle Menu
-    if(e.keyCode === 79 && e.shiftKey && e.metaKey) {
+    if (e.keyCode === 79 && e.shiftKey && e.metaKey) {
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
       //To do: this focus is not working well yet
       Ember.$('nav').find('.actionable').focus();
@@ -123,11 +123,13 @@ export default Ember.Component.extend({
     }
 
   },
+
   revertClick: function() {
     Ember.run.later(this, function() {
       this.set('clicked', false);
     }, 800);
   }.observes('clicked'),
+
   actions: {
     /**
     Expand or collapse remote
@@ -143,7 +145,7 @@ export default Ember.Component.extend({
     @property method
     */
     wasClicked: function() {
-        this.toggleProperty('clicked');
+      this.toggleProperty('clicked');
     }
   }
 

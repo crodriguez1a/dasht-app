@@ -21,12 +21,12 @@ export default Ember.Route.extend({
   localModel: function() {
     var ls, channels;
 
-    if(!hasLocalStorage) { return undefined; }
+    if (!hasLocalStorage) { return undefined; }
 
     ls = localStorage.getItem(localStorageChannels);
     channels = JSON.parse(ls);
 
-    if(!ls) { return undefined; }
+    if (!ls) { return undefined; }
 
     // Channel data is already stored locally
     return this.modelize(channels);
@@ -42,7 +42,7 @@ export default Ember.Route.extend({
     var req = ajax({
       type: 'GET',
       url: '/assets/json/channels.json',
-      processData: true,
+      processData: true
     });
 
     return req.then(
@@ -65,20 +65,20 @@ export default Ember.Route.extend({
         rest = this.get('restModel');
 
     //Compare local cache to database
-    if(local && rest) {
-      return rest.then(function(){
+    if (local && rest) {
+      return rest.then(function() {
         //If both are present, compare modified date
         var restmod = rest._result.modified,
             localmod = local.modified,
             stale = moment(restmod).isAfter(localmod);
 
         //if items were added or modified, merge with local
-        if(local.library.length !== rest._result.library.length || stale) {
+        if (local.library.length !== rest._result.library.length || stale) {
           var rl = rest._result.library,
               ll = local.library;
-          rl.filter(function(restlib){
+          rl.filter(function(restlib) {
             //push missing items
-            if(!ll.findBy('title', restlib.title)) {
+            if (!ll.findBy('title', restlib.title)) {
               ll.push(restlib);
             }
           });
@@ -89,7 +89,7 @@ export default Ember.Route.extend({
     }
 
     //No local cache? Fetch data.
-    if(!local && rest){
+    if (!local && rest) {
       return rest.then(function() {
         self.saveToLocal(rest._result);
         return rest._result;
@@ -136,7 +136,7 @@ export default Ember.Route.extend({
         });
     var _channels = Channels.create();
 
-    allLib.filter(function(item){
+    allLib.filter(function(item) {
       var a = Library.create();
 
       a.setProperties({
@@ -150,7 +150,7 @@ export default Ember.Route.extend({
         new: false
       });
 
-      if(!fetched) {
+      if (!fetched) {
         a.set('visible', item.visible);
       }
 
@@ -168,7 +168,7 @@ export default Ember.Route.extend({
     @method saveToLocal
   */
   saveToLocal: function(model) {
-    if(hasLocalStorage) {
+    if (hasLocalStorage) {
       localStorage.setItem(localStorageChannels, JSON.stringify(model));
     }
   },
@@ -184,7 +184,7 @@ export default Ember.Route.extend({
         var isMenuOpen = this.controller.get('attrs.menuOpen');
         var isMenuClick = Ember.$(e.target).parentsUntil('site-menu').hasClass('site-menu');
 
-        if(isMenuOpen && !isMenuClick) {
+        if (isMenuOpen && !isMenuClick) {
           this.controller.set('attrs.menuOpen', false);
         }
       }.bind(this));

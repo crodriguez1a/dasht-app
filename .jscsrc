@@ -1,6 +1,8 @@
 {
   "esnext": true,
   "excludeFiles": [
+    "dasht/helpers/fa-icon.js",
+    "dasht/helpers/liquid-*.js",
     "dasht/transitions/*",
     "dasht/views/liquid-*.js"
   ],

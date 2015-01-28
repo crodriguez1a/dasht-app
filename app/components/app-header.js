@@ -17,6 +17,6 @@ export default Ember.Component.extend({
     },
     updateTheme: function(theme) {
       this.sendAction('onUpdateTheme', theme);
-    },
+    }
   }
 });
