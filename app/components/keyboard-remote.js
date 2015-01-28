@@ -24,7 +24,7 @@ export default Ember.Component.extend({
   @property visible
   @type Bool
   */
-  visible: true,
+  visible: false,
   /**
   Keep count of actionable elems
 
@@ -38,11 +38,9 @@ export default Ember.Component.extend({
   @method keyListener
   */
   keyListener: function() {
-    if (this.get('visible')) {
-      Ember.run.scheduleOnce('afterRender', this, function() {
-        Ember.$(document).on('keydown', {self: this}, this.keyManager.bind(this));
-      });
-    }
+    Ember.run.scheduleOnce('afterRender', this, function() {
+      Ember.$(document).on('keydown', {self: this}, this.keyManager.bind(this));
+    });
   }.on('didInsertElement'),
   /**
   Respond to key press events
