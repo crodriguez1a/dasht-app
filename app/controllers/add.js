@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { hasLocalStorage } from 'dasht/utils/feature-detect';
 
 /**
   Add a Channel controller
@@ -121,7 +122,9 @@ export default Ember.Controller.extend({
   @method saveToLocal
   */
   saveToLocal: function(model) {
-    localStorage.setItem("dasht-channels", JSON.stringify(model));
+    if(hasLocalStorage) {
+      localStorage.setItem("dasht-channels", JSON.stringify(model));
+    }
   },
   filterPartialMatches: function() {
     var currentModel = this.get('controllers.application').get('model'),

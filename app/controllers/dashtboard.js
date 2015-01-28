@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { hasLocalStorage } from 'dasht/utils/feature-detect';
 
 /**
   Dashtboard Homepage controller
@@ -58,7 +59,9 @@ export default Ember.Controller.extend({
   @method saveToLocal
   */
   saveToLocal: function(model) {
-    localStorage.setItem("dasht-channels", JSON.stringify(model));
+    if(hasLocalStorage) {
+      localStorage.setItem("dasht-channels", JSON.stringify(model));
+    }
   },
   /**
   Hide or show channels from dashtboard
