@@ -1,14 +1,10 @@
 import Ember from 'ember';
 
 /**
-* Application controller
-*
-* @class ApplicationController
-* @extends Ember.Controller
-* @namespace Dasht
-* @returns Class
-*/
+  Application controller
 
+  @class ApplicationController
+*/
 export default Ember.Controller.extend({
   attrs: {
     /**

@@ -1,14 +1,10 @@
 import Ember from 'ember';
 
 /**
-* Dashtboard controller
-*
-* @class DashtboardController
-* @extends Ember.Controller
-* @namespace Dasht
-* @returns Class
-*/
+  Dashtboard Homepage controller
 
+  @class DashtboardController
+*/
 export default Ember.Controller.extend({
   needs: ['application'],
   /**
@@ -70,7 +66,6 @@ export default Ember.Controller.extend({
   @method toggleChannel
   */
   toggleChannel: function(channel, bool) {
-
     var currentModel = this.get('controllers.application').get('model'),
         found;
     if(currentModel && currentModel.library) {

@@ -2,12 +2,9 @@ import Ember from 'ember';
 import { raw as ajax } from 'ic-ajax';
 
 /**
-* Application route
-*
-* @class ApplicationRoute
-* @extends Ember.Route
-* @namespace Dasht
-* @returns Class
+  Application route
+
+  @class ApplicationRoute
 */
 export default Ember.Route.extend({
   title: 'Dasht',
@@ -70,7 +67,6 @@ export default Ember.Route.extend({
 
         //if items were added or modified, merge with local
         if(local.library.length !== rest._result.library.length || stale) {
-
           var rl = rest._result.library,
               ll = local.library;
           rl.filter(function(restlib){
