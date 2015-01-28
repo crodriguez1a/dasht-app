@@ -233,10 +233,14 @@ export default Ember.Controller.extend({
 
     @method addChannel
     */
-    addChannel: function(channel) {
+    addChannel: function(channel, visible) {
       this.set('error', false);
-      this.get('controllers.dashtboard').toggleChannel(channel, true);
-      this.set('message', this.messages.successInstalled);
+      if(!visible) {
+        this.get('controllers.dashtboard').toggleChannel(channel, true);
+        this.set('message', this.messages.successInstalled);
+      }else {
+        return this.set('message', this.messages.prevInstalled);
+      }
     },
     /**
     Toggles filtering open and closed
