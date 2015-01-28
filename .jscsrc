@@ -1,5 +1,9 @@
 {
   "esnext": true,
+  "excludeFiles": [
+    "dasht/transitions/*",
+    "dasht/views/liquid-*.js"
+  ],
   "disallowSpacesInsideArrayBrackets": "all",
   "requireSpaceBeforeObjectValues": true,
   "requireCommaBeforeLineBreak": true,
