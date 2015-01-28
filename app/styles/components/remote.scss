@@ -13,6 +13,10 @@
     height: 2em;
     overflow: hidden;
   }
+  .keyboard-icon {
+    text-align: center;
+    @include shake-x();
+  }
   ul {
     list-style: none;
     margin: 0.5em 0;

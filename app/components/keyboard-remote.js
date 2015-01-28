@@ -19,6 +19,14 @@ export default Ember.Component.extend({
     return window.__device.mobile;
   }.property(),
   /**
+  Signal if user tried to click to interact with remote
+
+  @property isClicked
+  @type Bool
+  @default False
+  */
+  clicked: false,
+  /**
   Expand or collapse remote
 
   @property visible
@@ -115,6 +123,11 @@ export default Ember.Component.extend({
     }
 
   },
+  revertClick: function() {
+    Ember.run.later(this, function() {
+      this.set('clicked', false);
+    }, 800);
+  }.observes('clicked'),
   actions: {
     /**
     Expand or collapse remote
@@ -123,6 +136,14 @@ export default Ember.Component.extend({
     */
     toggleRemote: function() {
       this.toggleProperty('visible');
+    },
+    /**
+    If user tried to click, provide keyboard hint
+
+    @property method
+    */
+    wasClicked: function() {
+        this.toggleProperty('clicked');
     }
   }
 

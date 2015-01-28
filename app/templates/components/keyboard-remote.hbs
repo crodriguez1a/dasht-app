@@ -9,19 +9,23 @@
       {{/if}}
     </div>
 
-     <ul>
-       <li class="arrow up kc-38">{{fa-icon "fa-arrow-up"}}</li>
-       <li class="arrow left kc-37">{{fa-icon "fa-arrow-left"}}</li>
-       <li class="arrow right kc-39">{{fa-icon "fa-arrow-right"}}</li>
-       <li class="arrow down kc-40">{{fa-icon "fa-arrow-down"}}</li>
-       <li class="button enter kc-13">
-         <span>&crarr;</span>
-         <span>Select</span>
-       </li>
-       <li class="button menu kc-79">
-         <span>&#8679; &#8984; O</span>
-         <span>{{fa-icon "fa-bars fa-1x"}}</span>
-       </li>
-     </ul>
+    {{#liquid-if clicked class="cross-fade"}}
+      <div class="keyboard-icon">{{fa-icon "fa-keyboard-o fa-3x"}}</div>
+    {{else}}
+    <ul {{action "wasClicked"}}>
+      <li class="arrow up kc-38">{{fa-icon "fa-arrow-up"}}</li>
+      <li class="arrow left kc-37">{{fa-icon "fa-arrow-left"}}</li>
+      <li class="arrow right kc-39">{{fa-icon "fa-arrow-right"}}</li>
+      <li class="arrow down kc-40">{{fa-icon "fa-arrow-down"}}</li>
+      <li class="button enter kc-13">
+        <span>&crarr;</span>
+        <span>Select</span>
+      </li>
+      <li class="button menu kc-79">
+        <span>&#8679; &#8984; O</span>
+        <span>{{fa-icon "fa-bars fa-1x"}}</span>
+      </li>
+    </ul>
+    {{/liquid-if}}
   </div>
 {{/unless}}
