@@ -1,7 +1,7 @@
 {{#unless item.isfiltered}}
   {{#if item.title}}
     <div {{bind-attr class="item.visible:installed-channel:new-channel item.searchResult:search-result:"}}>
-      <a href="#" {{bind-attr class="item.visible:installed:add"}} {{action 'addChannel' item.title}}>
+      <a href="#" {{bind-attr class=":actionable item.visible:installed:add"}} {{action 'addChannel' item.title}}>
         {{#if item.visible}}
           {{fa-icon "fa-check"}}
         {{else}}

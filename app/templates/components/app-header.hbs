@@ -5,9 +5,9 @@
     {{#liquid-if menuOpen class="slide-down"}}
       <div class="sub-menu">
         <ul>
-          <li>{{link-to 'Dashtboard' 'dashtboard'}}{{fa-icon "fa-arrow-right"}}</li>
-          <li>{{link-to 'Add a Channel' 'add'}}{{fa-icon "fa-arrow-right"}}</li>
-          <li {{action "toggleTheme"}}>
+          <li>{{link-to 'Dashtboard' 'dashtboard' classNames="actionable"}}{{fa-icon "fa-arrow-right"}}</li>
+          <li>{{link-to 'Add a Channel' 'add' classNames="actionable"}}{{fa-icon "fa-arrow-right"}}</li>
+          <li {{action "toggleTheme"}} class="actionable">
             <a>Choose a Theme</a>
             {{#if themesOpen}}
               {{fa-icon "fa-minus"}}
@@ -19,7 +19,7 @@
                 <div class="available-themes">
                   <ul>
                     {{#each theme in themes}}
-                      <li {{bind-attr class="theme"}} {{action "updateTheme" theme}}>
+                      <li {{bind-attr class=":actionable theme"}} {{action "updateTheme" theme}}>
                         {{active-check theme}}
                       </li>
                     {{/each}}
@@ -31,4 +31,7 @@
       </div>
     {{/liquid-if}}
   </nav>
+
+  {{keyboard-remote model=this controller=this.controller}}
+
 </header>

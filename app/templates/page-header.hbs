@@ -1,12 +1,12 @@
 <div class="page-actions">
-  <a href="#" {{action 'toggleFilters'}} {{bind-attr class=" controller.currentlyFiltered:active"}}>
+  <a href="#" {{action 'toggleFilters'}} {{bind-attr class=":actionable controller.currentlyFiltered:active"}}>
     {{#if controller.filtering}}
       {{fa-icon "fa-close"}}
     {{else}}
       {{fa-icon "fa-filter"}}
     {{/if}}
   </a>
-  {{#link-to 'dashtboard'}}{{fa-icon "fa-close"}}{{/link-to}}
+  {{#link-to 'dashtboard' classNames="actionable"}}{{fa-icon "fa-close"}}{{/link-to}}
 </div>
 
 {{#if controller.filtering}}

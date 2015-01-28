@@ -3,9 +3,9 @@
     {{#if item.title}}
       <div class="new-channel">
         {{#if controller.editing}}
-          <a href="#" class="delete" {{action 'hideChannel' item.title}}>{{fa-icon "fa-minus"}}</a>
+          <a href="#" class="actionable delete" {{action 'hideChannel' item.title}}>{{fa-icon "fa-minus"}}</a>
         {{/if}}
-        <a {{bind-attr href="item.url" class="controller.editing:disabled:enabled" title="item.title"}}>
+        <a {{bind-attr href="item.url" class=":actionable controller.editing:disabled:enabled" title="item.title"}}>
           <span class="item-title">{{item.title}}</span>
           <img {{bind-attr src="item.icon" alt="item.title"}} />
         </a>

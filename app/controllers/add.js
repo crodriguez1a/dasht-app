@@ -135,18 +135,21 @@ export default Ember.Controller.extend({
 
     //clear previous searches
     channelsLib.setEach('searchResult', false);
-    //clean up query
-    query = (query.replace(/ /g,'')).toLowerCase();
-    //match hits
-    channelsLib.filter(function(item) {
-      var hits = (item.title).match(query);
-      if(hits && hits.length > 0) {
-        partialTitleMatchArr.push(item);
+
+    if(query) {
+      //clean up query
+      query = (query.replace(/ /g,'')).toLowerCase();
+      //match hits
+      channelsLib.filter(function(item) {
+        var hits = (item.title).match(query);
+        if(hits && hits.length > 0) {
+          partialTitleMatchArr.push(item);
+        }
+      });
+      //if partial match, bring those channels to front
+      if(partialTitleMatchArr.length > 0) {
+        return partialTitleMatchArr.setEach('searchResult', true);
       }
-    });
-    //if partial match, bring those channels to top
-    if(partialTitleMatchArr.length > 0) {
-      return partialTitleMatchArr.setEach('searchResult', true);
     }
 
   }.observes('channel'),
@@ -162,12 +165,13 @@ export default Ember.Controller.extend({
           query = this.get('channel');
 
       //clean up query
-      query = (query.replace(/ /g,'')).toLowerCase();
+      if(query) {
+        query = (query.replace(/ /g,'')).toLowerCase();
+      }
 
       //match in db
       var exactURLMatch = channelsLib.findBy('url','//'+query),
-          exactTitleMatch = channelsLib.findBy('title', query),
-          partialTitleMatchArr = [];
+          exactTitleMatch = channelsLib.findBy('title', query);
 
       //clear any previous errors
       if(this.get('message') != null) {
@@ -176,7 +180,7 @@ export default Ember.Controller.extend({
       }
 
       /*
-      Find a channel messaging
+      Search messaging
       */
 
       //nothing typed

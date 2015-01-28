@@ -1,0 +1,21 @@
+@-webkit-keyframes "fadeUp" {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@mixin fade-up {
+  -webkit-animation: fadeUp 0.3s ease-out;
+}

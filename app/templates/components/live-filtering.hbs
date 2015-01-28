@@ -1,7 +1,7 @@
 <div class="filtering">
   <ul>
     {{#each filter in filtersArr}}
-      <li {{action 'toggleFilter' filter.name}}>{{check-box filter.on}} {{filter.name}}</li>
+      <li class="actionable" {{action 'toggleFilter' filter.name}}>{{check-box filter.on}} {{filter.name}}</li>
     {{/each}}
   </ul>
 </div>
