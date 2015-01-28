@@ -15,8 +15,8 @@ loadInitializers(App, config.modulePrefix);
 
 /* Set the route title on each respective controller */
 Ember.Route.reopen({
-  setupController: function(controller, model) {
-    this._super(controller, model);
+  setupController: function(controller) {
+    this._super(...arguments);
 
     var title = this.get('title');
     if (title) {

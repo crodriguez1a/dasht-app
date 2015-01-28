@@ -1,13 +1,13 @@
 import Ember from 'ember';
 import { raw as ajax } from 'ic-ajax';
+import { hasLocalStorage } from 'dasht/utils/feature-detect';
+
+var localStorageChannels = 'dasht-channels';
 
 /**
-* Application route
-*
-* @class ApplicationRoute
-* @extends Ember.Route
-* @namespace Dasht
-* @returns Class
+  Application route
+
+  @class ApplicationRoute
 */
 export default Ember.Route.extend({
   title: 'Dasht',
@@ -19,13 +19,17 @@ export default Ember.Route.extend({
     @type Class
   */
   localModel: function() {
-    var ls = localStorage.getItem("dasht-channels"),
-        channels = JSON.parse(ls);
-    if(ls !== null) {
-      return this.modelize(channels);
-    } else {
-      return undefined;
-    }
+    var ls, channels;
+
+    if(!hasLocalStorage) return undefined;
+
+    ls = localStorage.getItem(localStorageChannels),
+    channels = JSON.parse(ls);
+
+    if(!ls) return undefined;
+
+    // Channel data is already stored locally
+    return this.modelize(channels);
   }.property(),
 
   /**
@@ -70,7 +74,6 @@ export default Ember.Route.extend({
 
         //if items were added or modified, merge with local
         if(local.library.length !== rest._result.library.length || stale) {
-
           var rl = rest._result.library,
               ll = local.library;
           rl.filter(function(restlib){
@@ -165,7 +168,9 @@ export default Ember.Route.extend({
     @method saveToLocal
   */
   saveToLocal: function(model) {
-    localStorage.setItem("dasht-channels", JSON.stringify(model));
+    if(hasLocalStorage) {
+      localStorage.setItem(localStorageChannels, JSON.stringify(model));
+    }
   },
 
   /**
