@@ -77,7 +77,7 @@ export default Ember.Component.extend({
     if(_.contains(arrows, e.keyCode)){
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
 
-      var actionableItem = Ember.$('.actionable'),
+      var actionableItem = Ember.$('.actionable').not('.disabled'),
           curItem = this.get('actionItemCount');
 
       //stay in range
