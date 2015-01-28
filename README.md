@@ -28,6 +28,17 @@ You will need the following things properly installed on your computer.
 
 Make use of the many generators for code, try `ember help generate` for more details
 
+### JSCS Linting
+
+Uniform code quality and style is important. If you're using the [Atom](https://atom.io/) text editor then install these packages to JSCS Lint your code on file changes and file saves.
+
+```bash
+apm install linter
+apm install linter-jscs
+```
+
+For more information, check out the [linter-jscs](https://atom.io/packages/linter-jscs) plugin for Atom.
+
 ### Running Tests
 
 * `ember test`
