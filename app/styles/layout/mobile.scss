@@ -1,6 +1,19 @@
 .mobile {
+  nav {
+    a {
+      padding: 1em;
+    }
+    div {
+      &.sub-menu {
+        a {
+          padding-left: 0.75em;
+          padding-right: 0.75em;
+        }
+      }
+    }
+  }
   main  {
-  padding: 1em;  
+  padding: 1em;
 
     .outlet {
       .page-actions {
