@@ -81,7 +81,7 @@ export default Ember.Component.extend({
     Ember.$('.keyboard-remote li').removeClass('pressed');
 
     //open remote if user uses arrows or any other trigger designated
-    var hotKeys = [37, 38, 39];
+    var hotKeys = [37, 38, 39, 40];
     if(_.contains(hotKeys, e.keyCode)) {
       if(!this.get('visible')) {
         this.set('visible', true);

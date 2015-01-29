@@ -3,9 +3,6 @@
   .hide {
     display: none;
   }
-  .actionable:focus, .actionable a:focus {
-    outline: 1px dotted $orange;
-  }
 }
 
 html {
@@ -20,86 +17,26 @@ html, body {
   padding: 0;
 }
 
-html {
-  &[data-theme="dark"]{
-    background: $canvas-dark;
-    color: $lighter-text;
-    border-color: $medium-text;
-    a, h1, h2, h3, h4 {
-      color: $lighter-text;
-    }
-    nav {
-      a, i.fa-icon {
-        color: $blue;
-        &.active {
-          color: $medium-text;
-        }
-      }
-      i.active-check {
-        color: $lighter-text;
-      }
-    }
-    footer {
-      color: $medium-text;
-      a {
-        color: $light-blue;
-      }
-    }
-    .delete, .add, .installed {
-        background: $canvas-dark;
-    }
-    .filtering, .filtering a {
-      color: $light-blue;
-    }
-    .active {
-      color: $light-blue;
-    }
-    button, input[type="input"] {
-      background: $light-blue;
-    }
-  }
-  &[data-theme="light"] {
-    background: $canvas;
-    color: $darker-text;
-    border-color: $medium-text;
-    a, h1, h2, h3, h4 {
-      color: $darker-text;
-    }
-    nav {
-      a, i.fa-icon {
-        color: $blue;
-        &.active {
-          color: $medium-text;
-        }
-      }
-      i.active-check {
-        color: $darker-text;
-      }
-    }
-    footer{
-      color: $medium-text;
-      a {
-        color: $blue;
-      }
-    }
-    .delete, .add, .installed {
-      background: $canvas;
-    }
-    .filtering, .filtering a {
-      color: $blue;
-    }
-    .active {
-      color: $blue;
-    }
-    button, input[type="input"] {
-      background: $blue;
-    }
-  }
-}
-
 .delete > .fa-minus:first-of-type {
   margin: -20px;
   padding: 20px;
+}
+
+.actionable:focus {
+  outline: none;
+}
+
+.actionable:focus:not(input), .actionable a:focus {
+  color: $orange;
+  img {
+    border: 2px solid $orange;
+  }
+  .fa {
+    color: $orange;
+  }
+  &.active {
+    color: $light-orange
+  }
 }
 
 header {
@@ -123,7 +60,7 @@ main {
   display: block;
   position: relative;
   top: 5em;
-  padding: 1em;
+  padding: 2.5em;
 
   h1, h2, h3, h4 {
     margin: 0 0 1em 0;
@@ -159,7 +96,7 @@ main {
   }
 
   .outlet {
-    min-height: 20em;
+    min-height: 35.5em;
     .liquid-container {
       height: 100%;
       width: 100%;
@@ -198,11 +135,11 @@ main {
       padding: 10px;
     }
     .fa {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.15em;
       &.fa-github {
-        display: inline-block;
-        vertical-align: middle;
         font-size: 1.5em;
-        margin-left: 0.15em;
       }
     }
   }

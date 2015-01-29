@@ -21,7 +21,7 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.0.0",
     "broccoli-ember-hbs-template-compiler": "^1.6.1",
-    "broccoli-jscs": "git://github.com:alexdiliberto/broccoli-jscs.git#master",
+    "broccoli-jscs": "0.0.14",
     "ember-cli": "0.1.7",
     "ember-cli-6to5": "0.2.1",
     "ember-cli-autoprefixer": "^0.2.0",
