@@ -181,7 +181,7 @@ export default Ember.Route.extend({
   */
   bodyClick: function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      Ember.$('body').on('touch click', function(e) {
+      Ember.$('body').on('touch click mouseover', function(e) {
         var isMenuOpen = this.controller.get('attrs.menuOpen');
         var isMenuClick = Ember.$(e.target).parentsUntil('site-menu').hasClass('site-menu');
 
