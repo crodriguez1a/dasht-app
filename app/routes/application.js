@@ -21,16 +21,16 @@ export default Ember.Route.extend({
   localModel: function() {
     var ls, channels;
 
-    if(!hasLocalStorage) { return undefined; }
+    if(!hasLocalStorage) return undefined;
 
     ls = localStorage.getItem(localStorageChannels),
     channels = JSON.parse(ls);
 
-    if(!ls) { return undefined; }
+    if(!ls) return undefined;
 
     // Channel data is already stored locally
     return this.modelize(channels);
-    
+
   }.property(),
 
   /**
