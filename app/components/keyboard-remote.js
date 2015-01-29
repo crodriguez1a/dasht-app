@@ -109,35 +109,18 @@ export default Ember.Component.extend({
     if (_.contains(arrows, e.keyCode)) {
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
 
-
-<<<<<<< HEAD
       //reset if needed
       if(curItem < 0 || curItem > actionableItem.length-1) {
         curItem = curItem < 0 ? 0 : actionableItem.length;
       }
 
       //tab forward/down
-      if(e.keyCode === 39 || e.keyCode === 40) {
-=======
-      //stay in range
-      if (curItem < 0 || curItem > actionableItem.length-1) {
-        curItem = curItem < 0 ? 0 : actionableItem.length-1;
-      }
-
-      //tab forward/down
       if (e.keyCode === 39 || e.keyCode === 40) {
-        actionableItem[curItem].focus();
->>>>>>> c5730dcacc41117fe13ac02728aec50e8999c5f6
         curItem++;
       }
 
       //tab back/up
-<<<<<<< HEAD
       if(e.keyCode === 37 || e.keyCode === 38) {
-=======
-      if (e.keyCode === 37 || e.keyCode === 38) {
-        actionableItem[curItem].focus();
->>>>>>> c5730dcacc41117fe13ac02728aec50e8999c5f6
         curItem--;
       }
 
