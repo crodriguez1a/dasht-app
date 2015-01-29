@@ -22,7 +22,7 @@ html, body {
   padding: 20px;
 }
 
-.actionable:focus:not(input), .actionable a:focus {
+.actionable:focus:not(input[type="text"]), .actionable a:focus {
   outline: none;
   color: $orange;
   img {
