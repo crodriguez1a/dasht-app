@@ -29,7 +29,7 @@ html, body {
 .actionable:focus:not(input), .actionable a:focus {
   color: $orange;
   img {
-    border: 2px solid $orange;
+    border: 3px solid $orange;
   }
   .fa {
     color: $orange;
