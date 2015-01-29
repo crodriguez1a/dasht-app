@@ -33,7 +33,8 @@ export default Ember.Component.extend({
   */
   buildFilters: function() {
 
-    //todo: abstract this process
+    var currentContext = this.get('controller').get('model'),
+        cachedFilters = currentContext.get('cachedFilters');
 
     //Breakdown of filters model
     /*
@@ -91,12 +92,11 @@ export default Ember.Component.extend({
     });
 
     //if filters have already been cached, return cached filters
-    var currentModel = this.get('controller').get('model');
-    if(!currentModel.get('cachedFilters')){
-      currentModel.set('cachedFilters', _filters);
+    if(!cachedFilters){
+      currentContext.set('cachedFilters', _filters);
       return _filters;
     }else {
-      return currentModel.get('cachedFilters');
+      return cachedFilters;
     }
 
   }.property(),
@@ -134,7 +134,6 @@ export default Ember.Component.extend({
       });
     });
   },
-
   actions: {
     /**
       Designate filter on or off

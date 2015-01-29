@@ -31,13 +31,12 @@ export default Ember.Controller.extend({
   */
   filtering: false,
   /**
-  Cached version of filters that hold users choices
+  Cached version of filters, shared from dashtboard
 
   @property cachedFilters
   @type Object
-  @default null
   */
-  cachedFilters: null,
+  cachedFilters: Ember.computed.alias('controllers.dashtboard.cachedFilters'),
   /**
   Bool to signal if filters have been applied
 
@@ -126,7 +125,7 @@ export default Ember.Controller.extend({
       localStorage.setItem("dasht-channels", JSON.stringify(model));
     }
   },
-  filterPartialMatches: function() {
+  findPartialMatches: function() {
     var currentModel = this.get('controllers.application').get('model'),
         channelsLib = currentModel.library,
         query = this.get('channel'),

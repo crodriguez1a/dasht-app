@@ -3,6 +3,12 @@
   .hide {
     display: none;
   }
+  .actionable:focus, .actionable a:focus {
+    outline: 1px dotted $orange;
+    /*
+    Todo: make the highlight state something more TV-ish
+    */
+  }
 }
 
 html {
@@ -28,7 +34,6 @@ html {
     nav {
       a, i.fa-icon {
         color: $blue;
-        opacity: 0.75;
         &.active {
           color: $medium-text;
         }
@@ -46,7 +51,7 @@ html {
     .delete, .add, .installed {
         background: $canvas-dark;
     }
-    .filtering {
+    .filtering, .filtering a {
       color: $light-blue;
     }
     .active {
@@ -66,7 +71,6 @@ html {
     nav {
       a, i.fa-icon {
         color: $blue;
-        opacity: 0.75;
         &.active {
           color: $medium-text;
         }
@@ -84,7 +88,7 @@ html {
     .delete, .add, .installed {
       background: $canvas;
     }
-    .filtering {
+    .filtering, .filtering a {
       color: $blue;
     }
     .active {
@@ -110,9 +114,12 @@ header {
   z-index: 1;
 }
 
-nav.site-menu {
-  cursor: pointer;
-  user-select: none;
+nav {
+  opacity: 0.75;
+  &.site-menu {
+    cursor: pointer;
+    user-select: none;
+  }
 }
 
 main {

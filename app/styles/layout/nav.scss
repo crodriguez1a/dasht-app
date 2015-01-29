@@ -46,16 +46,17 @@ nav {
             .available-themes {
               ul {
                 li {
-                  height: 2em;
-                  display: block;
-                  cursor: pointer;
-                  &.dark {
-                    background: $canvas-dark;
+                  a {
+                    height: 2em;
+                    display: block;
+                    cursor: pointer;
+                    &.dark {
+                      background: $canvas-dark;
+                    }
+                    &.light {
+                      background: $canvas;
+                    }
                   }
-                  &.light {
-                    background: $canvas;
-                  }
-
                 }
               }
             }

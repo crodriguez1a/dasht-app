@@ -73,10 +73,10 @@ export default Ember.Controller.extend({
     @param {String} theme The site theme
   */
   updateCurrentTheme: function(theme) {
+    var self = this;
     if(hasLocalStorage) {
       localStorage.setItem('dasht-theme', theme);
     }
-
     Ember.run.scheduleOnce('afterRender', this, function() {
       document.querySelector('html').dataset.theme = theme;
     });

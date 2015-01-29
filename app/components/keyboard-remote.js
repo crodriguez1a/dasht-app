@@ -51,19 +51,45 @@ export default Ember.Component.extend({
     });
   }.on('didInsertElement'),
   /**
+  Listen for remote open/close
+
+  @method remoteListener
+  */
+  remoteListener: function() {
+    var actionableItem = Ember.$('.actionable').not('.disabled'),
+        curItem = this.get('actionItemCount');
+
+    if(this.get('visible')) {
+      actionableItem[curItem].focus();
+    }else {
+      actionableItem[curItem].blur();
+    }
+
+  }.observes('visible'),
+  /**
   Respond to key press events
 
   @method keyManager
   */
   keyManager: function(e) {
     var self = this,
-        currentModel = self.get('model');
+        currentModel = self.get('model'),
+        actionableItem = Ember.$('.actionable').not('.disabled'),
+        curItem = this.get('actionItemCount');
 
     //remove pressed status from all
     Ember.$('.keyboard-remote li').removeClass('pressed');
 
+    //open remote if user uses arrows or any other trigger designated
+    var hotKeys = [37, 38, 39];
+    if(_.contains(hotKeys, e.keyCode)) {
+      if(!this.get('visible')) {
+        this.set('visible', true);
+      }
+    }
+
     //command k - toggle remote expand/collapsed
-    if(e.keyCode === 75) {
+    if(e.keyCode === 75 && e.metaKey) {
       this.toggleProperty('visible');
     }
 
@@ -83,25 +109,27 @@ export default Ember.Component.extend({
     if(_.contains(arrows, e.keyCode)){
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
 
-      var actionableItem = Ember.$('.actionable').not('.disabled'),
-          curItem = this.get('actionItemCount');
 
-      //stay in range
+      //reset if needed
       if(curItem < 0 || curItem > actionableItem.length-1) {
-        curItem = curItem < 0 ? 0 : actionableItem.length-1;
+        curItem = curItem < 0 ? 0 : actionableItem.length;
       }
 
       //tab forward/down
       if(e.keyCode === 39 || e.keyCode === 40) {
-        actionableItem[curItem].focus();
         curItem++;
       }
 
       //tab back/up
       if(e.keyCode === 37 || e.keyCode === 38) {
-        actionableItem[curItem].focus();
         curItem--;
       }
+
+      //focus on current item
+      if(curItem > -1 && curItem < actionableItem.length) {
+        actionableItem[curItem].focus();
+      }
+
       //update actionItemCount
       this.set('actionItemCount', curItem);
 
@@ -117,9 +145,8 @@ export default Ember.Component.extend({
     //shift command O - Toggle Menu
     if(e.keyCode === 79 && e.shiftKey && e.metaKey) {
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
-      //To do: this focus is not working well yet
-      Ember.$('nav').find('.actionable').focus();
       currentModel.sendAction('onToggleMenu');
+      this.set('actionItemCount', 0);
     }
 
   },
