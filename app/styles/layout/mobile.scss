@@ -1,34 +1,38 @@
 .mobile {
-  .outlet {
-    .page-actions {
-      position: relative;
-      display: block;
-      margin-bottom: 1.5em;
-    }
-  }
+  main  {
+  padding: 1em;  
 
-  .add-channel, .all-channels {
-    .new-channel, .installed-channel {
-      width: 5em;
-      height: 5em;
-      margin: 0.8em 0.8em 0 0;
-      display: inline-table;
-      &:nth-child(3n) {
-        margin-right: 0;
-      }
-      img {
-        border-radius: 1em;
-      }
-      .delete, .add, .installed {
-          padding-top: 1px;
-      }
-    }
-  }
-
-  .filtering {
-    ul {
-      li {
+    .outlet {
+      .page-actions {
+        position: relative;
         display: block;
+        margin-bottom: 1.5em;
+      }
+    }
+
+    .add-channel, .all-channels {
+      .new-channel, .installed-channel {
+        width: 5em;
+        height: 5em;
+        margin: 0.8em 0.8em 0 0;
+        display: inline-table;
+        &:nth-child(3n) {
+          margin-right: 0;
+        }
+        img {
+          border-radius: 1em;
+        }
+        .delete, .add, .installed {
+            padding-top: 1px;
+        }
+      }
+    }
+
+    .filtering {
+      ul {
+        li {
+          display: block;
+        }
       }
     }
   }
