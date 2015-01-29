@@ -81,7 +81,7 @@ export default Ember.Component.extend({
     Ember.$('.keyboard-remote li').removeClass('pressed');
 
     //open remote if user uses arrows or any other trigger designated
-    var hotKeys = [37, 38, 39];
+    var hotKeys = [37, 38, 39, 40];
     if(_.contains(hotKeys, e.keyCode)) {
       if(!this.get('visible')) {
         this.set('visible', true);
@@ -113,7 +113,7 @@ export default Ember.Component.extend({
       if(curItem < 0 || curItem > actionableItem.length-1) {
         curItem = curItem < 0 ? 0 : actionableItem.length;
       }
-      
+
       //tab forward/down
       if (e.keyCode === 39 || e.keyCode === 40) {
         curItem++;
