@@ -18,6 +18,7 @@ html {
       }
     }
     footer {
+      border-color: $dark-grey;
       color: $medium-text;
       a {
         color: $light-blue;
@@ -32,6 +33,7 @@ html {
     }
     .filtering, .filtering a {
       color: $light-blue;
+      border-color: $transparent-blue;
     }
     .active {
       color: $light-blue;
@@ -59,6 +61,7 @@ html {
       }
     }
     footer{
+      border-color: $light-grey;
       color: $medium-text;
       a {
         color: $blue;
@@ -73,6 +76,7 @@ html {
     }
     .filtering, .filtering a {
       color: $blue;
+      border-color: $transparent-blue;
     }
     .active {
       color: $blue;
