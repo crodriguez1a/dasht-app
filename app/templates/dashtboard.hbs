@@ -1,8 +1,7 @@
-<h2 class="page-title">{{fa-icon "fa-th-large"}} Dashtboard</h2>
+<h2 class="page-title">{{fa-icon "fa-th-large"}} {{title}}</h2>
+
 <div class="page-actions">
-
-
-  <a href="#" {{action 'toggleFilters'}} {{bind-attr class="controller.currentlyFiltered:active"}}>
+  <a href="#" {{bind-attr class=":actionable controller.currentlyFiltered:active"}} {{action 'toggleFilters'}} >
     <!--abstract this -->
     {{#if controller.filtering}}
       {{fa-icon "fa-close"}}
@@ -10,17 +9,15 @@
       {{fa-icon "fa-filter"}}
     {{/if}}
   </a>
-  <a href="#" {{bind-attr class="controller.editing:editing:blank"}} {{action 'editDash'}}>
+  <a href="#" {{bind-attr class=":actionable controller.editing:editing:blank"}} {{action 'editDash'}}>
     {{#if controller.editing}}
       {{fa-icon "fa-close"}}
     {{else}}
       {{fa-icon "fa-pencil"}}
     {{/if}}
   </a>
-  {{#link-to 'add'}}{{fa-icon "fa-plus"}} Add a channel{{/link-to}}
+  {{#link-to 'add' classNames="actionable"}}{{fa-icon "fa-plus"}} Add a channel{{/link-to}}
 </div>
-
-
 
 {{#if controller.filtering}}
   {{live-filtering model=this}}

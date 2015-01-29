@@ -1,23 +1,20 @@
 import Ember from 'ember';
+import { hasLocalStorage } from 'dasht/utils/feature-detect';
 
 /**
-* Add controller
-*
-* @class AddController
-* @extends Ember.Controller
-* @namespace Dasht
-* @returns Class
-*/
+  Add a Channel controller
 
+  @class AddController
+*/
 export default Ember.Controller.extend({
-  needs: ['dashtboard','application'],
+  needs: ['dashtboard', 'application'],
   /**
   Sort default
 
   @property sortVisible
   @type Array
   */
-  sortVisible: ['visible','title'],
+  sortVisible: ['searchResult:desc', 'visible', 'title'],
   /**
   Channel lib sorted by visible (added) channels first, the alphabetical
 
@@ -34,13 +31,12 @@ export default Ember.Controller.extend({
   */
   filtering: false,
   /**
-  Cached version of filters that hold users choices
+  Cached version of filters, shared from dashtboard
 
   @property cachedFilters
   @type Object
-  @default null
   */
-  cachedFilters: null,
+  cachedFilters: Ember.computed.alias('controllers.dashtboard.cachedFilters'),
   /**
   Bool to signal if filters have been applied
 
@@ -125,8 +121,37 @@ export default Ember.Controller.extend({
   @method saveToLocal
   */
   saveToLocal: function(model) {
-    localStorage.setItem("dasht-channels", JSON.stringify(model));
+    if (hasLocalStorage) {
+      localStorage.setItem("dasht-channels", JSON.stringify(model));
+    }
   },
+  findPartialMatches: function() {
+    var currentModel = this.get('controllers.application').get('model'),
+        channelsLib = currentModel.library,
+        query = this.get('channel'),
+        partialTitleMatchArr = [];
+
+    //clear previous searches
+    channelsLib.setEach('searchResult', false);
+
+    if (query) {
+      //clean up query
+      query = (query.replace(/ /g, '')).toLowerCase();
+      //match hits
+      channelsLib.filter(function(item) {
+        var hits = (item.title).match(query);
+        if (hits && hits.length > 0) {
+          partialTitleMatchArr.push(item);
+        }
+      });
+      //if partial match, bring those channels to front
+      if (partialTitleMatchArr.length > 0) {
+        return partialTitleMatchArr.setEach('searchResult', true);
+      }
+    }
+
+  }.observes('channel'),
+
   actions: {
     /**
     Action, search for channels in model
@@ -138,56 +163,57 @@ export default Ember.Controller.extend({
           channelsLib = currentModel.library,
           query = this.get('channel');
 
+      //clean up query
+      if (query) {
+        query = (query.replace(/ /g, '')).toLowerCase();
+      }
+
       //match in db
-      var exactURLMatch = channelsLib.findBy('url','//'+query),
+      var exactURLMatch = channelsLib.findBy('url', '//'+query),
           exactTitleMatch = channelsLib.findBy('title', query);
 
       //clear any previous errors
-      if(this.get('message') != null) {
+      if (this.get('message') != null) {
         this.set('error', false);
         this.set('message', null);
       }
 
       /*
-      find a channel messaging
+        Search messaging
       */
-
       //nothing typed
-      if(!query) {
+      if (!query) {
         this.set('error', true);
         return this.set('message', this.messages.noEntry);
-      }else {
-
+      } else {
         //not a url
-        if(!(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/).test(query)) {
-          if(!exactTitleMatch) {
+        if (!(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/).test(query)) {
+          if (!exactTitleMatch) {
             this.set('error', true);
             return this.set('message', this.messages.noUrl);
           }
         }
 
         //found a match
-        if(exactURLMatch || exactTitleMatch){
+        if (exactURLMatch || exactTitleMatch) {
           var match = exactURLMatch || exactTitleMatch;
-          if(match.get('visible')) {
+          if (match.get('visible')) {
             //already added to dashtboard
             this.set('error', false);
             return this.set('message', this.messages.prevInstalled);
-          }else {
+          } else {
             //successfully installed found channel
             this.send('addChannel', match.get('title'));
             this.set('error', false);
             return this.set('message', this.messages.successInstalled);
           }
-        }else {
+        } else {
           //new channel being added to user lib
           this.set('error', false);
           this.addNewChannel(query);
           return this.set('message', this.messages.addingNew);
         }
       }
-
-
     },
     /**
     Clear out messages block
@@ -202,10 +228,14 @@ export default Ember.Controller.extend({
 
     @method addChannel
     */
-    addChannel: function(channel) {
+    addChannel: function(channel, visible) {
       this.set('error', false);
-      this.get('controllers.dashtboard').toggleChannel(channel, true);
-      this.set('message', this.messages.successInstalled);
+      if (!visible) {
+        this.get('controllers.dashtboard').toggleChannel(channel, true);
+        this.set('message', this.messages.successInstalled);
+      } else {
+        return this.set('message', this.messages.prevInstalled);
+      }
     },
     /**
     Toggles filtering open and closed

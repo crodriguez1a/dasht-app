@@ -3,6 +3,9 @@
   .hide {
     display: none;
   }
+  .actionable:focus, .actionable a:focus {
+    outline: 1px dotted $orange;
+  }
 }
 
 html {
@@ -28,7 +31,6 @@ html {
     nav {
       a, i.fa-icon {
         color: $blue;
-        opacity: 0.75;
         &.active {
           color: $medium-text;
         }
@@ -46,7 +48,7 @@ html {
     .delete, .add, .installed {
         background: $canvas-dark;
     }
-    .filtering {
+    .filtering, .filtering a {
       color: $light-blue;
     }
     .active {
@@ -66,7 +68,6 @@ html {
     nav {
       a, i.fa-icon {
         color: $blue;
-        opacity: 0.75;
         &.active {
           color: $medium-text;
         }
@@ -84,7 +85,7 @@ html {
     .delete, .add, .installed {
       background: $canvas;
     }
-    .filtering {
+    .filtering, .filtering a {
       color: $blue;
     }
     .active {
@@ -96,6 +97,11 @@ html {
   }
 }
 
+.delete > .fa-minus:first-of-type {
+  margin: -20px;
+  padding: 20px;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -105,12 +111,12 @@ header {
   z-index: 1;
 }
 
-nav.site-menu {
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+nav {
+  opacity: 0.75;
+  &.site-menu {
+    cursor: pointer;
+    user-select: none;
+  }
 }
 
 main {
@@ -187,7 +193,9 @@ main {
     padding: 1em;
     font-size: 0.85em;
     a {
+      text-decoration: none;
       color: $light-blue;
+      padding: 10px;
     }
     .fa {
       &.fa-github {

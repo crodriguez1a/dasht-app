@@ -13,4 +13,16 @@ var App = Ember.Application.extend({
 
 loadInitializers(App, config.modulePrefix);
 
+/* Set the route title on each respective controller */
+Ember.Route.reopen({
+  setupController: function(controller) {
+    this._super(...arguments);
+
+    var title = this.get('title');
+    if (title) {
+      controller.set('title', this.get('title'));
+    }
+  }
+});
+
 export default App;

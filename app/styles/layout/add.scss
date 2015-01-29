@@ -14,6 +14,7 @@
     height: 9em;
     a{
       display: block;
+
       &.disabled {
         pointer-events: none;
         cursor: default;
@@ -31,15 +32,16 @@
         z-index: 1;
         font-size: 1.1em;
       }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 1.5em;
+        position: relative;
+        z-index: 2;
+      }
     }
 
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 1.5em;
-      position: relative;
-      z-index: 2;
-    }
     span {
       display: inline-block;
       margin-left: 0.5em;
@@ -63,10 +65,26 @@
     }
     .add {
       color: $green;
-      border-color: $green
+      border-color: $green;
+      > .fa-plus:first-of-type {
+        margin: -20px;
+        padding: 20px;
+      }
     }
     .installed {
       border-color: $medium-text;
+    }
+
+    &.search-result {
+      a {
+        img {
+          border: 2px solid $light-blue;
+        }
+      }
+      .installed {
+        border-color: $blue;
+        color: $blue;
+      }
     }
   }
   input[type="text"] {
@@ -108,6 +126,10 @@
     .close {
       float:right;
       padding: 0 0.25em;
+    }
+
+    a {
+      color: $dark-grey;
     }
 
   }

@@ -1,16 +1,16 @@
-<h2 class="page-title">Add a Channel</h2>
+<h2 class="page-title">{{title}}</h2>
 
 {{partial "page-header"}}
 
 <section class="add-channel">
-    {{input placeholder="ie: hulu.com" value=channel action="findChannel"}}
+    {{input placeholder="ie: hulu.com" value=channel action="findChannel" classNames="actionable"}}
     {{#liquid-if 'message' class="slide-down"}}
       <div {{bind-attr class=":messaging error:error:message"}}>
         {{{message}}}
-        <div class="close" {{action 'closeMessage'}}>{{fa-icon "fa-close"}}</close>
+        <div class="actionable close" {{action 'closeMessage'}}>{{fa-icon "fa-close"}}</div>
       </div>
     {{/liquid-if}}
-    <button {{action 'findChannel' target }}>Find {{fa-icon "fa-angle-right"}}</button>
+    <button class="actionable" {{action 'findChannel' target }}>Find {{fa-icon "fa-angle-right"}}</button>
   </section>
 
 <section>

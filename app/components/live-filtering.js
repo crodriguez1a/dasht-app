@@ -1,5 +1,5 @@
-import Ember from "ember";
-import _ from "lodash";
+import Ember from 'ember';
+import _ from 'lodash';
 
 /**
   Live Filtering component
@@ -33,7 +33,8 @@ export default Ember.Component.extend({
   */
   buildFilters: function() {
 
-    //todo: abstract this process
+    var currentContext = this.get('controller').get('model'),
+        cachedFilters = currentContext.get('cachedFilters');
 
     //Breakdown of filters model
     /*
@@ -79,7 +80,7 @@ export default Ember.Component.extend({
     }
     ];
 
-    poarr.filter(function(item){
+    poarr.filter(function(item) {
       var a = FiltersModel.create();
       a.setProperties({
         name: item.name,
@@ -91,12 +92,11 @@ export default Ember.Component.extend({
     });
 
     //if filters have already been cached, return cached filters
-    var currentModel = this.get('controller').get('model');
-    if(!currentModel.get('cachedFilters')){
-      currentModel.set('cachedFilters', _filters);
+    if(!cachedFilters){
+      currentContext.set('cachedFilters', _filters);
       return _filters;
     }else {
-      return currentModel.get('cachedFilters');
+      return cachedFilters;
     }
 
   }.property(),
@@ -115,26 +115,25 @@ export default Ember.Component.extend({
         shouldApplyFilters = [];
 
     //Isolate filters that are turn on into an array
-    onFilters.filter(function(item){
+    onFilters.filter(function(item) {
       shouldApplyFilters.push(item.tag);
     });
 
     //Iterate channels lib, toggle isfiltered property
-    lib.filter(function(item){
-      if(!item.isfiltered) {
+    lib.filter(function(item) {
+      if (!item.isfiltered) {
         item.set('isfiltered', true);
       }
       //Compare channel tags to filters that are on
-      shouldApplyFilters.filter(function(should){
-        if(_.contains(item.tags, should)) {
-          if(item.isfiltered) {
+      shouldApplyFilters.filter(function(should) {
+        if (_.contains(item.tags, should)) {
+          if (item.isfiltered) {
             item.set('isfiltered', false);
           }
         }
       });
     });
   },
-
   actions: {
     /**
       Designate filter on or off
@@ -144,7 +143,7 @@ export default Ember.Component.extend({
     toggleFilter: function(filter) {
       var filtersObj = this.get('filters'),
           currentFilter = filtersObj.get('allfilters'),
-          foundFilter = currentFilter.findBy('name',filter);
+          foundFilter = currentFilter.findBy('name', filter);
 
       foundFilter.toggleProperty('on');
       this.applyFilters();
