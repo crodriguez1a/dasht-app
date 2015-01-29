@@ -122,7 +122,7 @@ export default Ember.Controller.extend({
   @method saveToLocal
   */
   saveToLocal: function(model) {
-    if(hasLocalStorage) {
+    if (hasLocalStorage) {
       localStorage.setItem("dasht-channels", JSON.stringify(model));
     }
   },
@@ -135,18 +135,18 @@ export default Ember.Controller.extend({
     //clear previous searches
     channelsLib.setEach('searchResult', false);
 
-    if(query) {
+    if (query) {
       //clean up query
-      query = (query.replace(/ /g,'')).toLowerCase();
+      query = (query.replace(/ /g, '')).toLowerCase();
       //match hits
       channelsLib.filter(function(item) {
         var hits = (item.title).match(query);
-        if(hits && hits.length > 0) {
+        if (hits && hits.length > 0) {
           partialTitleMatchArr.push(item);
         }
       });
       //if partial match, bring those channels to front
-      if(partialTitleMatchArr.length > 0) {
+      if (partialTitleMatchArr.length > 0) {
         return partialTitleMatchArr.setEach('searchResult', true);
       }
     }
@@ -166,11 +166,11 @@ export default Ember.Controller.extend({
 
       //clean up query
       if (query) {
-        query = (query.replace(/ /g,'')).toLowerCase();
+        query = (query.replace(/ /g, '')).toLowerCase();
       }
 
       //match in db
-      var exactURLMatch = channelsLib.findBy('url','//'+query),
+      var exactURLMatch = channelsLib.findBy('url', '//'+query),
           exactTitleMatch = channelsLib.findBy('title', query);
 
       //clear any previous errors
@@ -189,7 +189,7 @@ export default Ember.Controller.extend({
       } else {
         //not a url
         if (!(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/).test(query)) {
-          if(!exactTitleMatch) {
+          if (!exactTitleMatch) {
             this.set('error', true);
             return this.set('message', this.messages.noUrl);
           }
@@ -208,7 +208,7 @@ export default Ember.Controller.extend({
             this.set('error', false);
             return this.set('message', this.messages.successInstalled);
           }
-        }else {
+        } else {
           //new channel being added to user lib
           this.set('error', false);
           this.addNewChannel(query);
@@ -231,10 +231,10 @@ export default Ember.Controller.extend({
     */
     addChannel: function(channel, visible) {
       this.set('error', false);
-      if(!visible) {
+      if (!visible) {
         this.get('controllers.dashtboard').toggleChannel(channel, true);
         this.set('message', this.messages.successInstalled);
-      }else {
+      } else {
         return this.set('message', this.messages.prevInstalled);
       }
     },

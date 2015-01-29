@@ -6,6 +6,12 @@ var app = new EmberApp({
   autoprefixer: {
     browsers: ['> 1%', 'last 2 versions', 'IE 9', 'Firefox ESR', 'Opera 12.1'],
     cascade: true
+  },
+  jscsOptions: {
+    enabled: true,
+    esnext: true,
+    configPath: '.jscsrc',
+    disableTestGenerator: false
   }
 });
 

@@ -7,7 +7,7 @@ import Ember from "ember";
 export default Ember.Handlebars.makeBoundHelper(function(checked) {
   if (!checked) {
     return new Ember.Handlebars.SafeString('<i class="fa fa-square-o"></i>');
-  }else {
+  } else {
     return new Ember.Handlebars.SafeString('<i class="fa fa-check-square-o"></i>');
   }
 });
