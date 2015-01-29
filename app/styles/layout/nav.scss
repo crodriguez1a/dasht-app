@@ -2,11 +2,11 @@ nav {
   width: 100%;
   background: white;
   opacity: 0.95;
-  padding: 0 1em 0 1em;
   a {
     display: block;
     font-size: 0.75em;
-    padding: 1em;
+    padding: 1em 2.5em 1em 2.5em;
+
   }
   div {
     &.sub-menu {
@@ -23,7 +23,7 @@ nav {
             font: sans-serif;
             font-weight: 100;
             display: block;
-            padding: 0.5em;
+            padding: 0.5em 1em 0.5em 1em;
             width: 100%;
             border-top: 1px solid $light-grey;
             font-size: 1.15em;
