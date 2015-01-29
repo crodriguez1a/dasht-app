@@ -9,6 +9,7 @@ var Router = Ember.Router.extend(DocumentTitle, {
 Router.map(function() {
   this.route('dashtboard', { path : '/' });
   this.route('add');
+  this.route('not-found', { path: '/*path' });
 });
 
 export default Router;

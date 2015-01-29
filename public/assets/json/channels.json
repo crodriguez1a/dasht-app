@@ -1,212 +1,571 @@
 {
-  "modified": "2015-01-25 08:55:59",
-  "library": [
-    {
-      "title": "hulu",
-      "icon": "/assets/icons/hulu.png",
-      "url": "//hulu.com",
-      "isdefault": true,
-      "tags": [
-        "tv",
-        "movies",
-        "subscription",
-        "castready"
-      ]
-    },
-    {
-      "title": "netflix",
-      "icon": "/assets/icons/netflix.png",
-      "url": "//netflix.com",
-      "isdefault": true,
-      "tags": [
-        "tv",
-        "movies",
-        "subscription",
-        "castready"
-      ]
-    },
-    {
-      "title": "amazon",
-      "icon": "/assets/icons/amazon.png",
-      "url": "//amazon.com/primeinstantvideo",
-      "isdefault": true,
-      "tags": [
-        "tv",
-        "movies",
-        "subscription",
-        "castready"
-      ]
-    },
-    {
-      "title": "mtv",
-      "icon": "/assets/icons/mtv.png",
-      "url": "//mtv.com",
-      "isdefault": true,
-      "tags": [
-        "tv",
-        "free"
-      ]
-    },
-    {
-      "title": "vh1",
-      "icon": "/assets/icons/vh1.png",
-      "url": "//vh1.com",
-      "isdefault": false,
-      "tags": [
-        "tv",
-        "free"
-      ]
-    },
-    {
-      "title": "pbs",
-      "icon": "/assets/icons/pbs.png",
-      "url": "//pbs.org",
-      "isdefault": true,
-      "tags": [
-        "tv",
-        "free"
-      ]
-    },
-    {
-      "title": "plex",
-      "icon": "/assets/icons/plex.png",
-      "url": "//plex.tv",
-      "isdefault": true,
-      "tags": [
-        "tv",
-        "movies",
-        "free",
-        "castready"
-      ]
-    },
-    {
-      "title": "snagfilms",
-      "icon": "/assets/icons/snagfilms.png",
-      "url": "//snagfilms.com",
-      "isdefault": false,
-      "tags": [
-        "tv",
-        "movies",
-        "free"
-      ]
-    },
-    {
-      "title": "crackle",
-      "icon": "/assets/icons/crackle.png",
-      "url": "//crackle.com",
-      "isdefault": true,
-      "tags": [
-        "tv",
-        "movies",
-        "free"
-      ]
-    },
-    {
-      "title": "youtube",
-      "icon": "/assets/icons/youtube.png",
-      "url": "//youtube.com",
-      "isdefault": true,
-      "tags": [
-        "tv",
-        "movies",
-        "music",
-        "free",
-        "alacarte",
-        "castready"
-      ]
-    },
-    {
-      "title": "pandora",
-      "icon": "/assets/icons/pandora.png",
-      "url": "//pandora.com",
-      "isdefault": true,
-      "tags": [
-        "music",
-        "free",
-        "subscription",
-        "castready"
-      ]
-    },
-    {
-      "title": "vevo",
-      "icon": "/assets/icons/vevo.png",
-      "url": "//vevo.com",
-      "isdefault": true,
-      "tags": [
-        "music",
-        "free",
-        "castready"
-      ]
-    },
-    {
-      "title": "pbskids",
-      "icon": "/assets/icons/pbskids.png",
-      "url": "//pbskids.org",
-      "isdefault": false,
-      "tags": [
-        "tv",
-        "movies",
-        "free",
-        "kids"
-      ]
-    },
-    {
-      "title": "nbatnt",
-      "icon": "/assets/icons/nbatnt.png",
-      "url": "//nba.com/tntovertime/",
-      "isdefault": false,
-      "tags": [
-        "sports",
-        "free"
-      ]
-    },
-    {
-      "title": "googleplay",
-      "icon": "/assets/icons/googleplay.png",
-      "url": "//play.google.com/",
-      "isdefault": false,
-      "tags": [
-        "tv",
-        "movies",
-        "music",
-        "free",
-        "alacarte",
-        "castready"
-      ]
-    },
-    {
-      "title": "sprout",
-      "icon": "/assets/icons/sprout.png",
-      "url": "//sproutonline.com/videos/list",
-      "isdefault": false,
-      "tags": [
-        "tv",
-        "movies",
-        "free",
-        "kids"
-      ]
-    },
-    {
-      "title": "watchespn",
-      "icon": "/assets/icons/watchespn.png",
-      "url": "//espn.go.com/watchespn",
-      "isdefault": false,
-      "tags": [
-        "tv",
-        "sports",
-        "subscription"
-      ]
-    },
-    {
-      "title": "realcloudplayer",
-      "icon": "/assets/icons/realcloudplayer.png",
-      "url": "//real.com",
-      "isdefault": false,
-      "tags": [
-        "tv",
-        "movies",
-        "free"
-      ]
-    }
-  ]
+    "modified": "2015-01-29 04:51:59",
+    "library": [
+        {
+            "title": "hulu",
+            "icon": "/assets/icons/hulu.png",
+            "url": "//hulu.com",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "movies",
+                "subscription",
+                "castready"
+            ]
+        },
+        {
+            "title": "netflix",
+            "icon": "/assets/icons/netflix.png",
+            "url": "//netflix.com",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "movies",
+                "subscription",
+                "castready"
+            ]
+        },
+        {
+            "title": "amazon",
+            "icon": "/assets/icons/amazon.png",
+            "url": "//amazon.com/primeinstantvideo",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "movies",
+                "subscription",
+                "castready"
+            ]
+        },
+        {
+            "title": "mtv",
+            "icon": "/assets/icons/mtv.png",
+            "url": "//mtv.com",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "vh1",
+            "icon": "/assets/icons/vh1.png",
+            "url": "//vh1.com",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "pbs",
+            "icon": "/assets/icons/pbs.png",
+            "url": "//pbs.org",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "plex",
+            "icon": "/assets/icons/plex.png",
+            "url": "//plex.tv",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "movies",
+                "free",
+                "castready"
+            ]
+        },
+        {
+            "title": "snagfilms",
+            "icon": "/assets/icons/snagfilms.png",
+            "url": "//snagfilms.com",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "free"
+            ]
+        },
+        {
+            "title": "crackle",
+            "icon": "/assets/icons/crackle.png",
+            "url": "//crackle.com",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "movies",
+                "free"
+            ]
+        },
+        {
+            "title": "youtube",
+            "icon": "/assets/icons/youtube.png",
+            "url": "//youtube.com",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "movies",
+                "music",
+                "free",
+                "alacarte",
+                "castready"
+            ]
+        },
+        {
+            "title": "pandora",
+            "icon": "/assets/icons/pandora.png",
+            "url": "//pandora.com",
+            "isdefault": "true",
+            "tags": [
+                "music",
+                "free",
+                "subscription",
+                "castready"
+            ]
+        },
+        {
+            "title": "vevo",
+            "icon": "/assets/icons/vevo.png",
+            "url": "//vevo.com",
+            "isdefault": "true",
+            "tags": [
+                "music",
+                "free",
+                "castready"
+            ]
+        },
+        {
+            "title": "pbskids",
+            "icon": "/assets/icons/pbskids.png",
+            "url": "//pbskids.org",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "free",
+                "kids"
+            ]
+        },
+        {
+            "title": "nbatnt",
+            "icon": "/assets/icons/nbatnt.png",
+            "url": "//nba.com/tntovertime/",
+            "isdefault": "false",
+            "tags": [
+                "sports",
+                "free"
+            ]
+        },
+        {
+            "title": "googleplay",
+            "icon": "/assets/icons/googleplay.png",
+            "url": "//play.google.com/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "music",
+                "free",
+                "alacarte",
+                "castready"
+            ]
+        },
+        {
+            "title": "sprout",
+            "icon": "/assets/icons/sprout.png",
+            "url": "//sproutonline.com/videos/list",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "free",
+                "kids"
+            ]
+        },
+        {
+            "title": "watchespn",
+            "icon": "/assets/icons/watchespn.png",
+            "url": "//espn.go.com/watchespn",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "sports",
+                "subscription"
+            ]
+        },
+        {
+            "title": "realcloudplayer",
+            "icon": "/assets/icons/realcloudplayer.png",
+            "url": "//real.com",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "free"
+            ]
+        },
+        {
+            "title": "redbull",
+            "icon": "/assets/icons/redbull.png",
+            "url": "//redbull.tv",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "sports",
+                "free"
+            ]
+        },
+        {
+            "title": "hbogo",
+            "icon": "/assets/icons/hbogo.png",
+            "url": "//hbogo.com/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "premium",
+                "subscription",
+                "cast ready",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "dailyburn",
+            "icon": "/assets/icons/dailyburn.png",
+            "url": "//dailyburn.com/chromecast/",
+            "isdefault": "false",
+            "tags": [
+                "exercise",
+                "free trial",
+                "subscription",
+                "cast ready"
+            ]
+        },
+        {
+            "title": "encoreplay",
+            "icon": "/assets/icons/encoreplay.png",
+            "url": "//encoreplay.com/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "subscription",
+                "cast ready",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "starzplay",
+            "icon": "/assets/icons/starzplay.png",
+            "url": "//starzplay.com/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "subscription",
+                "cast ready",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "songza",
+            "icon": "/assets/icons/songza.png",
+            "url": "//songza.com/",
+            "isdefault": "false",
+            "tags": [
+                "radio",
+                "music",
+                "free",
+                "cast ready"
+            ]
+        },
+        {
+            "title": "rdio",
+            "icon": "/assets/icons/rdio.png",
+            "url": "//rdio.com/home/en-us/",
+            "isdefault": "false",
+            "tags": [
+                "radio",
+                "music",
+                "free",
+                "subscription",
+                "cast ready"
+            ]
+        },
+        {
+            "title": "sesamestreetgo",
+            "icon": "/assets/icons/sesamestreetgo.png",
+            "url": "//sesamestreetgo.com/",
+            "isdefault": "false",
+            "tags": [
+                "kids",
+                "tv",
+                "free",
+                "subscription",
+                "free trial",
+                "cast ready"
+            ]
+        },
+        {
+            "title": "ufctv",
+            "icon": "/assets/icons/ufctv.png",
+            "url": "//ufc.tv/",
+            "isdefault": "false",
+            "tags": [
+                "ufc",
+                "pay per view",
+                "subscription",
+                "cast ready"
+            ]
+        },
+        {
+            "title": "comedycentral",
+            "icon": "/assets/icons/comedycentral.png",
+            "url": "//cc.com/full-episodes/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "stand up specials",
+                "subscription",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "nick",
+            "icon": "/assets/icons/nick.png",
+            "url": "//nick.com/videos/episodes/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "kids",
+                "free"
+            ]
+        },
+        {
+            "title": "disney",
+            "icon": "/assets/icons/disney.png",
+            "url": "//watchdisneychannel.go.com/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "kids",
+                "subscription",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "disneyjr",
+            "icon": "/assets/icons/disneyjr.png",
+            "url": "//watchdisneyjunior.go.com/live/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "kids",
+                "subscription",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "abcgo",
+            "icon": "/assets/icons/abcgo.png",
+            "url": "//abc.go.com/shows/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "nbc",
+            "icon": "/assets/icons/nbc.png",
+            "url": "//nbc.com/video/full-episodes/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "tnt",
+            "icon": "/assets/icons/tnt.png",
+            "url": "//tntdrama.com/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "subscription",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "tbs",
+            "icon": "/assets/icons/tbs.png",
+            "url": "//tbs.com/shows/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "subscription",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "lifetime",
+            "icon": "/assets/icons/lifetime.png",
+            "url": "//mylifetime.com/watch-full-episodes-online/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "free",
+                "subscription",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "tlc",
+            "icon": "/assets/icons/tlc.png",
+            "url": "//tlc.com/videos/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "hgtv",
+            "icon": "/assets/icons/hgtv.png",
+            "url": "//hgtv.com/shows/full-episodes",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "adultswim",
+            "icon": "/assets/icons/adultswim.png",
+            "url": "//adultswim.com/videos/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "subscription",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "spiketv",
+            "icon": "/assets/icons/spiketv.png",
+            "url": "//spike.com/episodes/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "subscription",
+                "cable ready"
+            ]
+        },
+        {
+            "title": "historychannel",
+            "icon": "/assets/icons/historychannel.png",
+            "url": "//history.com/videos/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "aetv",
+            "icon": "/assets/icons/aetv.png",
+            "url": "//aetv.com/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "nickjr",
+            "icon": "/assets/icons/nickjr.png",
+            "url": "//nickjr.com/kids-videos/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free",
+                "kids"
+            ]
+        },
+        {
+            "title": "mlbtv",
+            "icon": "/assets/icons/mlbtv.png",
+            "url": "//mlb.mlb.com/mlb/subscriptions/index.jsp?product=chromecast/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "subscription",
+                "sports"
+            ]
+        },
+        {
+            "title": "cwtv",
+            "icon": "/assets/icons/cwtv.png",
+            "url": "//cwtv.com/shows/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "free"
+            ]
+        },
+        {
+            "title": "nfllive",
+            "icon": "/assets/icons/nfllive.png",
+            "url": "//nflnonline.nfl.com/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "sports",
+                "cable provider",
+                "subscription"
+            ]
+        },
+        {
+            "title": "mlslive",
+            "icon": "/assets/icons/mlslive.png",
+            "url": "//live.mlssoccer.com/mlsmdl/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "sports",
+                "subscription"
+            ]
+        },
+        {
+            "title": "fxnow",
+            "icon": "/assets/icons/fxnow.png",
+            "url": "//fxnetworks.com/shows/full-episodes",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "subscription",
+                "cable provider"
+            ]
+        },
+        {
+            "title": "xmovies8",
+            "icon": "/assets/icons/xmovies8.png",
+            "url": "//http://xmovies8.co/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "free",
+                "p2p"
+            ]
+        }
+
+    ]
 }
