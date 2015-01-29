@@ -80,7 +80,7 @@ export default Ember.Component.extend({
     }
     ];
 
-    poarr.filter(function(item){
+    poarr.filter(function(item) {
       var a = FiltersModel.create();
       a.setProperties({
         name: item.name,
@@ -115,19 +115,19 @@ export default Ember.Component.extend({
         shouldApplyFilters = [];
 
     //Isolate filters that are turn on into an array
-    onFilters.filter(function(item){
+    onFilters.filter(function(item) {
       shouldApplyFilters.push(item.tag);
     });
 
     //Iterate channels lib, toggle isfiltered property
-    lib.filter(function(item){
-      if(!item.isfiltered) {
+    lib.filter(function(item) {
+      if (!item.isfiltered) {
         item.set('isfiltered', true);
       }
       //Compare channel tags to filters that are on
-      shouldApplyFilters.filter(function(should){
-        if(_.contains(item.tags, should)) {
-          if(item.isfiltered) {
+      shouldApplyFilters.filter(function(should) {
+        if (_.contains(item.tags, should)) {
+          if (item.isfiltered) {
             item.set('isfiltered', false);
           }
         }
@@ -143,7 +143,7 @@ export default Ember.Component.extend({
     toggleFilter: function(filter) {
       var filtersObj = this.get('filters'),
           currentFilter = filtersObj.get('allfilters'),
-          foundFilter = currentFilter.findBy('name',filter);
+          foundFilter = currentFilter.findBy('name', filter);
 
       foundFilter.toggleProperty('on');
       this.applyFilters();

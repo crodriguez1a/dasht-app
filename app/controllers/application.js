@@ -61,7 +61,7 @@ export default Ember.Controller.extend({
   currentTheme: function() {
     var defaultTheme = this.get('attrs.defaultTheme');
 
-    if(!hasLocalStorage) return defaultTheme;
+    if (!hasLocalStorage) { return defaultTheme; }
 
     return localStorage.getItem('dasht-theme') || defaultTheme;
   }.property('attrs.defaultTheme'),
@@ -73,10 +73,10 @@ export default Ember.Controller.extend({
     @param {String} theme The site theme
   */
   updateCurrentTheme: function(theme) {
-    var self = this;
-    if(hasLocalStorage) {
+    if (hasLocalStorage) {
       localStorage.setItem('dasht-theme', theme);
     }
+
     Ember.run.scheduleOnce('afterRender', this, function() {
       document.querySelector('html').dataset.theme = theme;
     });
@@ -114,7 +114,7 @@ export default Ember.Controller.extend({
       @method clearLocalStorage
     */
     clearLocalStorage: function() {
-      if(hasLocalStorage) {
+      if (hasLocalStorage) {
         localStorage.removeItem('dasht-theme');
         localStorage.removeItem('dasht-channels');
       }

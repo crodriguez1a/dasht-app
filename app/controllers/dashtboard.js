@@ -59,7 +59,7 @@ export default Ember.Controller.extend({
   @method saveToLocal
   */
   saveToLocal: function(model) {
-    if(hasLocalStorage) {
+    if (hasLocalStorage) {
       localStorage.setItem("dasht-channels", JSON.stringify(model));
     }
   },
@@ -71,7 +71,7 @@ export default Ember.Controller.extend({
   toggleChannel: function(channel, bool) {
     var currentModel = this.get('controllers.application').get('model'),
         found;
-    if(currentModel && currentModel.library) {
+    if (currentModel && currentModel.library) {
       found = currentModel.library.findBy('title', channel);
       found.set('visible', bool);
       this.saveToLocal(currentModel);
