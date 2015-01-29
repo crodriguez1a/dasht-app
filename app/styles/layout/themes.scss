@@ -1,0 +1,84 @@
+html {
+  &[data-theme="dark"]{
+    background: $canvas-dark;
+    color: $lighter-text;
+    border-color: $medium-text;
+    a, h1, h2, h3, h4 {
+      color: $lighter-text;
+    }
+    nav {
+      a, i.fa-icon {
+        color: $blue;
+        &.active {
+          color: $medium-text;
+        }
+      }
+      i.active-check {
+        color: $lighter-text;
+      }
+    }
+    footer {
+      color: $medium-text;
+      a {
+        color: $light-blue;
+      }
+    }
+    .delete, .add, .installed {
+      background: $canvas-dark;
+      &.actionable:focus {
+        border-color: $orange;
+        color: $orange;
+      }
+    }
+    .filtering, .filtering a {
+      color: $light-blue;
+    }
+    .active {
+      color: $light-blue;
+    }
+    button, input[type="input"] {
+      background: $light-blue;
+    }
+  }
+  &[data-theme="light"] {
+    background: $canvas;
+    color: $darker-text;
+    border-color: $medium-text;
+    a, h1, h2, h3, h4 {
+      color: $darker-text;
+    }
+    nav {
+      a, i.fa-icon {
+        color: $blue;
+        &.active {
+          color: $medium-text;
+        }
+      }
+      i.active-check {
+        color: $darker-text;
+      }
+    }
+    footer{
+      color: $medium-text;
+      a {
+        color: $blue;
+      }
+    }
+    .delete, .add, .installed {
+      background: $canvas;
+      &.actionable:focus {
+        border-color: $orange;
+        color: $orange;
+      }
+    }
+    .filtering, .filtering a {
+      color: $blue;
+    }
+    .active {
+      color: $blue;
+    }
+    button, input[type="input"] {
+      background: $blue;
+    }
+  }
+}

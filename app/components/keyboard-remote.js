@@ -113,7 +113,7 @@ export default Ember.Component.extend({
       if(curItem < 0 || curItem > actionableItem.length-1) {
         curItem = curItem < 0 ? 0 : actionableItem.length;
       }
-
+      
       //tab forward/down
       if (e.keyCode === 39 || e.keyCode === 40) {
         curItem++;
