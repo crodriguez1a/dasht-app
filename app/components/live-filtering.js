@@ -101,7 +101,7 @@ export default Ember.Component.extend({
         name: 'Subscription', tag: 'subscription', group: 'availablity'
       },
       {
-        name: 'A la carte', tag: 'alacarte', group: 'availablity'
+        name: 'Rent', tag: 'alacarte', group: 'availablity'
       },
       {
         name: 'Cable Provider', tag: 'cable provider', group: 'availablity'
