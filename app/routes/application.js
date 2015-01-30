@@ -146,7 +146,7 @@ export default Ember.Route.extend({
         url: item.url,
         tags: item.tags,
         isdefault: item.isdefault,
-        visible: item.isdefault,
+        visible: (/true/).test(item.isdefault),
         isfiltered: false,
         new: false
       });
