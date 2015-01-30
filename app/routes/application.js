@@ -73,14 +73,35 @@ export default Ember.Route.extend({
             localmod = local.modified,
             stale = moment(restmod).isAfter(localmod);
 
+            stale = true;
+
         //if items were added or modified, merge with local
         if (local.library.length !== rest._result.library.length || stale) {
           var rl = rest._result.library,
               ll = local.library;
           rl.filter(function(restlib) {
+            var localTitle = ll.findBy('title', restlib.title);
             //push missing items
-            if (!ll.findBy('title', restlib.title)) {
+            if (!localTitle) {
               ll.push(restlib);
+            }else {
+
+              //sync default, titles, urls, etc.
+              localTitle.setProperties({
+                title: restlib.title,
+                icon: restlib.icon,
+                url: restlib.url,
+                tags: restlib.tags,
+                isdefault: (/true/).test(restlib.isdefault),
+              });
+
+              //if new channel is also a default toggle visibility
+              if((/true/).test(restlib.isdefault)) {
+                /*
+                todo(edge-case): if an existing channel has been upgraded to default, and the user had previously hidden, it becomes be visible again
+                */
+                localTitle.set('visible', true);
+              }
             }
           });
         }
