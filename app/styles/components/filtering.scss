@@ -16,7 +16,6 @@
       top: 0;
       bottom: 0;
       z-index: -1;
-      border-left: 1px solid $transparent-blue;
     }
     li {
       display: block;
@@ -33,8 +32,8 @@
       }
       &.filter-heading {
         a {
-          padding: 0 0 0.5em 1em;
-          margin: 0 0 0.5em 0;
+          padding: 0 0 0.5em 0;
+          margin: 0 0.5em 0.5em 1em;
           border-bottom: 2px solid $transparent-blue;
         }
       }
