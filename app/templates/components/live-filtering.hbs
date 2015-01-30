@@ -1,6 +1,11 @@
 <div class="filtering">
   <ul>
-    {{#each filter in filtersArr}}
+    <li class="filter-heading">
+      <a href="#" class="actionable" {{action 'toggleFiltersGroup' 'availablity'}}>
+        {{check-box availabilityFilterOn}} Availablity
+      </a>
+    </li>
+    {{#each filter in filtersGroupAvailability}}
       <li>
         <a href="#" class="actionable" {{action 'toggleFilter' filter.name}}>
           {{check-box filter.on}} {{filter.name}}
@@ -8,4 +13,20 @@
       </li>
     {{/each}}
   </ul>
+
+  <ul>
+    <li class="filter-heading">
+      <a href="#" class="actionable" {{action 'toggleFiltersGroup' 'genres'}}>
+        {{check-box genresFilterOn}} Genres
+      </a>
+    </li>
+    {{#each filter in filtersGroupGenres}}
+      <li>
+        <a href="#" class="actionable" {{action 'toggleFilter' filter.name}}>
+          {{check-box filter.on}} {{filter.name}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+
 </div>

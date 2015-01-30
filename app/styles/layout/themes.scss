@@ -34,6 +34,9 @@ html {
     .filtering, .filtering a {
       color: $light-blue;
       border-color: $transparent-blue;
+      .filter-heading {
+        color: $lighter-text;
+      }
     }
     .active {
       color: $light-blue;
@@ -77,6 +80,9 @@ html {
     .filtering, .filtering a {
       color: $blue;
       border-color: $transparent-blue;
+      .filter-heading {
+        color: $lighter-text;
+      }
     }
     .active {
       color: $blue;
