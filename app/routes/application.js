@@ -72,9 +72,7 @@ export default Ember.Route.extend({
         var restmod = rest._result.modified,
             localmod = local.modified,
             stale = moment(restmod).isAfter(localmod);
-
-            stale = true;
-
+            
         //if items were added or modified, merge with local
         if (local.library.length !== rest._result.library.length || stale) {
           var rl = rest._result.library,
