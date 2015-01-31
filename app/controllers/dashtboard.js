@@ -31,6 +31,14 @@ export default Ember.Controller.extend({
   */
   editing: false,
   /**
+  Signal if filter error messaging should be displayed
+
+  @property showFilterMessaging
+  @type Bool
+  @default false
+  */
+  showFilterMessaging: true,
+  /**
   Signal if filtering is open
 
   @property filtering

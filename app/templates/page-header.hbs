@@ -9,6 +9,6 @@
   {{#link-to 'dashtboard' classNames="actionable"}}{{fa-icon "fa-close"}}{{/link-to}}
 </div>
 
-{{#if controller.filtering}}
+{{#liquid-if controller.filtering use="crossFade"}}
   {{live-filtering model=this}}
-{{/if}}
+{{/liquid-if}}

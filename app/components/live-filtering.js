@@ -10,6 +10,31 @@ import _ from 'lodash';
 */
 export default Ember.Component.extend({
   /**
+  Signal if message is an error message
+
+  @property error
+  @type Bool
+  @default false
+  */
+  error: false,
+  /**
+  Message to be sent to message field
+
+  @property message
+  @type String
+  @default null
+  */
+  message: null,
+  /**
+  Normalized object of message strings
+
+  @property messages
+  @type Object
+  */
+  messages: {
+    noMatch: "Sorry, there are no channels that match that criteria. Try un-checking some filters."
+  },
+  /**
     Alias for collection of filters
 
     @property filters
@@ -114,7 +139,7 @@ export default Ember.Component.extend({
         name: 'Sports', tag: 'sports', group: 'genres'
       },
       {
-        name: 'TV', tag: 'tv', group: 'genres'
+        name: 'Full Episodes', tag: 'tv', group: 'genres'
       },
       {
         name: 'Movies', tag: 'movies', group: 'genres'
@@ -131,7 +156,7 @@ export default Ember.Component.extend({
       var a = FiltersModel.create();
       a.setProperties({
         name: item.name,
-        on: true,
+        on: false,
         tag: item.tag,
         group: item.group
       });
@@ -163,6 +188,10 @@ export default Ember.Component.extend({
         onFilters = useFilters.allfilters.filterBy('on', true),
         shouldApplyFilters = [];
 
+    //reset messaging
+    this.set('error', false);
+    this.set('message', null);
+
     //Isolate filters that are turn on into an array
     onFilters.filter(function(item) {
       shouldApplyFilters.push(item.tag);
@@ -171,14 +200,19 @@ export default Ember.Component.extend({
     //Iterate channels lib, toggle isfiltered property
     lib.setEach('isfiltered', true);
     lib.filter(function(item) {
-      //Compare channel tags to filters that are on
-      shouldApplyFilters.filter(function(should) {
-        //todo: better filtering across filter categories, prioritize by group
-        if (_.contains(item.tags, should)) {
-          item.toggleProperty('isfiltered');
-        }
-      });
+      if(_.difference(shouldApplyFilters, item.tags).length === 0) {
+        item.toggleProperty('isfiltered');
+      }
     });
+
+    var visibleLib = lib.filterBy('visible',true);
+    if(visibleLib.isEvery('isfiltered')) {
+      var controllerContext = this.get('controller').get('model');
+      if(controllerContext.get('showFilterMessaging')) {
+        this.set('error', true);
+        this.set('message', this.messages.noMatch);
+      }
+    }
   },
   actions: {
     /**
