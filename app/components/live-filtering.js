@@ -223,7 +223,7 @@ export default Ember.Component.extend({
     this.set('message', null);
 
     //Isolate filters that are turn on into an array
-    var sameGroup = onFilters.getEach('group').uniq().length === 1;
+    var sameGroup = _.uniq(onFilters.getEach('group')).length === 1;
     onFilters.filter(function(item) {
       shouldApplyFilters.push(item.tag);
     });
