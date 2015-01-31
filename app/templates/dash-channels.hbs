@@ -1,5 +1,5 @@
-{{#unless item.isfiltered}}
-  {{#if item.visible}}
+{{#if item.visible}}
+  {{#unless item.isfiltered}}
     {{#if item.title}}
       <div class="new-channel">
         {{#if controller.editing}}
@@ -11,5 +11,5 @@
         </a>
       </div>
     {{/if}}
-  {{/if}}
-{{/unless}}
+  {{/unless}}
+{{/if}}

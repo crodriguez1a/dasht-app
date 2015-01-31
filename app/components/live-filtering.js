@@ -18,6 +18,38 @@ export default Ember.Component.extend({
   filters: Ember.computed.alias('buildFilters'),
 
   /**
+    Alias for categorized groups of filters
+
+    @property filtersGroupGenres
+    @type Class
+  */
+  filtersGroupGenres: Ember.computed.filterBy('filtersArr', 'group', 'genres'),
+  /**
+    Signal if any of the filters in this group are on
+
+    @property genresFilterOn
+    @type Bool
+  */
+  genresFilterOn: function() {
+    return this.get('filtersGroupGenres').isAny('on');
+  }.property('filtersArr.@each.on'),
+  /**
+    Alias for categorized groups of filters
+
+    @property filtersGroupGenres
+    @type Class
+  */
+  filtersGroupAvailability: Ember.computed.filterBy('filtersArr', 'group', 'availablity'),
+  /**
+    Signal if any of the filters in this group are on
+
+    @property availabilityFilterOn
+    @type Bool
+  */
+  availabilityFilterOn: function() {
+    return this.get('filtersGroupAvailability').isAny('on');
+  }.property('filtersArr.@each.on'),
+  /*
     Allfilters array within filters object
 
     @property filtersArr
@@ -61,31 +93,47 @@ export default Ember.Component.extend({
 
     //plain old array of filters
     var poarr = [
-    {
-      name: 'Free',
-      tag: 'free',
-      on: true
-    },{
-      name: 'Subscription',
-      tag: 'subscription',
-      on: true
-    },{
-      name: 'A la carte',
-      tag: 'alacarte',
-      on: true
-    },{
-      name: 'Cast-ready',
-      tag: 'castready',
-      on: true
-    }
+      //Price
+      {
+        name: 'Free', tag: 'free', group: 'availablity'
+      },
+      {
+        name: 'Subscription', tag: 'subscription', group: 'availablity'
+      },
+      {
+        name: 'Rent', tag: 'alacarte', group: 'availablity'
+      },
+      {
+        name: 'Cable Provider', tag: 'cable provider', group: 'availablity'
+      },
+      {
+        name: 'Cast-ready', tag: 'castready', group: 'availablity'
+      },
+      //Genres
+      {
+        name: 'Sports', tag: 'sports', group: 'genres'
+      },
+      {
+        name: 'TV', tag: 'tv', group: 'genres'
+      },
+      {
+        name: 'Movies', tag: 'movies', group: 'genres'
+      },
+      {
+        name: 'Music', tag: 'music', group: 'genres'
+      },
+      {
+        name: 'News', tag: 'news', group: 'genres'
+      },
     ];
 
     poarr.filter(function(item) {
       var a = FiltersModel.create();
       a.setProperties({
         name: item.name,
-        on: item.on,
-        tag: item.tag
+        on: true,
+        tag: item.tag,
+        group: item.group
       });
 
       _filters.get("allfilters").push(a);
@@ -98,6 +146,7 @@ export default Ember.Component.extend({
     }else {
       return cachedFilters;
     }
+
 
   }.property(),
 
@@ -120,16 +169,13 @@ export default Ember.Component.extend({
     });
 
     //Iterate channels lib, toggle isfiltered property
+    lib.setEach('isfiltered', true);
     lib.filter(function(item) {
-      if (!item.isfiltered) {
-        item.set('isfiltered', true);
-      }
       //Compare channel tags to filters that are on
       shouldApplyFilters.filter(function(should) {
+        //todo: better filtering across filter categories, prioritize by group
         if (_.contains(item.tags, should)) {
-          if (item.isfiltered) {
-            item.set('isfiltered', false);
-          }
+          item.toggleProperty('isfiltered');
         }
       });
     });
@@ -146,6 +192,19 @@ export default Ember.Component.extend({
           foundFilter = currentFilter.findBy('name', filter);
 
       foundFilter.toggleProperty('on');
+      this.applyFilters();
+    },
+
+    /**
+      Designate entire filter group on or off
+
+      @method toggleFilterGroup
+    */
+    toggleFiltersGroup: function(group) {
+      var filtersGroup = this.get('filtersArr').filterBy('group', group);
+
+      var status = filtersGroup.isAny('on');
+      filtersGroup.setEach('on', !status);
       this.applyFilters();
     },
 
