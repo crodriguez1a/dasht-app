@@ -72,7 +72,7 @@ export default Ember.Route.extend({
         var restmod = rest._result.modified,
             localmod = local.modified,
             stale = moment(restmod).isAfter(localmod);
-            
+
         //if items were added or modified, merge with local
         if (local.library.length !== rest._result.library.length || stale) {
           var rl = rest._result.library,
@@ -93,13 +93,8 @@ export default Ember.Route.extend({
                 isdefault: (/true/).test(restlib.isdefault),
               });
 
-              //if new channel is also a default toggle visibility
-              if((/true/).test(restlib.isdefault)) {
-                /*
-                todo(edge-case): if an existing channel has been upgraded to default, and the user had previously hidden, it becomes be visible again
-                */
-                localTitle.set('visible', true);
-              }
+              //todo: If new channel is labeled as a default, only new users will see it
+
             }
           });
         }
