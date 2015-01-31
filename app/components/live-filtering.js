@@ -214,8 +214,8 @@ export default Ember.Component.extend({
     var context = this.get('model'),
         model = context.model,
         lib = model.get('library'),
-        useFilters = this.get('filters'),
-        onFilters = useFilters.allfilters.filterBy('on', true),
+        useFilters = this.get('filters.allfilters'),
+        onFilters = useFilters.filterBy('on', true),
         shouldApplyFilters = [];
 
     //reset messaging
@@ -223,6 +223,7 @@ export default Ember.Component.extend({
     this.set('message', null);
 
     //Isolate filters that are turn on into an array
+    var sameGroup = onFilters.getEach('group').uniq().length === 1;
     onFilters.filter(function(item) {
       shouldApplyFilters.push(item.tag);
     });
@@ -230,8 +231,19 @@ export default Ember.Component.extend({
     //Iterate channels lib, toggle isfiltered property
     lib.setEach('isfiltered', true);
     lib.filter(function(item) {
-      if (_.difference(shouldApplyFilters, item.tags).length === 0) {
-        item.toggleProperty('isfiltered');
+      //todo: filter groups should be allowed to compound
+      if (!sameGroup) {
+        //show only channels with this combination of filters
+        if (_.difference(shouldApplyFilters, item.tags).length === 0) {
+          item.toggleProperty('isfiltered');
+        }
+      } else {
+        //aggregate channels within this group
+        shouldApplyFilters.filter(function(should) {
+          if (_.contains(item.tags, should)) {
+            item.set('isfiltered', false);
+          }
+        });
       }
     });
 
@@ -265,10 +277,11 @@ export default Ember.Component.extend({
       @method toggleFilterGroup
     */
     toggleFiltersGroup: function(group) {
-      var filtersGroup = this.get('filtersArr').filterBy('group', group);
+      var filtersGroup = this.get('filtersArr').filterBy('group', group),
+          status = filtersGroup.isAny('on');
 
-      var status = filtersGroup.isAny('on');
       filtersGroup.setEach('on', !status);
+
       this.applyFilters();
     },
 
