@@ -108,6 +108,8 @@ export default Ember.Component.extend({
   buildFilters: function() {
 
     var currentContext = this.get('controller').get('model'),
+        currentModel = currentContext.get('model'),
+        library = currentModel.get('library'),
         cachedFilters = currentContext.get('cachedFilters');
 
     //Breakdown of filters model
@@ -132,6 +134,17 @@ export default Ember.Component.extend({
     }),
 
     _filters = FiltersModel.create();
+
+
+    var libtags = [],
+        allTags = _.uniq(library.getEach('tags'));
+    allTags.filter(function(tags) {
+      tags.filter(function(tag) {
+        if (!_.contains(libtags, tag)) {
+          libtags.push(tag);
+        }
+      });
+    });
 
     //plain old array of filters
     var poarr = [
@@ -165,7 +178,7 @@ export default Ember.Component.extend({
         name: 'Radio', tag: 'radio', group: 'content'
       },
       {
-        name: 'Premium', tag: 'premium', group: 'content'
+        name: 'P2P', tag: 'p2p', group: 'content'
       },
 
       //Genres
@@ -180,6 +193,54 @@ export default Ember.Component.extend({
       },
       {
         name: 'Fitness', tag: 'exercise', group: 'genres'
+      },
+      {
+        name: 'Latino', tag: 'latino', group: 'genres'
+      },
+      {
+        name: 'Documentaries', tag: 'documentaries', group: 'genres'
+      },
+      {
+        name: 'Comedy', tag: 'comedy', group: 'genres'
+      },
+      {
+        name: 'Drama', tag: 'drama', group: 'genres'
+      },
+      {
+        name: 'SciFi / Fantasy', tag: 'scifi/fantasy', group: 'genres'
+      },
+      {
+        name: 'Concerts', tag: 'concerts', group: 'genres'
+      },
+      {
+        name: 'Horror', tag: 'horror', group: 'genres'
+      },
+      {
+        name: 'Action/Adventure', tag: 'action/adventure', group: 'genres'
+      },
+      {
+        name: 'Reality', tag: 'reality', group: 'genres'
+      },
+      {
+        name: 'Animation', tag: 'animation', group: 'genres'
+      },
+      {
+        name: 'DIY', tag: 'diy', group: 'genres'
+      },
+      {
+        name: 'Food', tag: 'food', group: 'genres'
+      },
+      {
+        name: 'Tech', tag: 'tech', group: 'genres'
+      },
+      {
+        name: 'Premium', tag: 'premium', group: 'genres'
+      },
+      {
+        name: 'Social', tag: 'social', group: 'genres'
+      },
+      {
+        name: 'Independent', tag: 'independent', group: 'genres'
       }
     ];
 
@@ -191,7 +252,9 @@ export default Ember.Component.extend({
         tag: item.tag,
         group: item.group
       });
-      _filters.get('allfilters').push(a);
+      if (_.contains(libtags, item.tag)) {
+        _filters.get('allfilters').push(a);
+      }
     });
 
     //if filters have already been cached, return cached filters
@@ -214,8 +277,8 @@ export default Ember.Component.extend({
     var context = this.get('model'),
         model = context.model,
         lib = model.get('library'),
-        useFilters = this.get('filters'),
-        onFilters = useFilters.allfilters.filterBy('on', true),
+        useFilters = this.get('filters.allfilters'),
+        onFilters = useFilters.filterBy('on', true),
         shouldApplyFilters = [];
 
     //reset messaging
@@ -223,6 +286,7 @@ export default Ember.Component.extend({
     this.set('message', null);
 
     //Isolate filters that are turn on into an array
+    var sameGroup = _.uniq(onFilters.getEach('group')).length === 1;
     onFilters.filter(function(item) {
       shouldApplyFilters.push(item.tag);
     });
@@ -230,8 +294,19 @@ export default Ember.Component.extend({
     //Iterate channels lib, toggle isfiltered property
     lib.setEach('isfiltered', true);
     lib.filter(function(item) {
-      if (_.difference(shouldApplyFilters, item.tags).length === 0) {
-        item.toggleProperty('isfiltered');
+      //todo: filter groups should be allowed to compound
+      if (!sameGroup) {
+        //show only channels with this combination of filters
+        if (_.difference(shouldApplyFilters, item.tags).length === 0) {
+          item.toggleProperty('isfiltered');
+        }
+      } else {
+        //aggregate channels within this group
+        shouldApplyFilters.filter(function(should) {
+          if (_.contains(item.tags, should)) {
+            item.set('isfiltered', false);
+          }
+        });
       }
     });
 
@@ -265,10 +340,11 @@ export default Ember.Component.extend({
       @method toggleFilterGroup
     */
     toggleFiltersGroup: function(group) {
-      var filtersGroup = this.get('filtersArr').filterBy('group', group);
+      var filtersGroup = this.get('filtersArr').filterBy('group', group),
+          status = filtersGroup.isAny('on');
 
-      var status = filtersGroup.isAny('on');
       filtersGroup.setEach('on', !status);
+
       this.applyFilters();
     },
 
