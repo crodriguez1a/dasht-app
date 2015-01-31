@@ -17,6 +17,21 @@
 
   <ul>
     <li class="filter-heading">
+      <a href="#" class="actionable" {{action 'toggleFiltersGroup' 'content'}}>
+        {{check-box contentFilterOn}} Content
+      </a>
+    </li>
+    {{#each filter in filtersGroupContent}}
+      <li>
+        <a href="#" class="actionable" {{action 'toggleFilter' filter.name}}>
+          {{check-box filter.on}} {{filter.name}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+
+  <ul>
+    <li class="filter-heading">
       <a href="#" class="actionable" {{action 'toggleFiltersGroup' 'genres'}}>
         {{check-box genresFilterOn}} Genres
       </a>

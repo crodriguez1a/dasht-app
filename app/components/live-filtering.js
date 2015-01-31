@@ -74,13 +74,30 @@ export default Ember.Component.extend({
   availabilityFilterOn: function() {
     return this.get('filtersGroupAvailability').isAny('on');
   }.property('filtersArr.@each.on'),
+  /**
+    Alias for categorized groups of filters
+
+    @property filtersGroupContent
+    @type Class
+  */
+  filtersGroupContent: Ember.computed.filterBy('filtersArr', 'group', 'content'),
+  /**
+    Signal if any of the filters in this group are on
+
+    @property contentFilterOn
+    @type Bool
+  */
+  contentFilterOn: function() {
+    return this.get('filtersGroupContent').isAny('on');
+  }.property('filtersArr.@each.on'),
   /*
     Allfilters array within filters object
 
     @property filtersArr
     @type Array
   */
-  filtersArr: Ember.computed.alias('filters.allfilters'),
+  sortAlpha: ['name'],
+  filtersArr: Ember.computed.sort('filters.allfilters', 'sortAlpha'),
 
   /**
     Create model for filters collection
@@ -134,21 +151,35 @@ export default Ember.Component.extend({
       {
         name: 'Cast-ready', tag: 'castready', group: 'availablity'
       },
+      //Content
+      {
+        name: 'Full Episodes', tag: 'tv', group: 'content'
+      },
+      {
+        name: 'Movies', tag: 'movies', group: 'content'
+      },
+      {
+        name: 'Music', tag: 'music', group: 'content'
+      },
+      {
+        name: 'Radio', tag: 'radio', group: 'content'
+      },
+      {
+        name: 'Premium', tag: 'premium', group: 'content'
+      },
+
       //Genres
+      {
+        name: 'Kids', tag: 'kids', group: 'genres'
+      },
       {
         name: 'Sports', tag: 'sports', group: 'genres'
       },
       {
-        name: 'Full Episodes', tag: 'tv', group: 'genres'
-      },
-      {
-        name: 'Movies', tag: 'movies', group: 'genres'
-      },
-      {
-        name: 'Music', tag: 'music', group: 'genres'
-      },
-      {
         name: 'News', tag: 'news', group: 'genres'
+      },
+      {
+        name: 'Fitness', tag: 'exercise', group: 'genres'
       }
     ];
 
@@ -160,8 +191,7 @@ export default Ember.Component.extend({
         tag: item.tag,
         group: item.group
       });
-
-      _filters.get("allfilters").push(a);
+      _filters.get('allfilters').push(a);
     });
 
     //if filters have already been cached, return cached filters
