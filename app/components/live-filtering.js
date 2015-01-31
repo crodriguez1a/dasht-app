@@ -149,7 +149,7 @@ export default Ember.Component.extend({
       },
       {
         name: 'News', tag: 'news', group: 'genres'
-      },
+      }
     ];
 
     poarr.filter(function(item) {
@@ -165,10 +165,10 @@ export default Ember.Component.extend({
     });
 
     //if filters have already been cached, return cached filters
-    if(!cachedFilters){
+    if (!cachedFilters) {
       currentContext.set('cachedFilters', _filters);
       return _filters;
-    }else {
+    } else {
       return cachedFilters;
     }
 
@@ -200,15 +200,15 @@ export default Ember.Component.extend({
     //Iterate channels lib, toggle isfiltered property
     lib.setEach('isfiltered', true);
     lib.filter(function(item) {
-      if(_.difference(shouldApplyFilters, item.tags).length === 0) {
+      if (_.difference(shouldApplyFilters, item.tags).length === 0) {
         item.toggleProperty('isfiltered');
       }
     });
 
-    var visibleLib = lib.filterBy('visible',true);
-    if(visibleLib.isEvery('isfiltered')) {
+    var visibleLib = lib.filterBy('visible', true);
+    if (visibleLib.isEvery('isfiltered')) {
       var controllerContext = this.get('controller').get('model');
-      if(controllerContext.get('showFilterMessaging')) {
+      if (controllerContext.get('showFilterMessaging')) {
         this.set('error', true);
         this.set('message', this.messages.noMatch);
       }
