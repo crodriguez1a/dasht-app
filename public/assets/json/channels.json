@@ -1,5 +1,5 @@
 {
-    "modified": "2015-01-30 07:16:59",
+    "modified": "2015-01-30 08:59:59",
     "library": [
         {
             "title": "hulu",
@@ -167,7 +167,7 @@
             "isdefault": "true",
             "tags": [
                 "sports",
-                "free"
+                "subscription"
             ]
         },
         {
@@ -278,7 +278,8 @@
                 "movies",
                 "subscription",
                 "castready",
-                "cable provider"
+                "cable provider",
+                "premium"
             ]
         },
         {
@@ -516,7 +517,6 @@
             "url": "//mlb.mlb.com/mlb/subscriptions/index.jsp?product=chromecast/",
             "isdefault": "false",
             "tags": [
-                "tv",
                 "subscription",
                 "sports"
             ]
@@ -537,7 +537,6 @@
             "url": "//nflnonline.nfl.com/",
             "isdefault": "true",
             "tags": [
-                "tv",
                 "sports",
                 "cable provider",
                 "subscription"
@@ -549,7 +548,6 @@
             "url": "//live.mlssoccer.com/mlsmdl/",
             "isdefault": "false",
             "tags": [
-                "tv",
                 "sports",
                 "subscription"
             ]
