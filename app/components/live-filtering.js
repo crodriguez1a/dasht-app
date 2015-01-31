@@ -138,10 +138,9 @@ export default Ember.Component.extend({
 
     var libtags = [],
         allTags = _.uniq(library.getEach('tags'));
-    allTags.filter(function(tags){
+    allTags.filter(function(tags) {
       tags.filter(function(tag) {
         if (!_.contains(libtags, tag)) {
-          var group;
           libtags.push(tag);
         }
       });
@@ -204,7 +203,6 @@ export default Ember.Component.extend({
       {
         name: 'Comedy', tag: 'comedy', group: 'genres'
       },
-      ,
       {
         name: 'Drama', tag: 'drama', group: 'genres'
       },
@@ -254,7 +252,7 @@ export default Ember.Component.extend({
         tag: item.tag,
         group: item.group
       });
-      if(_.contains(libtags, item.tag)) {
+      if (_.contains(libtags, item.tag)) {
         _filters.get('allfilters').push(a);
       }
     });
