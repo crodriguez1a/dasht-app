@@ -108,6 +108,8 @@ export default Ember.Component.extend({
   buildFilters: function() {
 
     var currentContext = this.get('controller').get('model'),
+        currentModel = currentContext.get('model'),
+        library = currentModel.get('library'),
         cachedFilters = currentContext.get('cachedFilters');
 
     //Breakdown of filters model
@@ -132,6 +134,18 @@ export default Ember.Component.extend({
     }),
 
     _filters = FiltersModel.create();
+
+
+    var libtags = [],
+        allTags = _.uniq(library.getEach('tags'));
+    allTags.filter(function(tags){
+      tags.filter(function(tag) {
+        if (!_.contains(libtags, tag)) {
+          var group;
+          libtags.push(tag);
+        }
+      });
+    });
 
     //plain old array of filters
     var poarr = [
@@ -165,7 +179,7 @@ export default Ember.Component.extend({
         name: 'Radio', tag: 'radio', group: 'content'
       },
       {
-        name: 'Premium', tag: 'premium', group: 'content'
+        name: 'P2P', tag: 'p2p', group: 'content'
       },
 
       //Genres
@@ -180,6 +194,55 @@ export default Ember.Component.extend({
       },
       {
         name: 'Fitness', tag: 'exercise', group: 'genres'
+      },
+      {
+        name: 'Latino', tag: 'latino', group: 'genres'
+      },
+      {
+        name: 'Documentaries', tag: 'documentaries', group: 'genres'
+      },
+      {
+        name: 'Comedy', tag: 'comedy', group: 'genres'
+      },
+      ,
+      {
+        name: 'Drama', tag: 'drama', group: 'genres'
+      },
+      {
+        name: 'SciFi / Fantasy', tag: 'scifi/fantasy', group: 'genres'
+      },
+      {
+        name: 'Concerts', tag: 'concerts', group: 'genres'
+      },
+      {
+        name: 'Horror', tag: 'horror', group: 'genres'
+      },
+      {
+        name: 'Action/Adventure', tag: 'action/adventure', group: 'genres'
+      },
+      {
+        name: 'Reality', tag: 'reality', group: 'genres'
+      },
+      {
+        name: 'Animation', tag: 'animation', group: 'genres'
+      },
+      {
+        name: 'DIY', tag: 'diy', group: 'genres'
+      },
+      {
+        name: 'Food', tag: 'food', group: 'genres'
+      },
+      {
+        name: 'Tech', tag: 'tech', group: 'genres'
+      },
+      {
+        name: 'Premium', tag: 'premium', group: 'genres'
+      },
+      {
+        name: 'Social', tag: 'social', group: 'genres'
+      },
+      {
+        name: 'Independent', tag: 'independent', group: 'genres'
       }
     ];
 
@@ -191,7 +254,9 @@ export default Ember.Component.extend({
         tag: item.tag,
         group: item.group
       });
-      _filters.get('allfilters').push(a);
+      if(_.contains(libtags, item.tag)) {
+        _filters.get('allfilters').push(a);
+      }
     });
 
     //if filters have already been cached, return cached filters
