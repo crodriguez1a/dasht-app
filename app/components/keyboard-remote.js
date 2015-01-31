@@ -59,9 +59,9 @@ export default Ember.Component.extend({
     var actionableItem = Ember.$('.actionable').not('.disabled'),
         curItem = this.get('actionItemCount');
 
-    if(this.get('visible')) {
+    if (this.get('visible')) {
       actionableItem[curItem].focus();
-    }else {
+    } else {
       actionableItem[curItem].blur();
     }
 
@@ -82,14 +82,14 @@ export default Ember.Component.extend({
 
     //open remote if user uses arrows or any other trigger designated
     var hotKeys = [37, 38, 39, 40];
-    if(_.contains(hotKeys, e.keyCode)) {
-      if(!this.get('visible')) {
+    if (_.contains(hotKeys, e.keyCode)) {
+      if (!this.get('visible')) {
         this.set('visible', true);
       }
     }
 
     //command k - toggle remote expand/collapsed
-    if(e.keyCode === 75 && e.metaKey) {
+    if (e.keyCode === 75 && e.metaKey) {
       this.toggleProperty('visible');
     }
 
@@ -110,7 +110,7 @@ export default Ember.Component.extend({
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
 
       //reset if needed
-      if(curItem < 0 || curItem > actionableItem.length-1) {
+      if (curItem < 0 || curItem > actionableItem.length-1) {
         curItem = curItem < 0 ? 0 : actionableItem.length;
       }
 
@@ -120,12 +120,12 @@ export default Ember.Component.extend({
       }
 
       //tab back/up
-      if(e.keyCode === 37 || e.keyCode === 38) {
+      if (e.keyCode === 37 || e.keyCode === 38) {
         curItem--;
       }
 
       //focus on current item
-      if(curItem > -1 && curItem < actionableItem.length) {
+      if (curItem > -1 && curItem < actionableItem.length) {
         actionableItem[curItem].focus();
       }
 

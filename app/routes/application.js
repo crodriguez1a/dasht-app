@@ -82,15 +82,14 @@ export default Ember.Route.extend({
             //push missing items
             if (!localTitle) {
               ll.push(restlib);
-            }else {
-
+            } else {
               //sync default, titles, urls, etc.
               localTitle.setProperties({
                 title: restlib.title,
                 icon: restlib.icon,
                 url: restlib.url,
                 tags: restlib.tags,
-                isdefault: (/true/).test(restlib.isdefault),
+                isdefault: (/true/).test(restlib.isdefault)
               });
 
               //todo: If new channel is labeled as a default, only new users will see it
