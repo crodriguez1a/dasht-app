@@ -1,5 +1,5 @@
 {
-    "modified": "2015-01-30 08:59:59",
+    "modified": "2015-01-30 12:44:59",
     "library": [
         {
             "title": "hulu",
@@ -10,7 +10,12 @@
                 "tv",
                 "movies",
                 "subscription",
-                "castready"
+                "castready",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
             ]
         },
         {
@@ -22,7 +27,13 @@
                 "tv",
                 "movies",
                 "subscription",
-                "castready"
+                "castready",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure",
+                "concerts"
             ]
         },
         {
@@ -34,7 +45,12 @@
                 "tv",
                 "movies",
                 "subscription",
-                "castready"
+                "castready",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
             ]
         },
         {
@@ -44,7 +60,9 @@
             "isdefault": "true",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "reality",
+                "concerts"
             ]
         },
         {
@@ -54,7 +72,9 @@
             "isdefault": "false",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "reality",
+                "concerts"
             ]
         },
         {
@@ -64,7 +84,10 @@
             "isdefault": "true",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "documentaries",
+                "tech",
+                "concerts"
             ]
         },
         {
@@ -76,7 +99,13 @@
                 "tv",
                 "movies",
                 "free",
-                "castready"
+                "castready",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure",
+                "concerts"
             ]
         },
         {
@@ -87,7 +116,13 @@
             "tags": [
                 "tv",
                 "movies",
-                "free"
+                "free",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure",
+                "documentaries"
             ]
         },
         {
@@ -98,7 +133,12 @@
             "tags": [
                 "tv",
                 "movies",
-                "free"
+                "free",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
             ]
         },
         {
@@ -112,7 +152,13 @@
                 "music",
                 "free",
                 "alacarte",
-                "castready"
+                "castready",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure",
+                "concerts"
             ]
         },
         {
@@ -135,7 +181,8 @@
             "tags": [
                 "music",
                 "free",
-                "castready"
+                "castready",
+                "concerts"
             ]
         },
         {
@@ -181,7 +228,12 @@
                 "music",
                 "free",
                 "alacarte",
-                "castready"
+                "castready",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
             ]
         },
         {
@@ -240,7 +292,33 @@
                 "premium",
                 "subscription",
                 "castready",
-                "cable provider"
+                "cable provider",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure",
+                "documentary"
+            ]
+        },
+        {
+            "title": "showtime",
+            "icon": "/assets/icons/showtime.png",
+            "url": "//sho.com/",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "movies",
+                "premium",
+                "subscription",
+                "castready",
+                "cable provider",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure",
+                "documentary"
             ]
         },
         {
@@ -265,7 +343,12 @@
                 "movies",
                 "subscription",
                 "castready",
-                "cable provider"
+                "cable provider",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
             ]
         },
         {
@@ -279,7 +362,12 @@
                 "subscription",
                 "castready",
                 "cable provider",
-                "premium"
+                "premium",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
             ]
         },
         {
@@ -342,7 +430,8 @@
                 "tv",
                 "stand up specials",
                 "subscription",
-                "cable provider"
+                "cable provider",
+                "comedy"
             ]
         },
         {
@@ -387,7 +476,13 @@
             "isdefault": "true",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "comedy",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
             ]
         },
         {
@@ -398,7 +493,13 @@
             "tags": [
                 "tv",
                 "free",
-                "news"
+                "news",
+                "comedy",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
             ]
         },
         {
@@ -410,7 +511,8 @@
                 "tv",
                 "movies",
                 "subscription",
-                "cable provider"
+                "cable provider",
+                "drama"
             ]
         },
         {
@@ -422,7 +524,8 @@
                 "tv",
                 "movies",
                 "subscription",
-                "cable provider"
+                "cable provider",
+                "comedy"
             ]
         },
         {
@@ -435,7 +538,8 @@
                 "movies",
                 "free",
                 "subscription",
-                "cable provider"
+                "cable provider",
+                "drama"
             ]
         },
         {
@@ -445,7 +549,20 @@
             "isdefault": "true",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "reality",
+                "drama",
+                "diy"
+            ]
+        },
+        {
+            "title": "ted",
+            "icon": "/assets/icons/ted.png",
+            "url": "//ted.com/videos/",
+            "isdefault": "true",
+            "tags": [
+                "free",
+                "tech"
             ]
         },
         {
@@ -455,7 +572,9 @@
             "isdefault": "false",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "diy",
+                "reality"
             ]
         },
         {
@@ -466,7 +585,9 @@
             "tags": [
                 "tv",
                 "subscription",
-                "cable provider"
+                "cable provider",
+                "animation",
+                "comedy"
             ]
         },
         {
@@ -477,7 +598,9 @@
             "tags": [
                 "tv",
                 "subscription",
-                "cable ready"
+                "cable ready",
+                "drama",
+                "reality"
             ]
         },
         {
@@ -487,7 +610,8 @@
             "isdefault": "false",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "documentaries"
             ]
         },
         {
@@ -497,7 +621,8 @@
             "isdefault": "true",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "documentaries"
             ]
         },
         {
@@ -528,7 +653,9 @@
             "isdefault": "false",
             "tags": [
                 "tv",
-                "free"
+                "free",
+                "drama",
+                "comedy"
             ]
         },
         {
@@ -560,7 +687,9 @@
             "tags": [
                 "tv",
                 "subscription",
-                "cable provider"
+                "cable provider",
+                "drama",
+                "comedy"
             ]
         },
         {
@@ -572,7 +701,44 @@
                 "tv",
                 "movies",
                 "free",
-                "p2p"
+                "p2p",
+                "comedy",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
+            ]
+        },
+        {
+            "title": "solarmovie",
+            "icon": "/assets/icons/solarmovie.png",
+            "url": "//http://solarmovie.is/",
+            "isdefault": "false",
+            "tags": [
+                "tv",
+                "movies",
+                "free",
+                "p2p",
+                "comedy",
+                "drama",
+                "comedy",
+                "scifi/fantasy",
+                "horror",
+                "action/adventure"
+            ]
+        },
+        {
+            "title": "telemundo",
+            "icon": "/assets/icons/telemundo.png",
+            "url": "//http://telemundo.com/",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "movies",
+                "free",
+                "latino",
+                "drama"
             ]
         }
 
