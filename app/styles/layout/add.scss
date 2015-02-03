@@ -1,6 +1,11 @@
+.grid {
+  padding-left: 2em;
+}
+
 .add-channel, .all-channels {
   position: relative;
-  text-align: center;
+  text-align: left;
+  width: auto;
   .installed-channel {
     img {
       opacity: 0.15;
