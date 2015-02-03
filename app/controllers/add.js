@@ -158,6 +158,19 @@ export default Ember.Controller.extend({
 
   }.observes('channel'),
 
+  addSuccessMessage: function(msg, time) {
+    Ember.get(this, 'flashes').success(msg, time || 3000);
+  },
+  addWarningMessage: function(msg, time) {
+    Ember.get(this, 'flashes').warning(msg, time || 3000);
+  },
+  addInfoMessage: function(msg, time) {
+    Ember.get(this, 'flashes').info(msg, time || 3000);
+  },
+  addDangerMessage: function(msg, time) {
+    Ember.get(this, 'flashes').danger(msg, time || 3000);
+  },
+
   actions: {
     /**
     Action, search for channels in model
@@ -249,7 +262,7 @@ export default Ember.Controller.extend({
       this.set('error', false);
       if (!visible) {
         this.get('controllers.dashtboard').toggleChannel(channel, true);
-        this.set('message', this.messages.successInstalled);
+        this.addSuccessMessage(this.messages.successInstalled);
       } else {
         return this.set('message', this.messages.prevInstalled);
       }
