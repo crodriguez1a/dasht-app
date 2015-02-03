@@ -208,7 +208,7 @@ export default Ember.Controller.extend({
       } else {
 
         //partial match
-        if(partialMatch) {
+        if (partialMatch) {
           var partials = channelsLib.filterBy('searchResult', true);
           //reset any previously highlighted matches
           channelsLib.setEach('highlight', false);

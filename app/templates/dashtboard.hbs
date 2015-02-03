@@ -23,8 +23,10 @@
   {{live-filtering model=this}}
 {{/liquid-if}}
 
-<div class="all-channels">
-  {{#each item in librarySortAlpha}}
-    {{partial "dash-channels"}}
-  {{/each}}
-</div>
+<section class="grid">
+  <div class="all-channels">
+    {{#each item in librarySortAlpha}}
+      {{partial "dash-channels"}}
+    {{/each}}
+  </div>
+</section>

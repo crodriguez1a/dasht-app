@@ -115,13 +115,27 @@ export default Ember.Component.extend({
       }
 
       //tab forward/down
-      if (e.keyCode === 39 || e.keyCode === 40) {
+      if (e.keyCode === 39) {
         curItem++;
       }
 
       //tab back/up
-      if (e.keyCode === 37 || e.keyCode === 38) {
+      if (e.keyCode === 37) {
         curItem--;
+      }
+
+      if (e.keyCode === 38 || e.keyCode === 40) {
+        var grid = Ember.$(actionableItem).closest('.grid'),
+            gridRow = Math.floor(grid.width() / Ember.$(actionableItem[curItem]).width());
+
+        if (e.keyCode === 40) {
+          curItem += gridRow;
+        }
+
+        if (e.keyCode === 38) {
+          curItem -= gridRow;
+        }
+
       }
 
       //focus on current item
