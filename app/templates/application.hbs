@@ -6,6 +6,12 @@
              onUpdateTheme="updateTheme"}}
 
 <main>
+  <div class="flash-wrapper">
+    {{#each flash in flashes.queue}}
+      {{flash-message flash=flash}}
+    {{/each}}
+  </div>
+
   <div class="outlet">
     {{liquid-outlet}}
   </div>
