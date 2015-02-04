@@ -32,7 +32,7 @@ export default Ember.Component.extend({
   @type Object
   */
   messages: {
-    noMatch: "Sorry, there are no channels that match that criteria. Try un-checking some filters or adding channels."
+    noMatch: "Sorry, there are no channels that match that criteria. Try un-checking some filters or <a href='/add'>adding channels</a>."
   },
   /**
     Alias for collection of filters

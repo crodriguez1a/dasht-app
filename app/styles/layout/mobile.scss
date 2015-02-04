@@ -52,6 +52,7 @@
         li {
           display: block;
           &.filter-heading {
+            width: 100%;
             a {
               margin: 1.5em 0 0.5em 0;
             }
@@ -64,5 +65,9 @@
         }
       }
     }
+  }
+  .flash-wrapper {
+      left: 10%;
+      right: 10%;
   }
 }

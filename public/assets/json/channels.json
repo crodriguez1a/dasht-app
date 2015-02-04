@@ -1,5 +1,5 @@
 {
-    "modified": "2015-01-30 12:44:59",
+    "modified": "2015-01-30 07:17:59",
     "library": [
         {
             "title": "hulu",
@@ -15,7 +15,8 @@
                 "comedy",
                 "scifi/fantasy",
                 "horror",
-                "action/adventure"
+                "action/adventure",
+                "latino"
             ]
         },
         {
@@ -69,7 +70,7 @@
             "title": "vh1",
             "icon": "/assets/icons/vh1.png",
             "url": "//vh1.com",
-            "isdefault": "false",
+            "isdefault": "true",
             "tags": [
                 "tv",
                 "free",
@@ -112,7 +113,7 @@
             "title": "snagfilms",
             "icon": "/assets/icons/snagfilms.png",
             "url": "//snagfilms.com",
-            "isdefault": "false",
+            "isdefault": "true",
             "tags": [
                 "tv",
                 "movies",
@@ -189,7 +190,7 @@
             "title": "pbskids",
             "icon": "/assets/icons/pbskids.png",
             "url": "//pbskids.org",
-            "isdefault": "false",
+            "isdefault": "true",
             "tags": [
                 "tv",
                 "movies",
@@ -221,7 +222,7 @@
             "title": "googleplay",
             "icon": "/assets/icons/googleplay.png",
             "url": "//play.google.com/",
-            "isdefault": "false",
+            "isdefault": "true",
             "tags": [
                 "tv",
                 "movies",
@@ -325,7 +326,7 @@
             "title": "dailyburn",
             "icon": "/assets/icons/dailyburn.png",
             "url": "//dailyburn.com/chromecast/",
-            "isdefault": "false",
+            "isdefault": "true",
             "tags": [
                 "exercise",
                 "free trial",
@@ -438,7 +439,7 @@
             "title": "nick",
             "icon": "/assets/icons/nick.png",
             "url": "//nick.com/videos/episodes/",
-            "isdefault": "false",
+            "isdefault": "true",
             "tags": [
                 "tv",
                 "kids",

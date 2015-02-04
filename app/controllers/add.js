@@ -45,22 +45,6 @@ export default Ember.Controller.extend({
   */
   currentlyFiltered: Ember.computed.notEmpty('cachedFilters'),
   /**
-  Signal if message is an error message
-
-  @property error
-  @type Bool
-  @default false
-  */
-  error: false,
-  /**
-  Message to be sent to message field
-
-  @property message
-  @type String
-  @default null
-  */
-  message: null,
-  /**
   Normalized object of message strings
 
   @property messages
@@ -70,21 +54,12 @@ export default Ember.Controller.extend({
     noEntry: "Nothing to find.",
     noMatch: "Sorry. We couldn't find that channel.",
     serviceDown: "Oops. The service is down temporarily. Please try back in a few minutes.",
-    noUrl: "Hmm, try searching for a url instead ('ie: pbs<b>.org</b>').",
+    noUrl: "Hmm, try searching for a url instead (ie: pbs.org).",
     prevInstalled: "Yep, that's already been added.",
     successInstalled: "Successfully added.",
-    addingNew: "Thanks...we\'re adding this channel to your library. If you think this channel should be added to our library, please email us at <a href='mailto:ideas@evolutionaryapps.com'>ideas@evolutionaryapps.com</a>"
+    addingNew: "Thanks...we\'re adding this channel to your library. If you think this channel should be added permanently, please reach out.",
+    partialFound: "Is it any of the ones highlighted? Otherwise, try searching for a url instead (ie: pbs.org)."
   },
-  /**
-  Hides messaging still visible after 10s delay
-
-  @method messageOut
-  */
-  messageOut: function() {
-    Ember.run.later(this, function() {
-      this.set('message', null);
-    }, 10000);
-  }.observes('message'),
   /**
   Push new channel to library as Ember Object
 
@@ -125,6 +100,11 @@ export default Ember.Controller.extend({
       localStorage.setItem("dasht-channels", JSON.stringify(model));
     }
   },
+  /**
+  Bring results of partial matches to the front
+
+  @property findPartialMatches
+  */
   findPartialMatches: function() {
     var currentModel = this.get('controllers.application').get('model'),
         channelsLib = currentModel.library,
@@ -174,7 +154,8 @@ export default Ember.Controller.extend({
     findChannel: function() {
       var currentModel = this.get('controllers.application').get('model'),
           channelsLib = currentModel.library,
-          query = this.get('channel');
+          query = this.get('channel'),
+          partialMatch = channelsLib.isAny('searchResult', true);
 
       //clean up query
       if (query) {
@@ -187,7 +168,6 @@ export default Ember.Controller.extend({
 
       //clear any previous errors
       if (this.get('message') != null) {
-        this.set('error', false);
         this.set('message', null);
       }
 
@@ -196,14 +176,22 @@ export default Ember.Controller.extend({
       */
       //nothing typed
       if (!query) {
-        this.set('error', true);
-        return this.set('message', this.messages.noEntry);
+        return this.addWarningMessage(this.messages.noEntry);
       } else {
+
+        //partial match
+        if (partialMatch) {
+          var partials = channelsLib.filterBy('searchResult', true);
+          //reset any previously highlighted matches
+          channelsLib.setEach('highlight', false);
+          partials.setEach('highlight', true);
+          return this.addInfoMessage(this.messages.partialFound, 7000);
+        }
+
         //not a url
         if (!(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/).test(query)) {
           if (!exactTitleMatch) {
-            this.set('error', true);
-            return this.set('message', this.messages.noUrl);
+            return this.addDangerMessage(this.messages.noUrl);
           }
         }
 
@@ -212,29 +200,20 @@ export default Ember.Controller.extend({
           var match = exactURLMatch || exactTitleMatch;
           if (match.get('visible')) {
             //already added to dashtboard
-            this.set('error', false);
-            return this.set('message', this.messages.prevInstalled);
+            return this.addInfoMessage(this.messages.prevInstalled);
+
           } else {
             //successfully installed found channel
             this.send('addChannel', match.get('title'));
-            this.set('error', false);
-            return this.set('message', this.messages.successInstalled);
+            return this.addSuccessMessage(this.messages.successInstalled);
+
           }
         } else {
           //new channel being added to user lib
-          this.set('error', false);
           this.addNewChannel(query);
-          return this.set('message', this.messages.addingNew);
+          return this.addSuccessMessage(this.messages.addingNew, 10000);
         }
       }
-    },
-    /**
-    Clear out messages block
-
-    @method closeMessage
-    */
-    closeMessage: function() {
-      this.set('message', null);
     },
     /**
     Adds existing lib channel to dashtboard
@@ -242,12 +221,11 @@ export default Ember.Controller.extend({
     @method addChannel
     */
     addChannel: function(channel, visible) {
-      this.set('error', false);
       if (!visible) {
         this.get('controllers.dashtboard').toggleChannel(channel, true);
         this.addSuccessMessage(this.messages.successInstalled);
       } else {
-        return this.set('message', this.messages.prevInstalled);
+        this.addInfoMessage(this.messages.prevInstalled);
       }
     },
     /**

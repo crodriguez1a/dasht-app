@@ -1,15 +1,18 @@
 .flash-wrapper {
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 45%;
+  left: 40%;
+  right: 40%;
   z-index: 999;
-  margin: 10px 10px 0 0;
+  margin: 0 auto;
+  text-align: center;
 }
 .alert {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  border-radius: 4px;
+  line-height: 1.25em;
+
 }
 .alert h4 {
   margin-top: 0;

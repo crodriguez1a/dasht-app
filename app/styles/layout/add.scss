@@ -96,7 +96,17 @@
         border-color: $blue;
         color: $blue;
       }
+
+      &.highlight-channel {
+        a {
+          img {
+            @include shake-x();
+          }
+        }
+      }
     }
+
+
   }
   input[type="text"] {
     opacity: 0.85;
@@ -110,6 +120,13 @@
     padding: 0.5em;
     border: none;
     font-size: 1.25em;
+    &:focus {
+      background: $orange;
+      color: white;
+      .fa {
+        color:white;
+      }
+    }
   }
 
   .messaging {
