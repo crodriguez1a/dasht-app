@@ -126,10 +126,9 @@ export default Ember.Component.extend({
 
       if (e.keyCode === 38 || e.keyCode === 40) {
         var grid = Ember.$(actionableItem).closest('.grid'),
-            gridRow = Math.floor(grid.width() / Ember.$(actionableItem[curItem]).width()) - 1;
-          
+            gridRow = Math.floor(grid.width() / Ember.$(actionableItem[curItem]).width()-1);
+
         curItem = e.keyCode === 40 ? curItem+gridRow : curItem-gridRow;
-        console.log(gridRow, grid.width(), Ember.$(actionableItem[curItem]).width());
       }
 
       //focus on current item
