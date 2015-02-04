@@ -98,6 +98,9 @@ main {
 
   .outlet {
     min-height: 35.5em;
+    .grid:not(.filtering) {
+      padding-left: 2em;
+    }
     .liquid-container {
       height: 100%;
       width: 100%;

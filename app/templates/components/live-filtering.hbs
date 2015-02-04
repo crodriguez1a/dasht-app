@@ -1,6 +1,6 @@
-<div class="filtering">
+<div class="filtering grid">
 
-  <ul>
+  <ul class="small-set">
     <li class="filter-heading">
       <a href="#" class="actionable" {{action 'toggleFiltersGroup' 'availablity'}}>
         {{check-box availabilityFilterOn}} Availablity
@@ -15,7 +15,7 @@
     {{/each}}
   </ul>
 
-  <ul>
+  <ul class="small-set">
     <li class="filter-heading">
       <a href="#" class="actionable" {{action 'toggleFiltersGroup' 'content'}}>
         {{check-box contentFilterOn}} Content
@@ -30,7 +30,7 @@
     {{/each}}
   </ul>
 
-  <ul class="large-filter-set">
+  <ul class="large-set">
     <li class="filter-heading">
       <a href="#" class="actionable" {{action 'toggleFiltersGroup' 'genres'}}>
         {{check-box genresFilterOn}} Genres
