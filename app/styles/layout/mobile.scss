@@ -16,7 +16,7 @@
     }
   }
   main  {
-  padding: 1em;
+    padding: 1em;
 
     .outlet {
       .page-actions {
@@ -27,13 +27,15 @@
     }
 
     .add-channel, .all-channels {
-      .new-channel, .installed-channel {
-        width: 5em;
-        height: 5em;
-        margin: 0.8em 0.8em 0 0;
+      text-align: center;
+      left: 0;
+      .channel, .installed-channel {
+        width: 30%;
+        height: 30%;
+        margin: 3px;
         display: inline-table;
         &:nth-child(3n) {
-          margin-right: 0;
+          //margin-right: 0;
         }
         img {
           border-radius: 1em;

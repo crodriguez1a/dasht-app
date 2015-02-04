@@ -72,12 +72,13 @@ export default Ember.Component.extend({
   @method keyManager
   */
   keyManager: function(e) {
+
     var self = this,
         currentModel = self.get('model'),
         actionableItem = Ember.$('.actionable').not('.disabled'),
         curItem = this.get('actionItemCount');
 
-    //remove pressed status from all
+    //remove pressed status from all remote control keys
     Ember.$('.keyboard-remote li').removeClass('pressed');
 
     //open remote if user uses arrows or any other trigger designated
@@ -86,6 +87,8 @@ export default Ember.Component.extend({
       if (!this.get('visible')) {
         this.set('visible', true);
       }
+      //prevent arrows from scrolling page
+      e.preventDefault();
     }
 
     //command k - toggle remote expand/collapsed
@@ -109,38 +112,46 @@ export default Ember.Component.extend({
     if (_.contains(arrows, e.keyCode)) {
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
 
-      //reset if needed
-      if (curItem < 0 || curItem > actionableItem.length-1) {
-        curItem = curItem < 0 ? 0 : actionableItem.length;
-      }
-
-      //tab forward/down
+      //tab forward
       if (e.keyCode === 39) {
         curItem++;
       }
 
-      //tab back/up
+      //tab back
       if (e.keyCode === 37) {
         curItem--;
       }
 
-      if (e.keyCode === 38 || e.keyCode === 40) {
-        var grid = Ember.$(actionableItem).closest('.grid'),
-            gridRow = Math.floor(grid.width() / Ember.$(actionableItem[curItem]).width()-1);
+      //tab up/down
+      var el = Ember.$(actionableItem[curItem]),
+          grid = el.closest('.grid'),
+          gridRow = Math.floor(grid.innerWidth() / el.innerWidth());
 
+      if (e.keyCode === 38 || e.keyCode === 40) {
+        //account for channels margin
+        gridRow = el.parent().hasClass('channel') ? gridRow-1 : gridRow;
+        //skip down to next row
         curItem = e.keyCode === 40 ? curItem+gridRow : curItem-gridRow;
       }
 
-      //focus on current item
+
       if (curItem > -1 && curItem < actionableItem.length) {
-        actionableItem[curItem].focus();
+        //update actionItemCount
+        this.set('actionItemCount', curItem);
+        //focus on current item
+        return actionableItem[curItem].focus();
+      } else {
+
+        //when reaching the top of grid, skip to previous grid
+        var prevGrid = grid.prev('.grid'),
+            prevActionable = prevGrid.find('.actionable');
+
+        if (e.keyCode === 38) {
+          this.set('actionItemCount', prevActionable.length);
+          return prevActionable.last().focus();
+        }
       }
 
-      //update actionItemCount
-      this.set('actionItemCount', curItem);
-
-      //prevent arrows from scrolling page
-      e.preventDefault();
     }
 
     //enter key - Submit Action

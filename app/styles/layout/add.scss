@@ -1,5 +1,6 @@
 .add-channel, .all-channels {
   position: relative;
+  left: 2em;
   text-align: left;
   width: auto;
   .installed-channel {
@@ -7,7 +8,7 @@
       opacity: 0.15;
     }
   }
-  .new-channel, .installed-channel {
+  .channel, .installed-channel {
     position: relative;
     margin: 1em 1em 0 0;
     display: inline-block;
@@ -60,31 +61,41 @@
     }
     .delete, .add, .installed {
       position: absolute;
-      top: -6px;
-      right: -6px;
-      width: 1.5em;
-      height: 1.5em;
-      border: 1px solid;
-      border-radius: 1em;
-      text-align: center;
-      padding-top: 0.25em;
-      z-index: 3;
-      font-size: 1em;
+      width: 100%;
+      height: 100%;
+      > .fa:first-of-type {
+        position: absolute;
+        color: $red;
+        border-color: $red;
+        top: -6px;
+        right: -6px;
+        width: 1.5em;
+        height: 1.5em;
+        border: 1px solid;
+        border-radius: 1em;
+        text-align: center;
+        padding-top: 0.20em;
+        z-index: 3;
+        font-size: 1em;
+      }
     }
     .delete {
-      border-color: $red;
-      color: $red;
+      > .fa:first-of-type {
+        color: $red;
+        border-color: $red;
+      }
     }
     .add {
-      color: $green;
-      border-color: $green;
-      > .fa-plus:first-of-type {
-        margin: -20px;
-        padding: 20px;
+      > .fa:first-of-type {
+        color: $green;
+        border-color: $green;
       }
     }
     .installed {
-      border-color: $medium-text;
+      > .fa:first-of-type {
+        color: $medium-text;
+        border-color: $medium-text;
+      }
     }
 
     &.search-result {
@@ -106,9 +117,10 @@
         }
       }
     }
-
-
   }
+}
+
+.search-channels {
   input[type="text"] {
     opacity: 0.85;
   }
@@ -128,38 +140,5 @@
         color:white;
       }
     }
-  }
-
-  .messaging {
-    opacity: 0.65;
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 1em;
-    background: white;
-    padding: 0.65em;
-
-    &.error {
-      color: red;
-    }
-
-    &.message {
-      color: $blue;
-      line-height: 1.25em;
-    }
-
-    &:empty {
-      display: none;
-    }
-
-    .close {
-      float:right;
-      padding: 0 0.25em;
-    }
-
-    a {
-      color: $dark-grey;
-    }
-
   }
 }

@@ -26,6 +26,10 @@ html, body {
   outline: none;
 }
 
+input.actionable:focus {
+  border: 1px dotted $orange;
+}
+
 .actionable:focus:not(input), .actionable a:focus {
   color: $orange;
   img {
@@ -98,9 +102,6 @@ main {
 
   .outlet {
     min-height: 35.5em;
-    .grid:not(.filtering) {
-      padding-left: 2em;
-    }
     .liquid-container {
       height: 100%;
       width: 100%;
