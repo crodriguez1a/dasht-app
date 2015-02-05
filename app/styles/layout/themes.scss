@@ -25,10 +25,14 @@ html {
       }
     }
     .delete, .add, .installed {
-      background: $canvas-dark;
+      > .fa:first-of-type {
+        background: $canvas-dark;
+      }
       &.actionable:focus {
-        border-color: $orange;
-        color: $orange;
+        > .fa:first-of-type {
+          border-color: $orange;
+          color: $orange;
+        }
       }
     }
     .filtering, .filtering a {
@@ -71,10 +75,14 @@ html {
       }
     }
     .delete, .add, .installed {
-      background: $canvas;
+      > .fa:first-of-type {
+        background: $canvas;
+      }
       &.actionable:focus {
-        border-color: $orange;
-        color: $orange;
+        > .fa:first-of-type {
+          border-color: $orange;
+          color: $orange;
+        }
       }
     }
     .filtering, .filtering a {

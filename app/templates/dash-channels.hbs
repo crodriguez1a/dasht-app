@@ -1,7 +1,7 @@
 {{#if item.visible}}
   {{#unless item.isfiltered}}
     {{#if item.title}}
-      <div class="new-channel">
+      <div class="channel">
         {{#if controller.editing}}
           <a href="#" class="actionable delete" {{action 'hideChannel' item.title}}>{{fa-icon "fa-minus"}}</a>
         {{/if}}
