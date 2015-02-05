@@ -26,6 +26,10 @@ html, body {
   outline: none;
 }
 
+input.actionable:focus {
+  border: 1px dotted $orange;
+}
+
 .actionable:focus:not(input), .actionable a:focus {
   color: $orange;
   img {

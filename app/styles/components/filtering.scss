@@ -25,7 +25,6 @@
       display: block;
       cursor: pointer;
       margin: 0 2.75em 0 0;
-
       &.save {
         float: right;
       }
@@ -44,7 +43,7 @@
       }
     }
 
-    &.large-filter-set {
+    &.large-filter-set, &.medium-filter-set {
       width: 75%;
       li {
         &.filter-heading {
@@ -56,7 +55,7 @@
         }
         display: inline-block;
         vertical-align: top;
-        width: 23%;
+        width: 12em;
         margin-right: 0.75em;
         &:last-child {
           margin-right: 0;
@@ -64,6 +63,7 @@
       }
     }
   }
+
   .messaging {
     margin: 0 0 1em 1em;
     color: $orange;

@@ -72,12 +72,13 @@ export default Ember.Component.extend({
   @method keyManager
   */
   keyManager: function(e) {
+
     var self = this,
         currentModel = self.get('model'),
-        actionableItem = Ember.$('.actionable').not('.disabled'),
+        actionableItems = Ember.$('.actionable').not('.disabled'),
         curItem = this.get('actionItemCount');
 
-    //remove pressed status from all
+    //remove pressed status from all remote control keys
     Ember.$('.keyboard-remote li').removeClass('pressed');
 
     //open remote if user uses arrows or any other trigger designated
@@ -86,6 +87,8 @@ export default Ember.Component.extend({
       if (!this.get('visible')) {
         this.set('visible', true);
       }
+      //prevent arrows from scrolling page
+      e.preventDefault();
     }
 
     //command k - toggle remote expand/collapsed
@@ -107,33 +110,65 @@ export default Ember.Component.extend({
     };
 
     if (_.contains(arrows, e.keyCode)) {
+
+      //hightlight button on remote
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
 
-      //reset if needed
-      if (curItem < 0 || curItem > actionableItem.length-1) {
-        curItem = curItem < 0 ? 0 : actionableItem.length;
-      }
-
-      //tab forward/down
-      if (e.keyCode === 39 || e.keyCode === 40) {
+      //tab forward
+      if (e.keyCode === 39) {
         curItem++;
       }
 
-      //tab back/up
-      if (e.keyCode === 37 || e.keyCode === 38) {
+      //tab back
+      if (e.keyCode === 37) {
         curItem--;
       }
 
-      //focus on current item
-      if (curItem > -1 && curItem < actionableItem.length) {
-        actionableItem[curItem].focus();
+      //define tabable grids
+      var grid = Ember.$(actionableItems[curItem]).closest('.grid'),
+          gridRow = Math.floor(grid.innerWidth() / Ember.$(actionableItems[curItem]).innerWidth());
+
+      //tab up/down
+      if (e.keyCode === 38 || e.keyCode === 40 ) {
+        if (gridRow > 3) {
+        //account for channels margin
+        gridRow = Ember.$(actionableItems[curItem]).parent().hasClass('channel') ? gridRow-1 : gridRow;
+        //skip down to next row
+        curItem = e.keyCode === 40 ? curItem+gridRow : curItem-gridRow;
+        } else {
+          //native tabbing
+          if (e.keyCode === 40) {
+            curItem++;
+          } else {
+            curItem--;
+          }
+        }
       }
 
-      //update actionItemCount
-      this.set('actionItemCount', curItem);
+      if (curItem > -1 && curItem < actionableItems.length) {
+        //update actionItemCount
+        this.set('actionItemCount', curItem);
+        //focus on current item
+        return actionableItems[curItem].focus();
+      } else {
+        var prevGrid = grid.prev('.grid'),
+            nextGrid = grid.next('.grid');
 
-      //prevent arrows from scrolling page
-      e.preventDefault();
+        //reached top of grid
+        if(e.keyCode === 38 && prevGrid.length > 0) {
+          var prevActionable = prevGrid.find('.actionable').last();
+          this.set('actionItemCount', _.indexOf(actionableItems, prevActionable[0]));
+          return prevActionable.focus();
+        }
+
+        //reached bottom of grid
+        if(e.keyCode === 40 && nextGrid.length > 0) {
+          var nextActionable = prevGrid.find('.actionable').first();
+          this.set('actionItemCount', _.indexOf(actionableItems, nextActionable[0]));
+          return nextActionable.focus();
+        }
+      }
+
     }
 
     //enter key - Submit Action

@@ -2,18 +2,18 @@
 
 {{partial "page-header"}}
 
-<section class="add-channel">
-    {{input placeholder="ie: hulu.com" value=channel action="findChannel" classNames="actionable"}}
-    {{#liquid-if 'message' class="slide-down"}}
-      <div {{bind-attr class=":messaging error:error:message"}}>
-        {{{message}}}
-        <div class="actionable close" {{action 'closeMessage'}}>{{fa-icon "fa-close"}}</div>
-      </div>
-    {{/liquid-if}}
-    <button class="actionable" {{action 'findChannel' target }}>Find {{fa-icon "fa-angle-right"}}</button>
-  </section>
+<section class="grid search-channels">
+  {{input placeholder="ie: hulu.com" value=channel action="findChannel" classNames="actionable"}}
+  {{#liquid-if 'message' class="slide-down"}}
+    <div {{bind-attr class=":messaging error:error:message"}}>
+      {{{message}}}
+      <div class="actionable close" {{action 'closeMessage'}}>{{fa-icon "fa-close"}}</div>
+    </div>
+  {{/liquid-if}}
+  <button class="actionable" {{action 'findChannel' target }}>Find {{fa-icon "fa-angle-right"}}</button>
+</section>
 
-<section>
+<section class="grid">
   <div class="all-channels">
     {{#each item in librarySortVisible}}
       {{partial "library-channels"}}

@@ -1,5 +1,5 @@
 {
-    "modified": "2015-01-30 07:17:59",
+    "modified": "2015-02-03 02:14:59",
     "library": [
         {
             "title": "hulu",
@@ -81,7 +81,7 @@
         {
             "title": "pbs",
             "icon": "/assets/icons/pbs.png",
-            "url": "//pbs.org",
+            "url": "//video.pbs.org",
             "isdefault": "true",
             "tags": [
                 "tv",
@@ -696,7 +696,7 @@
         {
             "title": "xmovies8",
             "icon": "/assets/icons/xmovies8.png",
-            "url": "//http://xmovies8.co/",
+            "url": "//xmovies8.co/",
             "isdefault": "false",
             "tags": [
                 "tv",
@@ -714,7 +714,7 @@
         {
             "title": "solarmovie",
             "icon": "/assets/icons/solarmovie.png",
-            "url": "//http://solarmovie.is/",
+            "url": "//solarmovie.is/",
             "isdefault": "false",
             "tags": [
                 "tv",
@@ -732,7 +732,7 @@
         {
             "title": "telemundo",
             "icon": "/assets/icons/telemundo.png",
-            "url": "//http://telemundo.com/",
+            "url": "//telemundo.com/",
             "isdefault": "true",
             "tags": [
                 "tv",
@@ -740,6 +740,17 @@
                 "free",
                 "latino",
                 "drama"
+            ]
+        },
+        {
+            "title": "nbcnightlynews",
+            "icon": "/assets/icons/nightlynews.png",
+            "url": "//nbcnews.com/nightly-news",
+            "isdefault": "true",
+            "tags": [
+                "tv",
+                "news",
+                "free"
             ]
         }
 
