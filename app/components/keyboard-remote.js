@@ -75,7 +75,7 @@ export default Ember.Component.extend({
 
     var self = this,
         currentModel = self.get('model'),
-        actionableItem = Ember.$('.actionable').not('.disabled'),
+        actionableItems = Ember.$('.actionable').not('.disabled'),
         curItem = this.get('actionItemCount');
 
     //remove pressed status from all remote control keys
@@ -110,6 +110,8 @@ export default Ember.Component.extend({
     };
 
     if (_.contains(arrows, e.keyCode)) {
+
+      //hightlight button on remote
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
 
       //tab forward
@@ -122,33 +124,48 @@ export default Ember.Component.extend({
         curItem--;
       }
 
-      //tab up/down
-      var el = Ember.$(actionableItem[curItem]),
-          grid = el.closest('.grid'),
-          gridRow = Math.floor(grid.innerWidth() / el.innerWidth());
+      //define tabable grids
+      var grid = Ember.$(actionableItems[curItem]).closest('.grid'),
+          gridRow = Math.floor(grid.innerWidth() / Ember.$(actionableItems[curItem]).innerWidth());
 
-      if (e.keyCode === 38 || e.keyCode === 40) {
+      //tab up/down
+      if (e.keyCode === 38 || e.keyCode === 40 ) {
+        if (gridRow > 3) {
         //account for channels margin
-        gridRow = el.parent().hasClass('channel') ? gridRow-1 : gridRow;
+        gridRow = Ember.$(actionableItems[curItem]).parent().hasClass('channel') ? gridRow-1 : gridRow;
         //skip down to next row
         curItem = e.keyCode === 40 ? curItem+gridRow : curItem-gridRow;
+        } else {
+          //native tabbing
+          if (e.keyCode === 40) {
+            curItem++;
+          } else {
+            curItem--;
+          }
+        }
       }
 
-
-      if (curItem > -1 && curItem < actionableItem.length) {
+      if (curItem > -1 && curItem < actionableItems.length) {
         //update actionItemCount
         this.set('actionItemCount', curItem);
         //focus on current item
-        return actionableItem[curItem].focus();
+        return actionableItems[curItem].focus();
       } else {
-
-        //when reaching the top of grid, skip to previous grid
         var prevGrid = grid.prev('.grid'),
-            prevActionable = prevGrid.find('.actionable');
+            nextGrid = grid.next('.grid');
 
-        if (e.keyCode === 38) {
-          this.set('actionItemCount', prevActionable.length);
-          return prevActionable.last().focus();
+        //reached top of grid
+        if(e.keyCode === 38 && prevGrid.length > 0) {
+          var prevActionable = prevGrid.find('.actionable').last();
+          this.set('actionItemCount', _.indexOf(actionableItems, prevActionable[0]));
+          return prevActionable.focus();
+        }
+
+        //reached bottom of grid
+        if(e.keyCode === 40 && nextGrid.length > 0) {
+          var nextActionable = prevGrid.find('.actionable').first();
+          this.set('actionItemCount', _.indexOf(actionableItems, nextActionable[0]));
+          return nextActionable.focus();
         }
       }
 
