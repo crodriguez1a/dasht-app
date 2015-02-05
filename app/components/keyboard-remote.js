@@ -131,10 +131,10 @@ export default Ember.Component.extend({
       //tab up/down
       if (e.keyCode === 38 || e.keyCode === 40 ) {
         if (gridRow > 3) {
-        //account for channels margin
-        gridRow = Ember.$(actionableItems[curItem]).parent().hasClass('channel') ? gridRow-1 : gridRow;
-        //skip down to next row
-        curItem = e.keyCode === 40 ? curItem+gridRow : curItem-gridRow;
+          //account for channels margin
+          gridRow = Ember.$(actionableItems[curItem]).parent().hasClass('channel') ? gridRow - 1 : gridRow;
+          //skip down to next row
+          curItem = e.keyCode === 40 ? curItem+gridRow : curItem-gridRow;
         } else {
           //native tabbing
           if (e.keyCode === 40) {
@@ -155,14 +155,14 @@ export default Ember.Component.extend({
             nextGrid = grid.next('.grid');
 
         //reached top of grid
-        if(e.keyCode === 38 && prevGrid.length > 0) {
+        if (e.keyCode === 38 && prevGrid.length > 0) {
           var prevActionable = prevGrid.find('.actionable').last();
           this.set('actionItemCount', _.indexOf(actionableItems, prevActionable[0]));
           return prevActionable.focus();
         }
 
         //reached bottom of grid
-        if(e.keyCode === 40 && nextGrid.length > 0) {
+        if (e.keyCode === 40 && nextGrid.length > 0) {
           var nextActionable = prevGrid.find('.actionable').first();
           this.set('actionItemCount', _.indexOf(actionableItems, nextActionable[0]));
           return nextActionable.focus();
