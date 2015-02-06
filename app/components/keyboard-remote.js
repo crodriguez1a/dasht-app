@@ -74,9 +74,14 @@ export default Ember.Component.extend({
   keyManager: function(e) {
 
     var self = this,
+        tap = Ember.$('audio')[0],
         currentModel = self.get('model'),
         actionableItems = Ember.$('.actionable').not('.disabled'),
         curItem = this.get('actionItemCount');
+
+    //play tapping
+    tap.volume = 0.10;
+    tap.play();
 
     //remove pressed status from all remote control keys
     Ember.$('.keyboard-remote li').removeClass('pressed');
