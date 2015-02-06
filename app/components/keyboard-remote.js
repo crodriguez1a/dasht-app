@@ -79,19 +79,20 @@ export default Ember.Component.extend({
         actionableItems = Ember.$('.actionable').not('.disabled'),
         curItem = this.get('actionItemCount');
 
-    //play tapping
-    tap.volume = 0.10;
-    tap.play();
-
     //remove pressed status from all remote control keys
     Ember.$('.keyboard-remote li').removeClass('pressed');
 
     //open remote if user uses arrows or any other trigger designated
-    var hotKeys = [37, 38, 39, 40];
+    var hotKeys = [37, 38, 39, 40, 13, 27];
     if (_.contains(hotKeys, e.keyCode)) {
       if (!this.get('visible')) {
         this.set('visible', true);
       }
+
+      //play tapping
+      tap.volume = 0.10;
+      tap.play();
+
       //prevent arrows from scrolling page
       e.preventDefault();
     }
