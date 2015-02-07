@@ -10,30 +10,15 @@ import _ from 'lodash';
 */
 export default Ember.Component.extend({
   /**
-  Signal if message is an error message
-
-  @property error
-  @type Bool
-  @default false
-  */
-  error: false,
-  /**
-  Message to be sent to message field
-
-  @property message
-  @type String
-  @default null
-  */
-  message: null,
-  /**
   Normalized object of message strings
 
   @property messages
   @type Object
   */
   messages: {
-    noMatch: "Sorry, there are no channels that match that criteria. Try un-checking some filters or <a href='/add'>adding channels</a>."
+    noMatch: 'Sorry, there are no channels that match that criteria. Try un-checking some filters or adding more channels.'
   },
+
   /**
     Alias for collection of filters
 
@@ -314,8 +299,7 @@ export default Ember.Component.extend({
     if (visibleLib.isEvery('isfiltered')) {
       var controllerContext = this.get('controller').get('model');
       if (controllerContext.get('showFilterMessaging')) {
-        this.set('error', true);
-        this.set('message', this.messages.noMatch);
+        return controllerContext.get('controllers.application').addInfoMessage(this.get('messages.noMatch'));
       }
     }
   },

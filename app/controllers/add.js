@@ -131,20 +131,6 @@ export default Ember.Controller.extend({
     }
 
   }.observes('channel'),
-
-  addSuccessMessage: function(msg, time) {
-    Ember.get(this, 'flashes').success(msg, time || 3000);
-  },
-  addWarningMessage: function(msg, time) {
-    Ember.get(this, 'flashes').warning(msg, time || 3000);
-  },
-  addInfoMessage: function(msg, time) {
-    Ember.get(this, 'flashes').info(msg, time || 3000);
-  },
-  addDangerMessage: function(msg, time) {
-    Ember.get(this, 'flashes').danger(msg, time || 3000);
-  },
-
   actions: {
     /**
     Action, search for channels in model
@@ -166,17 +152,12 @@ export default Ember.Controller.extend({
       var exactURLMatch = channelsLib.findBy('url', '//'+query),
           exactTitleMatch = channelsLib.findBy('title', query);
 
-      //clear any previous errors
-      if (this.get('message') != null) {
-        this.set('message', null);
-      }
-
       /*
         Search messaging
       */
       //nothing typed
       if (!query) {
-        return this.addWarningMessage(this.messages.noEntry);
+        return this.get('controllers.application').addWarningMessage(this.messages.noEntry);
       } else {
 
         //partial match
@@ -185,13 +166,13 @@ export default Ember.Controller.extend({
           //reset any previously highlighted matches
           channelsLib.setEach('highlight', false);
           partials.setEach('highlight', true);
-          return this.addInfoMessage(this.messages.partialFound, 7000);
+          return this.get('controllers.application').addInfoMessage(this.messages.partialFound, 7000);
         }
 
         //not a url
         if (!(/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/).test(query)) {
           if (!exactTitleMatch) {
-            return this.addDangerMessage(this.messages.noUrl);
+            return this.get('controllers.application').addDangerMessage(this.messages.noUrl);
           }
         }
 
@@ -200,18 +181,18 @@ export default Ember.Controller.extend({
           var match = exactURLMatch || exactTitleMatch;
           if (match.get('visible')) {
             //already added to dashtboard
-            return this.addInfoMessage(this.messages.prevInstalled);
+            return this.get('controllers.application').addInfoMessage(this.messages.prevInstalled);
 
           } else {
             //successfully installed found channel
             this.send('addChannel', match.get('title'));
-            return this.addSuccessMessage(this.messages.successInstalled);
+            return this.get('controllers.application').addSuccessMessage(this.messages.successInstalled);
 
           }
         } else {
           //new channel being added to user lib
           this.addNewChannel(query);
-          return this.addSuccessMessage(this.messages.addingNew, 10000);
+          return this.get('controllers.application').addSuccessMessage(this.messages.addingNew, 10000);
         }
       }
     },
@@ -223,9 +204,9 @@ export default Ember.Controller.extend({
     addChannel: function(channel, visible) {
       if (!visible) {
         this.get('controllers.dashtboard').toggleChannel(channel, true);
-        this.addSuccessMessage(this.messages.successInstalled);
+        this.get('controllers.application').addSuccessMessage(this.messages.successInstalled);
       } else {
-        this.addInfoMessage(this.messages.prevInstalled);
+        this.get('controllers.application').addInfoMessage(this.messages.prevInstalled);
       }
     },
     /**

@@ -79,10 +79,6 @@ export default Ember.Component.extend({
         actionableItems = Ember.$('.actionable').not('.disabled'),
         curItem = this.get('actionItemCount');
 
-    //play tapping
-    tap.volume = 0.10;
-    tap.play();
-
     //remove pressed status from all remote control keys
     Ember.$('.keyboard-remote li').removeClass('pressed');
 
@@ -92,6 +88,11 @@ export default Ember.Component.extend({
       if (!this.get('visible')) {
         this.set('visible', true);
       }
+
+      //play tapping
+      tap.volume = 0.10;
+      tap.play();
+
       //prevent arrows from scrolling page
       e.preventDefault();
     }
@@ -178,6 +179,7 @@ export default Ember.Component.extend({
 
     //enter key - Submit Action
     if (e.keyCode === 13) {
+      tap.play();
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
     }
 

@@ -82,6 +82,24 @@ export default Ember.Controller.extend({
     });
   }.observes('currentTheme'),
 
+  /**
+    Flash messaging
+
+    @method addSuccessMessage, addWarningMessage, addInfoMessage, addDangerMessage
+  */
+  addSuccessMessage: function(msg, time) {
+    Ember.get(this, 'flashes').success(msg, time || 3000);
+  },
+  addWarningMessage: function(msg, time) {
+    Ember.get(this, 'flashes').warning(msg, time || 3000);
+  },
+  addInfoMessage: function(msg, time) {
+    Ember.get(this, 'flashes').info(msg, time || 3000);
+  },
+  addDangerMessage: function(msg, time) {
+    Ember.get(this, 'flashes').danger(msg, time || 3000);
+  },
+
   actions: {
     /**
       Action to toggle the app header menu
