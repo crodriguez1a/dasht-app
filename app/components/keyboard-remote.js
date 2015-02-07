@@ -88,7 +88,7 @@ export default Ember.Component.extend({
       if (!this.get('visible')) {
         this.set('visible', true);
       }
-      
+
       //play tapping
       tap.volume = 0.10;
       tap.play();
@@ -179,6 +179,7 @@ export default Ember.Component.extend({
 
     //enter key - Submit Action
     if (e.keyCode === 13) {
+      tap.play();
       Ember.$('.kc-'+e.keyCode).addClass('pressed');
     }
 

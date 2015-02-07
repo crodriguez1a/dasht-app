@@ -38,6 +38,9 @@ html {
     .filtering, .filtering a {
       color: $light-blue;
       border-color: $transparent-blue;
+      &:focus {
+        color: $orange;
+      }
       .filter-heading {
         color: $lighter-text;
       }
@@ -88,6 +91,9 @@ html {
     .filtering, .filtering a {
       color: $blue;
       border-color: $transparent-blue;
+      &:focus {
+        color: $orange;
+      }
       .filter-heading {
         color: $lighter-text;
       }
