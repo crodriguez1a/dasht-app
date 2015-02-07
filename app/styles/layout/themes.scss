@@ -51,6 +51,12 @@ html {
     button, input[type="input"] {
       background: $light-blue;
     }
+    .page-actions {
+      .notify-number {
+        background: $light-blue;
+        color: $canvas-dark;
+      }
+    }
   }
   &[data-theme="light"] {
     background: $canvas;
@@ -103,6 +109,12 @@ html {
     }
     button, input[type="input"] {
       background: $blue;
+    }
+    .page-actions {
+      .notify-number {
+        background: $blue;
+        color: $canvas;
+      }
     }
   }
 }

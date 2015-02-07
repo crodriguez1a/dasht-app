@@ -1,7 +1,13 @@
 <h2 class="page-title">{{fa-icon "fa-th-large"}} {{title}}</h2>
 
 <div class="page-actions grid">
-  <a href="#" {{bind-attr class=":actionable controller.currentlyFiltered:active"}} {{action 'toggleFilters'}} >
+
+  <a href="#" {{bind-attr class=":actionable controller.onFiltersGreaterThanZero:active"}} {{action 'toggleFilters'}} >
+    {{#if onFiltersGreaterThanZero}}
+      <span class="notify-number">
+        {{controller.onFiltersLength}}
+      </span>
+    {{/if}}
     <!--abstract this -->
     {{#if controller.filtering}}
       {{fa-icon "fa-close"}}

@@ -62,6 +62,18 @@ export default Ember.Controller.extend({
   */
   currentlyFiltered: Ember.computed.notEmpty('cachedFilters'),
   /**
+  Listen for filters turned on
+
+  @methods observeOnFilters
+  */
+  observeOnFilters: function() {
+    var onFilters = this.get('cachedFilters.allfilters').filterBy('on', true);
+    this.set('onFilters', onFilters);
+  }.observes('cachedFilters.allfilters.@each.on'),
+  onFilters: null,
+  onFiltersLength: Ember.computed.alias('onFilters.length'),
+  onFiltersGreaterThanZero: Ember.computed.gt('onFiltersLength', 0),
+  /**
   Update local storage item with latest model
 
   @method saveToLocal
