@@ -38,6 +38,13 @@ export default Ember.Controller.extend({
   */
   cachedFilters: Ember.computed.alias('controllers.dashtboard.cachedFilters'),
   /**
+  Listen for filters turned on
+
+  @methods observeOnFilters
+  */
+  onFiltersLength: Ember.computed.alias('controllers.dashtboard.onFiltersLength'),
+  onFiltersGreaterThanZero: Ember.computed.alias('controllers.dashtboard.onFiltersGreaterThanZero'),
+  /**
   Bool to signal if filters have been applied
 
   @property currentlyFiltered

@@ -107,6 +107,7 @@ main {
       right: 0;
       text-align: right;
       vertical-align: top;
+      min-height: 2em;
       a {
         display: inline-block;
         text-decoration: none;
@@ -119,7 +120,19 @@ main {
         &.editing {
           color: red;
         }
+        .notify-number {
+          display: inline-block;
+          width: 2em;
+          height: 2em;
+          border-radius: 1em;
+          text-align: center;
+          color: white;
+          font-size: small;
+          padding: 0.5em;
+          margin-right: 0.5em;
+        }
       }
+
     }
   }
 

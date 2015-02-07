@@ -1,5 +1,12 @@
 <div class="page-actions grid">
   <a href="#" {{action 'toggleFilters'}} {{bind-attr class=":actionable controller.currentlyFiltered:active"}}>
+    {{#if currentlyFiltered}}
+      {{#if onFiltersGreaterThanZero}}
+        <span class="notify-number">
+          {{controller.onFiltersLength}}
+        </span>
+      {{/if}}
+    {{/if}}
     {{#if controller.filtering}}
       {{fa-icon "fa-close"}}
     {{else}}
