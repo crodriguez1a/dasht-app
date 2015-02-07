@@ -102,7 +102,7 @@ main {
       width: 100%;
     }
     .page-actions {
-      position: absolute;
+      position: relative;
       top: 4px;
       right: 0;
       text-align: right;
@@ -130,6 +130,8 @@ main {
           font-size: small;
           padding: 0.5em;
           margin-right: 0.5em;
+          vertical-align: middle;
+          line-height: 1em;
         }
       }
 
