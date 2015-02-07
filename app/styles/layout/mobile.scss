@@ -27,16 +27,14 @@
     }
 
     .add-channel, .all-channels {
-      text-align: center;
+      text-align: left;
       left: 0;
+      padding: 0;
       .channel, .installed-channel {
-        width: 30%;
-        height: 30%;
-        margin: 3px 0 3px 6px;
+        width: 28%;
+        height: 28%;
+        margin: 6px 0 6px 11px;
         display: inline-table;
-        &:nth-child(3n) {
-          //margin-right: 0;
-        }
         img {
           border-radius: 1em;
         }
@@ -44,6 +42,10 @@
             padding-top: 1px;
         }
       }
+    }
+
+    .alpha-sort {
+      display: none;
     }
 
     .filtering {

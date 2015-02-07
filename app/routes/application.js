@@ -155,6 +155,7 @@ export default Ember.Route.extend({
 
       a.setProperties({
         title: item.title,
+        anchor: item.title[0].toLowerCase(),
         icon: item.icon,
         url: item.url,
         tags: item.tags,

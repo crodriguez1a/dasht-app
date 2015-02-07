@@ -6,7 +6,7 @@
              onUpdateTheme="updateTheme"}}
 
 <main>
-  
+
   <div class="flash-wrapper">
     {{#each flash in flashes.queue}}
       {{flash-message flash=flash}}
@@ -17,6 +17,7 @@
     {{liquid-outlet}}
   </div>
 
+  {{alpha-sort model=this}}
   {{app-footer}}
 
 </main>
