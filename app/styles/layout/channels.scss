@@ -1,6 +1,6 @@
 .add-channel, .all-channels {
   position: relative;
-  left: 2em;
+  padding-left: 1em;
   text-align: left;
   width: auto;
   .installed-channel {
@@ -16,6 +16,14 @@
     height: 9em;
     a{
       display: block;
+
+      &.anchor {
+        position: relative;
+        top:-5em;
+        display: block;
+        height: 0;
+        width:0;
+      }
 
       &.disabled {
         pointer-events: none;
