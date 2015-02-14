@@ -134,7 +134,29 @@ main {
           line-height: 1em;
         }
       }
-
+      .quick-search {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        opacity: 0.95;
+        a {
+          position: relative;
+          z-index: 2;
+        }
+        .liquid-container {
+          position: absolute;
+          top: -0.5em;
+          right: -0.5em;
+          width: 15em;
+          height: 2em;
+          z-index: 1;
+        }
+        input {
+          font-size: medium;
+          color: $dark-grey;
+          height: 2em;
+        }
+      }
     }
   }
 
