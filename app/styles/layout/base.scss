@@ -147,7 +147,7 @@ main {
           position: absolute;
           top: -0.5em;
           right: -0.5em;
-          width: 15em;
+          width: 20em;
           height: 2em;
           z-index: 1;
         }
@@ -155,6 +155,7 @@ main {
           font-size: medium;
           color: $dark-grey;
           height: 2em;
+          border-radius: 1em;
         }
       }
     }
