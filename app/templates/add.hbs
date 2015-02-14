@@ -3,7 +3,7 @@
 {{partial "page-header"}}
 
 <section class="grid search-channels">
-  {{input placeholder="ie: hulu.com" value=channel action="findChannel" classNames="actionable"}}
+  {{input placeholder="ie: hulu.com" value=channel classNames="actionable"}}
   {{#liquid-if 'message' class="slide-down"}}
     <div {{bind-attr class=":messaging error:error:message"}}>
       {{{message}}}

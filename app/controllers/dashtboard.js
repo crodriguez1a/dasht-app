@@ -9,19 +9,36 @@ import { hasLocalStorage } from 'dasht/utils/feature-detect';
 export default Ember.Controller.extend({
   needs: ['application'],
   /**
+  Mobile flag from device.js
+
+  @property isMobile
+  @type String
+  */
+  isMobile: function() {
+    return window.__device.mobile;
+  }.property(),
+  /**
   Sort default
 
-  @property sortAlpha
+  @property sortVisible
   @type Array
   */
-  sortAlpha: ['title'],
+  sortVisible: ['searchResult:desc', 'visible', 'title'],
   /**
-  Channel lib sorted alphabetically
+  Channel lib sorted by visible (added) channels first, the alphabetical
 
-  @property librarySortAlpha
+  @property librarySortVisible
   @type Array
   */
-  librarySortAlpha: Ember.computed.sort('controllers.application.model.library', 'sortAlpha'),
+  librarySortVisible: Ember.computed.sort('controllers.application.model.library', 'sortVisible'),
+  /**
+  Signal if quick search input is visible
+
+  @property quickSearch
+  @type Bool
+  @default false
+  */
+  quickSearch: false,
   /**
   Signal if editing is turned on
 
@@ -97,7 +114,41 @@ export default Ember.Controller.extend({
       this.saveToLocal(currentModel);
     }
   },
+  findChannel: function() {
+    var currentModel = this.get('controllers.application').get('model');
+    var channelsLib = currentModel.library;
+    var query = this.get('channel');
+    var partialTitleMatchArr = [];
+
+    //clear previous searches
+    channelsLib.setEach('searchResult', false);
+
+    if (query) {
+      //clean up query
+      query = (query.replace(/ /g, '')).toLowerCase();
+      //match hits
+      channelsLib.filter(function(item) {
+        var hits = (item.title).match(query);
+        if (hits && hits.length > 0) {
+          partialTitleMatchArr.push(item);
+        }
+      });
+      //if partial match, bring those channels to front
+      if (partialTitleMatchArr.length > 0) {
+        return partialTitleMatchArr.setEach('searchResult', true);
+      }
+    }
+
+  }.observes('channel'),
   actions: {
+    /**
+    Toggle search input visibility
+
+    @method toggleSearch
+    */
+    toggleSearch: function() {
+      this.toggleProperty('quickSearch');
+    },
     /**
     Toggle editing on and off
 

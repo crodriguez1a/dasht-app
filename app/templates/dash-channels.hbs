@@ -1,7 +1,7 @@
 {{#if item.visible}}
   {{#unless item.isfiltered}}
     {{#if item.title}}
-      <div class="channel">
+      <div {{bind-attr class=":channel item.searchResult:search-result:"}}>
         <a class="anchor" {{bind-attr name="item.anchor"}}></a>
         {{#if controller.editing}}
           <a href="#" class="actionable delete" {{action 'hideChannel' item.title}}>{{fa-icon "fa-minus"}}</a>

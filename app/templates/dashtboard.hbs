@@ -1,7 +1,20 @@
 <h2 class="page-title">{{fa-icon "fa-th-large"}} {{title}}</h2>
 
 <div class="page-actions grid">
-
+  {{#unless isMobile}}
+  <div class="quick-search">
+    <a href="#" {{bind-attr class=":search-icon quickSearch:active "}} {{action 'toggleSearch'}}>
+      {{#if quickSearch}}
+        {{fa-icon "fa-close"}}
+      {{else}}
+        {{fa-icon "fa-search"}}
+      {{/if}}
+    </a>
+    {{#liquid-if quickSearch use="crossFade"}}
+      {{input placeholder="Quick search" value=channel action="findChannel" classNames="actionable" focus-out="toggleSearch" mouse-out="toggleSearch"}}
+    {{/liquid-if}}
+  </div>
+  {{/unless}}
   <a href="#" {{bind-attr class=":actionable controller.onFiltersGreaterThanZero:active"}} {{action 'toggleFilters'}} >
     {{#if onFiltersGreaterThanZero}}
       <span class="notify-number">
@@ -22,7 +35,11 @@
       {{fa-icon "fa-pencil"}}
     {{/if}}
   </a>
-  {{#link-to 'add' classNames="actionable"}}{{fa-icon "fa-plus"}} Add a channel{{/link-to}}
+  {{#link-to 'add' classNames="actionable"}}{{fa-icon "fa-plus"}}
+    {{#unless isMobile}}
+      Add a channel
+    {{/unless}}
+  {{/link-to}}
 </div>
 
 {{#liquid-if controller.filtering use="crossFade"}}
@@ -31,7 +48,7 @@
 
 <section class="grid">
   <div class="all-channels">
-    {{#each item in librarySortAlpha}}
+    {{#each item in librarySortVisible}}
       {{partial "dash-channels"}}
     {{/each}}
   </div>

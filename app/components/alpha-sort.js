@@ -18,7 +18,7 @@ export default Ember.Component.extend({
         alpha = [];
 
     channelsLib = channelsLib.sortBy('title');
-    channelsLib.filter(function(item){
+    channelsLib.filter(function(item) {
       alpha.push(item.get('title')[0].toLowerCase());
     });
 
