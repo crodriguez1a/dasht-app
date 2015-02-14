@@ -9,6 +9,15 @@ import { hasLocalStorage } from 'dasht/utils/feature-detect';
 export default Ember.Controller.extend({
   needs: ['application'],
   /**
+  Mobile flag from device.js
+
+  @property isMobile
+  @type String
+  */
+  isMobile: function() {
+    return window.__device.mobile;
+  }.property(),
+  /**
   Sort default
 
   @property sortVisible
