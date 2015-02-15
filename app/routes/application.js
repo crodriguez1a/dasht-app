@@ -204,11 +204,7 @@ export default Ember.Route.extend({
         }
       }.bind(this));
     });
-  },
-
-  init: function() {
-    this.bodyClick();
-  },
+  }.on('init'),
 
   actions: {
     /**
@@ -222,6 +218,11 @@ export default Ember.Route.extend({
       this.controller.set('attrs.menuOpen', false);
       //toggle editing off
       this.controllerFor('dashtboard').set('editing', false);
+      //reset search
+      this.get('controller.model.library').setEach('searchResult', false);
+      this.controllerFor('dashtboard').set('channel', null);
+      this.controllerFor('add').set('channel', null);
+
     },
     /**
       Dev only - refreshes views
