@@ -146,16 +146,16 @@ main {
         .liquid-container {
           position: absolute;
           top: -0.5em;
-          right: -0.5em;
+          right: -0.65em;
           width: 20em;
-          height: 2em;
+          height: 2.25em;
           z-index: 1;
         }
         input {
-          font-size: medium;
           color: $dark-grey;
-          height: 2em;
+          height: auto;
           border-radius: 1em;
+          padding: 0.5em 1em 0.5em 1em;
         }
       }
     }

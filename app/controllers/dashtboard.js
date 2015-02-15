@@ -114,6 +114,11 @@ export default Ember.Controller.extend({
       this.saveToLocal(currentModel);
     }
   },
+  /**
+  Query channel library (by title only)
+
+  @method findChannel
+  */
   findChannel: function() {
     var currentModel = this.get('controllers.application').get('model');
     var channelsLib = currentModel.library;
@@ -140,6 +145,7 @@ export default Ember.Controller.extend({
     }
 
   }.observes('channel'),
+
   actions: {
     /**
     Toggle search input visibility

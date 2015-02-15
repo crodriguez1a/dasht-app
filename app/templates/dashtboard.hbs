@@ -3,7 +3,7 @@
 <div class="page-actions grid">
   {{#unless isMobile}}
   <div class="quick-search">
-    <a href="#" {{bind-attr class=":search-icon quickSearch:active "}} {{action 'toggleSearch'}}>
+    <a href="#" {{bind-attr class=":actionable search-icon quickSearch:active "}} {{action 'toggleSearch'}}>
       {{#if quickSearch}}
         {{fa-icon "fa-close"}}
       {{else}}
