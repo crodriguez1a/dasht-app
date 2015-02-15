@@ -61,9 +61,9 @@ export default Ember.Route.extend({
     @method model
   */
   model: function() {
-    var self = this,
-        local = this.get('localModel'),
-        rest = this.get('restModel');
+    var self = this;
+    var local = this.get('localModel');
+    var rest = this.get('restModel');
 
     //Compare local cache to database
     if (local && rest) {
@@ -75,8 +75,8 @@ export default Ember.Route.extend({
 
         //if items were added or modified, merge with local
         if (local.library.length !== rest._result.library.length || stale) {
-          var rl = rest._result.library,
-              ll = local.library;
+          var rl = rest._result.library;
+          var ll = local.library;
           rl.filter(function(restlib) {
             var localTitle = ll.findBy('title', restlib.title);
             //push missing items
